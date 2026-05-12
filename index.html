@@ -4,70 +4,338 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pedro Alexandre | Tech Lead Portfolio</title>
-  <meta name="description" content="Professional portfolio of Pedro Alexandre, Tech Lead and Senior Power Platform Consultant." />
+  <meta name="description" content="Professional portfolio of Pedro Alexandre, Tech Lead, Senior Systems Analyst and Senior Power Platform Consultant." />
   <style>
     :root {
       --bg: #0f172a;
+      --bg2: #020617;
+      --panel: #111827;
       --card: #1e293b;
+      --card2: #172033;
       --text: #e5e7eb;
       --muted: #94a3b8;
       --accent: #38bdf8;
       --accent-2: #22c55e;
+      --accent-3: #a78bfa;
+      --warning: #facc15;
       --border: #334155;
       --white: #ffffff;
     }
+
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #111827 55%, #020617 100%);
+      background: radial-gradient(circle at top left, rgba(56,189,248,.16), transparent 30%),
+                  radial-gradient(circle at top right, rgba(167,139,250,.12), transparent 28%),
+                  linear-gradient(135deg, var(--bg) 0%, #111827 55%, var(--bg2) 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
+
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { width: min(1100px, 92%); margin: 0 auto; }
-    header { padding: 72px 0 48px; border-bottom: 1px solid var(--border); }
-    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; font-weight: 700; margin-bottom: 12px; }
-    h1 { font-size: clamp(2.3rem, 6vw, 4.6rem); line-height: 1; margin: 0 0 18px; color: var(--white); }
-    .headline { max-width: 840px; font-size: 1.22rem; color: var(--muted); margin-bottom: 28px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .button { display: inline-block; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,0.04); font-weight: 700; }
-    .button.primary { background: var(--accent); color: #082f49; border-color: transparent; }
-    nav { position: sticky; top: 0; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 10; }
-    nav .container { display: flex; gap: 18px; overflow-x: auto; padding: 14px 0; white-space: nowrap; }
-    nav a { color: var(--muted); font-size: 0.94rem; font-weight: 700; }
-    section { padding: 54px 0; border-bottom: 1px solid rgba(51, 65, 85, 0.55); }
-    h2 { font-size: 2rem; margin: 0 0 16px; color: var(--white); }
-    .section-intro { color: var(--muted); max-width: 850px; margin-bottom: 28px; }
-    .grid { display: grid; gap: 18px; }
-    .grid.two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .grid.three { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .card { background: rgba(30, 41, 59, 0.78); border: 1px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: 0 20px 60px rgba(0,0,0,0.18); }
-    .card h3 { margin: 0 0 10px; color: var(--white); font-size: 1.15rem; }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 76px 0 54px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      line-height: 1;
+      margin: 0 0 18px;
+      color: var(--white);
+    }
+
+    .headline {
+      max-width: 920px;
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      font-weight: 800;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #082f49;
+      border-color: transparent;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, .94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    nav .container {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 800;
+    }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid rgba(51, 65, 85, .55);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0 0 16px;
+      color: var(--white);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-size: 1.15rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 920px;
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.two { grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); }
+    .grid.three { grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(30,41,59,.88), rgba(15,23,42,.82));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+    }
+
+    .card.highlight {
+      border-color: rgba(56,189,248,.48);
+      background: linear-gradient(180deg, rgba(14,116,144,.18), rgba(30,41,59,.82));
+    }
+
     .card p { color: var(--muted); margin: 0 0 12px; }
-    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .tag { display: inline-block; padding: 5px 9px; border-radius: 999px; background: rgba(56, 189, 248, 0.12); color: #bae6fd; border: 1px solid rgba(56, 189, 248, 0.25); font-size: 0.78rem; font-weight: 700; }
-    .impact { color: #bbf7d0; font-weight: 700; font-size: 0.92rem; margin-top: 12px; }
-    .timeline { display: grid; gap: 20px; }
-    .experience { border-left: 3px solid var(--accent); padding-left: 18px; }
-    .experience h3 { margin: 0; color: var(--white); }
-    .experience .role { color: var(--accent); font-weight: 700; margin: 4px 0; }
-    .experience .period { color: var(--muted); font-size: 0.94rem; margin-bottom: 10px; }
-    ul { color: var(--muted); padding-left: 20px; margin: 10px 0 0; }
-    .note { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.28); color: #dcfce7; padding: 16px 18px; border-radius: 14px; margin-top: 18px; }
-    footer { padding: 42px 0; color: var(--muted); text-align: center; }
-    @media (max-width: 720px) { header { padding-top: 52px; } section { padding: 42px 0; } }
+
+    .company-block {
+      margin-top: 22px;
+    }
+
+    .company-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: baseline;
+      margin: 0 0 14px;
+    }
+
+    .company-title h2 { margin: 0; }
+    .company-title span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(56,189,248,.12);
+      color: #bae6fd;
+      border: 1px solid rgba(56,189,248,.25);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .tag.green {
+      background: rgba(34,197,94,.12);
+      color: #bbf7d0;
+      border-color: rgba(34,197,94,.25);
+    }
+
+    .tag.purple {
+      background: rgba(167,139,250,.12);
+      color: #ddd6fe;
+      border-color: rgba(167,139,250,.25);
+    }
+
+    .impact {
+      color: #bbf7d0;
+      font-weight: 800;
+      font-size: .92rem;
+      margin-top: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .experience {
+      border-left: 3px solid var(--accent);
+      padding-left: 18px;
+      background: rgba(15,23,42,.35);
+      border-radius: 0 16px 16px 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .experience h3 { margin: 0; }
+    .experience .role {
+      color: var(--accent);
+      font-weight: 800;
+      margin: 4px 0;
+    }
+    .experience .period {
+      color: var(--muted);
+      font-size: .94rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      color: var(--muted);
+      padding-left: 20px;
+      margin: 10px 0 0;
+    }
+
+    .note {
+      background: rgba(34,197,94,.1);
+      border: 1px solid rgba(34,197,94,.28);
+      color: #dcfce7;
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin-top: 18px;
+    }
+
+    .warning {
+      background: rgba(250,204,21,.10);
+      border: 1px solid rgba(250,204,21,.26);
+      color: #fef9c3;
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin-top: 18px;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .project-card {
+      background: rgba(30, 41, 59, .70);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .project-card h3 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .project-card .label {
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #bae6fd;
+      background: rgba(56,189,248,.12);
+      border: 1px solid rgba(56,189,248,.25);
+      padding: 3px 7px;
+      border-radius: 999px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+    }
+
+    .project-grid p {
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+
+    .small-title {
+      color: var(--white);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      padding: 42px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .project-grid { grid-template-columns: 1fr; }
+      header { padding-top: 52px; }
+      section { padding: 42px 0; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <div class="eyebrow">Tech Lead • Power Platform • Fullstack • SAP • Automation</div>
+      <div class="eyebrow">Tech Lead • Power Platform • SAP • Fullstack • Cloud • Automation</div>
       <h1>Pedro Alexandre</h1>
       <p class="headline">
-        Senior Systems Analyst and Tech Lead focused on enterprise applications, automation, Power Platform,
-        cloud solutions, SAP integrations, and business process modernization.
+        Senior Systems Analyst and Tech Lead focused on enterprise applications, Microsoft Power Platform,
+        SAP, Azure, automation, frontend/fullstack development and system integrations.
       </p>
       <div class="actions">
         <a class="button primary" href="mailto:pedrop.alexandre@icloud.com">Contact me</a>
@@ -93,15 +361,31 @@
       <div class="container">
         <h2>About me</h2>
         <p class="section-intro">
-          I am a Senior Systems Analyst and Tech Lead with experience delivering enterprise-grade solutions across
-          Microsoft Power Platform, SharePoint, SAP, Azure, React, .NET, Python, SQL Server, and API integrations.
-          My work focuses on transforming complex business processes into scalable applications, automations,
-          integrations, dashboards, and governance-oriented solutions.
+          I work at the intersection of enterprise systems, business process improvement and software delivery.
+          My experience includes building and maintaining Power Platform applications, automating critical processes,
+          integrating systems, supporting SAP environments, building dashboards, and delivering frontend/fullstack applications.
         </p>
         <p class="section-intro">
-          I combine low-code platforms with traditional software engineering practices, working across requirements,
-          architecture, development, testing, stakeholder alignment, documentation, and continuous improvement.
+          I have participated in projects involving SAP Basis, SAP ECC to SAP HANA migrations, SAP audit/SOD,
+          Power Apps, Power Automate, SharePoint, Azure DevOps, Python, React, .NET, SQL Server, Oracle SQL, RPA
+          and enterprise integrations. My focus is to understand the business need, design a practical solution and deliver
+          systems that improve efficiency, governance, traceability and user experience.
         </p>
+
+        <div class="grid three">
+          <div class="card highlight">
+            <h3>Enterprise Delivery</h3>
+            <p>Experience delivering internal applications, automations and integrations for large organizations with governance and operational impact.</p>
+          </div>
+          <div class="card highlight">
+            <h3>Technical Leadership</h3>
+            <p>Experience coordinating technical initiatives, aligning stakeholders, documenting processes and supporting delivery teams.</p>
+          </div>
+          <div class="card highlight">
+            <h3>Hybrid Engineering Profile</h3>
+            <p>Combination of Power Platform, SAP, cloud, automation, frontend/fullstack development and data integration skills.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -109,12 +393,30 @@
       <div class="container">
         <h2>Core skills</h2>
         <div class="grid three">
-          <div class="card"><h3>Power Platform</h3><p>Power Apps, Power Automate, Power BI, Dataverse, SharePoint Online, approval flows, business apps and automation.</p></div>
-          <div class="card"><h3>Frontend & Fullstack</h3><p>React.js, JavaScript, TypeScript, HTML5, CSS3, .NET/C#, Python, Flask, REST APIs, Firebase and SQL Server.</p></div>
-          <div class="card"><h3>Cloud & DevOps</h3><p>Microsoft Azure, Azure DevOps, CI/CD pipelines, ARM templates, deployment automation and cloud infrastructure.</p></div>
-          <div class="card"><h3>SAP & Enterprise</h3><p>SAP Basis, SAP ECC to SAP HANA migrations, SOD, user administration, SAP Concur and SAP process automation.</p></div>
-          <div class="card"><h3>Data & Integrations</h3><p>SQL Server, Oracle SQL, APIs, SFTP, BACEN data automation, TeamCenter integrations and reporting solutions.</p></div>
-          <div class="card"><h3>Leadership</h3><p>Technical leadership, stakeholder management, documentation, mentoring, process analysis and enterprise architecture.</p></div>
+          <div class="card">
+            <h3>Power Platform</h3>
+            <p>Power Apps, Power Automate, Power BI, Dataverse, SharePoint Online, approval flows, business apps, automation and low-code governance.</p>
+          </div>
+          <div class="card">
+            <h3>Frontend & Fullstack</h3>
+            <p>React.js, JavaScript, TypeScript, HTML5, CSS3, .NET/C#, Python, Flask, REST APIs, Firebase and SQL Server.</p>
+          </div>
+          <div class="card">
+            <h3>Cloud & DevOps</h3>
+            <p>Microsoft Azure, Azure DevOps, CI/CD pipelines, ARM templates, deployment automation, DevSecOps and cloud infrastructure.</p>
+          </div>
+          <div class="card">
+            <h3>SAP & Enterprise</h3>
+            <p>SAP Basis, SAP ECC, SAP HANA, SAP migrations, SAP Concur, SOD, user administration, role management and SAP automation.</p>
+          </div>
+          <div class="card">
+            <h3>Data & Integrations</h3>
+            <p>SQL Server, Oracle SQL, Dataverse, APIs, SFTP, BACEN data automation, TeamCenter integrations and reporting solutions.</p>
+          </div>
+          <div class="card">
+            <h3>Leadership & Delivery</h3>
+            <p>Technical leadership, stakeholder management, documentation, mentoring, requirements analysis, troubleshooting and performance optimization.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -127,19 +429,48 @@
             <h3>Primetals Technologies</h3>
             <div class="role">Senior Information Technology Analyst / Tech Lead</div>
             <div class="period">Nov 2016 – Present</div>
-            <p>Lead and deliver enterprise solutions involving Power Platform, SAP, Azure, DevOps, automation, frontend/fullstack development, reporting, integrations, and operational modernization.</p>
+            <p>
+              Long-term enterprise technology experience supporting and delivering solutions across SAP, Power Platform,
+              Azure, automation, frontend/fullstack development, data reporting, integrations, IT governance and digital transformation.
+            </p>
+            <ul>
+              <li>Led enterprise application and system integrations using .NET, React, Python, SQL Server, SharePoint, SAP and Microsoft technologies.</li>
+              <li>Built Power Platform solutions with Power Apps, Power Automate, SharePoint and Power BI.</li>
+              <li>Acted as primary SAP Basis resource during two SAP migration initiatives, including SAP ECC to SAP HANA.</li>
+              <li>Delivered automation and RPA solutions for SAP, finance, tax, inventory, import, document and corporate workflows.</li>
+              <li>Created dashboards, reports and data structures to support operational and strategic decisions.</li>
+            </ul>
           </div>
+
           <div class="experience">
             <h3>Electrolux</h3>
             <div class="role">Senior Power Platform Consultant — Night Shift Contract</div>
             <div class="period">May 2025 – May 31, 2026</div>
-            <p>Worked on Power Platform enterprise applications and integrations for procurement, supplier management, data platforms and internal operational workflows.</p>
+            <p>
+              Power Platform consulting project focused on enterprise applications for procurement, supplier management,
+              data updates, approval flows, SharePoint structures and integrations with corporate systems.
+            </p>
+            <ul>
+              <li>Worked with Power Apps Canvas, Model-Driven Apps, Power Automate, SharePoint, Dataverse and APIs.</li>
+              <li>Supported and evolved PVA, Sourcing Power App 2.0, PMS, SRM/GDP, CDP and Prism applications.</li>
+              <li>Integrated applications with TeamCenter, SQL Server, Oracle databases and corporate data sources.</li>
+              <li>Worked directly with stakeholders to refine requirements, present prototypes and deliver improvements.</li>
+            </ul>
           </div>
+
           <div class="experience">
             <h3>UPBI Data & AI / NSK Project</h3>
             <div class="role">Senior Power Platform Consultant & Power Apps Instructor — Night Shift Project</div>
             <div class="period">Aug 2024 – Jan 2025</div>
-            <p>Delivered Power Platform training and developed business applications and automation workflows integrated with SharePoint and Microsoft 365.</p>
+            <p>
+              Consulting and instructor project focused on Power Platform enablement, practical training and business automation
+              using Power Apps, Power Automate and SharePoint.
+            </p>
+            <ul>
+              <li>Delivered Power Platform training in Portuguese and English for corporate teams.</li>
+              <li>Created instructional materials, best-practice guides and hands-on examples.</li>
+              <li>Built SharePoint-integrated automation workflows and a Business Continuity Plan application.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -149,46 +480,630 @@
       <div class="container">
         <h2>Featured projects</h2>
         <p class="section-intro">
-          Selected projects grouped by company and business area. Public details are summarized to preserve confidentiality while highlighting scope, technologies and business impact.
+          This section summarizes the main projects delivered or supported across my professional experience.
+          Details are intentionally summarized to avoid exposing confidential data, internal URLs, architecture diagrams,
+          production information or sensitive screenshots.
         </p>
 
-        <h2>Primetals Technologies</h2>
-        <div class="grid two">
-          <div class="card"><h3>SAP Audit & SOD Automation</h3><p>Automation and governance solution to support SAP access review, segregation of duties validation and audit processes.</p><div class="impact">Impact: improved audit readiness, traceability and compliance visibility.</div><div class="meta"><span class="tag">SAP</span><span class="tag">SOD</span><span class="tag">Automation</span></div></div>
-          <div class="card"><h3>SAP ECC to SAP HANA Migration Support</h3><p>Acted as a key SAP Basis resource during SAP migration initiatives, supporting roles, users, transports and system readiness.</p><div class="impact">Impact: supported critical enterprise migration and operational continuity.</div><div class="meta"><span class="tag">SAP Basis</span><span class="tag">SAP HANA</span><span class="tag">Migration</span></div></div>
-          <div class="card"><h3>Import Order Management System</h3><p>System to manage imported materials, centralize documentation and provide follow-up visibility for involved teams.</p><div class="impact">Impact: centralized documents, improved traceability and reduced manual tracking.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">Automation</span></div></div>
-          <div class="card"><h3>Logistics & Inventory Management App</h3><p>Digital solution for logistics and inventory control with structured data, dashboards and reporting capabilities.</p><div class="impact">Impact: improved operational visibility and decision-making.</div><div class="meta"><span class="tag">.NET</span><span class="tag">SQL Server</span><span class="tag">Dashboards</span></div></div>
-          <div class="card"><h3>Sentinel Prime IT Services Centralization</h3><p>Initiative to centralize IT assets, incidents and requests in a secure environment with MFA and governance practices.</p><div class="impact">Impact: improved service traceability, security and operational efficiency.</div><div class="meta"><span class="tag">Governance</span><span class="tag">MFA</span><span class="tag">ITSM</span></div></div>
-          <div class="card"><h3>Next Level Reporting Data Structure</h3><p>Data collection and standardization initiative for strategic reports including planning adherence, operational indicators and project timelines.</p><div class="impact">Impact: increased visibility and supported evidence-based decisions.</div><div class="meta"><span class="tag">Reports</span><span class="tag">Data</span><span class="tag">KPIs</span></div></div>
-          <div class="card"><h3>Inventory Balance BI</h3><p>Automated monthly SAP data extraction and reporting for inventory balance analysis by period and location.</p><div class="impact">Impact: reduced manual effort and improved stock visibility.</div><div class="meta"><span class="tag">Power BI</span><span class="tag">SAP</span><span class="tag">Automation</span></div></div>
-          <div class="card"><h3>Depreciation & Inventory Analysis BI</h3><p>BI solution combining inventory and depreciation data to support accounting and asset management decisions.</p><div class="impact">Impact: improved reliability for asset replacement and write-off decisions.</div><div class="meta"><span class="tag">Power BI</span><span class="tag">SAP</span><span class="tag">Analytics</span></div></div>
-          <div class="card"><h3>Tool Receiving & Delivery Automation</h3><p>Digital process using forms, barcode reading and user authentication to track tool receiving and return flows.</p><div class="impact">Impact: reduced manual failures and increased operational traceability.</div><div class="meta"><span class="tag">Forms</span><span class="tag">Barcode</span><span class="tag">Automation</span></div></div>
-          <div class="card"><h3>SAP Concur File 305 Automation</h3><p>Automation to consolidate HR and administrative data into the required SAP Concur 305 file structure.</p><div class="impact">Impact: eliminated manual consolidation and reduced processing errors.</div><div class="meta"><span class="tag">SAP Concur</span><span class="tag">RPA</span><span class="tag">Data</span></div></div>
-          <div class="card"><h3>Secure File Transfer Automation</h3><p>Automated encryption and secure SFTP transfer process using Cleopatra and official Concur keys.</p><div class="impact">Impact: improved security, reliability and compliance for sensitive data transfer.</div><div class="meta"><span class="tag">SFTP</span><span class="tag">Encryption</span><span class="tag">Compliance</span></div></div>
-          <div class="card"><h3>BACEN Exchange Rate Automation</h3><p>Daily automation to collect official exchange rates from Banco Central and integrate them into SAP.</p><div class="impact">Impact: improved accuracy for financial, fiscal and accounting processes.</div><div class="meta"><span class="tag">SAP</span><span class="tag">BACEN</span><span class="tag">Automation</span></div></div>
-          <div class="card"><h3>Corporate Taxi Request App</h3><p>Power Apps solution to centralize and automate corporate taxi requests, replacing scattered emails and manual controls.</p><div class="impact">Impact: standardized requests and improved real-time visibility.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">Workflow</span></div></div>
-          <div class="card"><h3>Budget Forecast App</h3><p>Application for collecting and validating forecast information for business planning activities.</p><div class="impact">Impact: improved data quality and reduced manual collection effort.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">Data Validation</span><span class="tag">Business Planning</span></div></div>
-          <div class="card"><h3>Payment Date Validation RPA</h3><p>Automation for validating payment dates and updating control spreadsheets for service invoices.</p><div class="impact">Impact: reduced repetitive manual work and improved data accuracy.</div><div class="meta"><span class="tag">RPA</span><span class="tag">Finance</span><span class="tag">Excel</span></div></div>
-          <div class="card"><h3>Withholding Tax Report RPA</h3><p>Automation for monthly withholding tax reporting involving IR, PIS, COFINS, CSLL, INSS and ISS data.</p><div class="impact">Impact: improved tax data consistency and compliance reliability.</div><div class="meta"><span class="tag">RPA</span><span class="tag">Tax</span><span class="tag">Compliance</span></div></div>
-          <div class="card"><h3>Technical Specification Generator</h3><p>Python automation to generate DOCX technical specification documents from structured Excel data.</p><div class="impact">Impact: standardized document generation and reduced rework.</div><div class="meta"><span class="tag">Python</span><span class="tag">DOCX</span><span class="tag">Excel</span></div></div>
-          <div class="card"><h3>ICMS Load Validation Automation</h3><p>Automation comparing SAP and Tax One data to validate ICMS calculation bases and reduce fiscal inconsistencies.</p><div class="impact">Impact: improved fiscal closing reliability and audit support.</div><div class="meta"><span class="tag">SAP</span><span class="tag">Tax One</span><span class="tag">RPA</span></div></div>
-          <div class="card"><h3>Project Planning Power App</h3><p>Application enabling users to plan projects without requiring Microsoft Project licenses.</p><div class="impact">Impact: reduced licensing dependency and improved project organization.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">Project Planning</span><span class="tag">Cost Reduction</span></div></div>
+        <div class="company-block">
+          <div class="company-title">
+            <h2>Primetals Technologies</h2>
+            <span>Enterprise systems, SAP, automation, reporting, Power Platform and digital transformation</span>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card">
+              <h3>SAP Audit & Segregation of Duties Automation <span class="label">Governance</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed and supported automation initiatives for SAP access review, audit controls and segregation of duties analysis.
+                    The solution helped structure access data, validate potential conflicts and improve visibility for audit-related processes.
+                  </p>
+                  <p>
+                    The work involved SAP access concepts, user/role analysis, validation logic, reporting and process documentation, reducing manual effort
+                    and improving confidence in recurring compliance reviews.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">SAP</span><span class="tag">SOD</span><span class="tag">Audit</span><span class="tag">Automation</span><span class="tag">Power Platform</span>
+                  </div>
+                  <div class="impact">Impact: improved traceability, audit readiness and compliance visibility.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>SAP ECC to SAP HANA Migration Support <span class="label">SAP Basis</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Acted as a key SAP Basis resource during SAP migration initiatives, including SAP ECC to SAP HANA.
+                    Responsibilities included supporting user administration, roles, transports, system readiness, validation tasks and migration-related activities.
+                  </p>
+                  <p>
+                    This experience required technical troubleshooting, coordination with business areas, understanding of SAP environments and support for critical enterprise continuity.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">SAP Basis</span><span class="tag">SAP ECC</span><span class="tag">SAP HANA</span><span class="tag">Migration</span><span class="tag">Roles</span>
+                  </div>
+                  <div class="impact">Impact: supported critical migration initiatives and operational continuity.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Sentinel Prime IT Services Centralization <span class="label">IT Governance</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Participated in an initiative to centralize IT services, assets, incidents and requests in a unified and more secure platform.
+                    The initiative included stronger governance, improved traceability and use of MFA to reinforce access security.
+                  </p>
+                  <p>
+                    The project supported operational efficiency and helped align IT service management practices with Industry 4.0 and digital governance goals.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">ITSM</span><span class="tag">MFA</span><span class="tag">Governance</span><span class="tag">Security</span>
+                  </div>
+                  <div class="impact">Impact: improved productivity, tracking, governance and security.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Next Level Reporting Data Structure <span class="label">Data & KPIs</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Worked on data collection and structuring activities for strategic reporting within the Next Level project.
+                    The initiative included operational indicators such as mobile MAT usage, planning fidelity, schedule adherence and project timelines.
+                  </p>
+                  <p>
+                    The goal was to standardize information, increase operational visibility and support management decisions based on reliable data.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power BI</span><span class="tag">Data</span><span class="tag">KPIs</span><span class="tag">Reporting</span>
+                  </div>
+                  <div class="impact">Impact: improved reporting maturity and evidence-based decision-making.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Inventory Balance BI <span class="label">Business Intelligence</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Created an inventory balance reporting solution that automated monthly SAP data extraction, organized information by period and location,
+                    and generated decision-ready analysis for operational planning.
+                  </p>
+                  <p>
+                    The process replaced manual routines and improved visibility over inventory levels and variations.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power BI</span><span class="tag">SAP</span><span class="tag">Excel</span><span class="tag">Automation</span>
+                  </div>
+                  <div class="impact">Impact: improved stock visibility and reduced manual reporting work.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Depreciation & Inventory Analysis BI <span class="label">Analytics</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed a BI solution integrating inventory and depreciation information, crossing SAP data such as acquisition date, useful life and asset location.
+                    The solution supported accounting analysis, asset replacement decisions and write-off evaluation.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power BI</span><span class="tag">SAP</span><span class="tag">Inventory</span><span class="tag">Accounting</span>
+                  </div>
+                  <div class="impact">Impact: increased data reliability and supported asset governance.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Tool Receiving & Delivery Automation <span class="label">Operations</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Implemented a digital process using Forms, barcode reading and user authentication to automate tool receiving and delivery control.
+                    The solution improved tracking of tool movements and reduced dependency on manual records.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Forms</span><span class="tag">Barcode</span><span class="tag">Automation</span><span class="tag">Authentication</span>
+                  </div>
+                  <div class="impact">Impact: improved traceability, productivity and operational control.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>SAP Concur File 305 Automation <span class="label">Automation</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Built an automation to generate the SAP Concur 305 file by consolidating HR and administrative data that was previously handled across
+                    multiple spreadsheets and macros. The process unified information into a final structured dataset containing eligible employees.
+                  </p>
+                  <p>
+                    A second automation encrypted the file using Cleopatra with the official Concur key and sent it securely via SFTP to the processing partner.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">SAP Concur</span><span class="tag">RPA</span><span class="tag">SFTP</span><span class="tag">Encryption</span><span class="tag">Cleopatra</span>
+                  </div>
+                  <div class="impact">Impact: improved security, standardization and reliability of sensitive data transfer.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>BACEN Exchange Rate Automation <span class="label">SAP Integration</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed a daily automation to retrieve official exchange rates from Banco Central and send the information to SAP.
+                    The process replaced manual activities and supported financial, fiscal, import and accounting calculations.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">SAP</span><span class="tag">BACEN</span><span class="tag">Automation</span><span class="tag">Finance</span>
+                  </div>
+                  <div class="impact">Impact: increased accuracy, reduced manual effort and supported compliance with official rates.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Corporate Taxi Request App <span class="label">Power Apps</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed a Power Apps application to centralize and automate corporate taxi requests, replacing scattered emails and manual controls.
+                    The solution standardized requests and provided better visibility for the responsible team.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">Power Automate</span>
+                  </div>
+                  <div class="impact">Impact: improved request visibility, control and process standardization.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Budget Forecast App <span class="label">Business App</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Created an application for collection and validation of forecast information for business planning activities.
+                    The app supported data quality and reduced fragmented manual collection.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">Validation</span><span class="tag">Planning</span>
+                  </div>
+                  <div class="impact">Impact: improved forecast data collection and validation.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Payment Date Validation RPA <span class="label">Finance</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed automation for payment date validation, feeding control spreadsheets for service invoices and reducing repetitive manual checks.
+                    The process improved reliability and helped teams focus on more strategic accounting analysis.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">RPA</span><span class="tag">Finance</span><span class="tag">Excel</span>
+                  </div>
+                  <div class="impact">Impact: reduced repetitive work and improved accuracy of payment controls.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Withholding Tax Report RPA <span class="label">Tax</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Built automation for withholding tax reports involving IR, PIS, COFINS, CSLL, INSS and ISS.
+                    The automation improved consistency for monthly tax reporting and supported obligations such as ECF, DIRF and REINF.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">RPA</span><span class="tag">Tax</span><span class="tag">Compliance</span>
+                  </div>
+                  <div class="impact">Impact: improved tax data reliability and reduced manual conference time.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Technical Specification Generator <span class="label">Python</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Created a Python automation to populate DOCX technical specification templates using structured Excel data.
+                    The solution standardized document generation and eliminated repetitive manual filling of project documents.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Python</span><span class="tag">DOCX</span><span class="tag">Excel</span><span class="tag">Automation</span>
+                  </div>
+                  <div class="impact">Impact: generated complete documents in seconds and reduced rework.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>ICMS Load Validation Automation <span class="label">Fiscal</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed automation to compare SAP and Tax One information and validate ICMS calculation bases.
+                    The process supported continuous fiscal validation and improved reliability during monthly closing and audits.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">SAP</span><span class="tag">Tax One</span><span class="tag">ICMS</span><span class="tag">RPA</span>
+                  </div>
+                  <div class="impact">Impact: reduced fiscal inconsistencies and improved audit support.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Import Order Management System <span class="label">Logistics</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Built a control and follow-up system for imported materials, centralizing documents and enabling teams to track import-related processes
+                    in a single location. The system supported document organization and real-time visibility for involved stakeholders.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">Logistics</span><span class="tag">Documents</span>
+                  </div>
+                  <div class="impact">Impact: centralized import documentation and improved process follow-up.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Cafeteria Request Forms <span class="label">Microsoft 365</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Implemented Microsoft Forms for cafeteria-related requests, integrated with Power Automate to route requests to suppliers according
+                    to request type. The process reduced manual handling and improved request standardization.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">MS Forms</span><span class="tag">Power Automate</span><span class="tag">Workflow</span>
+                  </div>
+                  <div class="impact">Impact: faster request routing and improved service quality.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Project Planning Power App <span class="label">Cost Optimization</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed a Power Apps project planning solution that allowed users to plan projects without requiring Microsoft Project licenses.
+                    The app enabled management of schedules, tasks and deliverables directly within the Microsoft 365 ecosystem.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">Project Management</span><span class="tag">Cost Reduction</span>
+                  </div>
+                  <div class="impact">Impact: reduced licensing dependency and improved planning standardization.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Real-Time Task Management App <span class="label">Frontend</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Created a real-time task management app using React and Firebase, including collaborative task creation, notifications,
+                    data synchronization and authentication. The project demonstrated frontend development, real-time data handling and modern web application patterns.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">React</span><span class="tag">Firebase</span><span class="tag">Authentication</span><span class="tag">Realtime</span>
+                  </div>
+                  <div class="impact">Impact: enabled collaborative task tracking with live synchronization.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Image Recognition Application <span class="label">AI / Python</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Contributed to an image recognition application using Python, TensorFlow and Flask.
+                    The project involved data processing, machine learning concepts and web development to support practical AI use cases.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Flask</span><span class="tag">AI</span>
+                  </div>
+                  <div class="impact">Impact: expanded AI and data-processing capabilities in internal solutions.</div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
 
-        <h2>Electrolux</h2>
-        <div class="grid two">
-          <div class="card"><h3>PVA – Procurement Virtual Assistant</h3><p>Power Platform solution supporting procurement workflows, user guidance and TeamCenter-related process automation.</p><div class="impact">Impact: improved procurement support and workflow standardization.</div><div class="meta"><span class="tag">Power Platform</span><span class="tag">TeamCenter</span><span class="tag">Automation</span></div></div>
-          <div class="card"><h3>Sourcing Power App 2.0</h3><p>Model-driven application for sourcing processes, governance rules, views, policies and automation migration to a new environment.</p><div class="impact">Impact: strengthened sourcing governance and process consistency.</div><div class="meta"><span class="tag">Model-Driven App</span><span class="tag">Dataverse</span><span class="tag">Power Automate</span></div></div>
-          <div class="card"><h3>PMS – Plant Management System</h3><p>Analysis and support of a complex Power Apps solution connected to multiple enterprise databases.</p><div class="impact">Impact: identified performance improvement opportunities for a critical system.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">Oracle</span><span class="tag">Performance</span></div></div>
-          <div class="card"><h3>SRM / GDP App</h3><p>Supplier relationship management app involving SharePoint structures, approval flows, data validation and automations.</p><div class="impact">Impact: improved data consistency and prepared the system for testing.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">Approvals</span></div></div>
-          <div class="card"><h3>CDP App</h3><p>Application improvements involving frontend fixes, automation flows, user tests and data validation processes.</p><div class="impact">Impact: improved stability and usability for data management workflows.</div><div class="meta"><span class="tag">Canvas App</span><span class="tag">Power Automate</span><span class="tag">Testing</span></div></div>
-          <div class="card"><h3>Prism App</h3><p>Power Apps solution for data updates, validations, automations and reliability improvements.</p><div class="impact">Impact: reduced manual work and improved data reliability.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">Validation</span><span class="tag">Automation</span></div></div>
+        <div class="company-block">
+          <div class="company-title">
+            <h2>Electrolux</h2>
+            <span>Night shift contract • Power Platform, SharePoint, Dataverse, integrations and enterprise apps</span>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card">
+              <h3>PVA – Procurement Virtual Assistant <span class="label">Procurement</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Supported maintenance and evolution of the Procurement Virtual Assistant, a Power Platform-based solution designed to help users
+                    with procurement processes, guidance and operational requests.
+                  </p>
+                  <p>
+                    Work included reviewing automation flows, studying the best architecture with stakeholders and supporting the communication between PVA and TeamCenter.
+                    The project also involved analysis of access and compliance requirements for links related to engineering/project drawings.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Platform</span><span class="tag">Power Automate</span><span class="tag">TeamCenter</span><span class="tag">Procurement</span>
+                  </div>
+                  <div class="impact">Impact: improved procurement support, workflow automation and user guidance.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Sourcing Power App 2.0 <span class="label">Model-Driven App</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Worked on the Sourcing Power App 2.0 with focus on model-driven app maintenance, business rules, policies, views,
+                    automation adaptation and migration to the Procurement PMO Environment.
+                  </p>
+                  <p>
+                    Activities included creating and adjusting views, applying business policies, validating app behavior and supporting the approval process with stakeholders.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Model-Driven App</span><span class="tag">Dataverse</span><span class="tag">Power Automate</span><span class="tag">Governance</span>
+                  </div>
+                  <div class="impact">Impact: improved sourcing governance, environment readiness and process consistency.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>PMS – Plant Management System <span class="label">Performance Analysis</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Supported analysis of a complex Power Apps application used to create, update and manage plants.
+                    The app involved multiple Oracle/database connections and a highly complex business structure.
+                  </p>
+                  <p>
+                    Work included studying the existing structure, understanding frontend behavior, reviewing performance issues, validating access to the correct environment
+                    and identifying opportunities for optimization.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">Oracle</span><span class="tag">Performance</span><span class="tag">Enterprise App</span>
+                  </div>
+                  <div class="impact">Impact: identified bottlenecks and improvement opportunities in a critical enterprise application.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>SRM / GDP App <span class="label">Supplier Management</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Worked on structural updates, SharePoint list changes, data updates, approval flow design and automation improvements for the SRM/GDP application.
+                    The project involved validation with stakeholders and preparation for system testing.
+                  </p>
+                  <p>
+                    Activities included reviewing SharePoint data structures, deleting legacy/pre-existing items when required for testing, creating additional automations,
+                    adjusting app logic and validating data consistency.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">Power Automate</span><span class="tag">Approval Flow</span>
+                  </div>
+                  <div class="impact">Impact: improved process readiness, data consistency and automation coverage.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>CDP App <span class="label">Data Platform</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Maintained and improved the CDP application with focus on frontend corrections, automations, user testing and bug resolution.
+                    The work also involved data validation across related lists and systems.
+                  </p>
+                  <p>
+                    Activities included correcting UI behavior, creating Power Automate flows, resolving bugs reported by users and improving stability of the app.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Canvas App</span><span class="tag">Power Automate</span><span class="tag">SharePoint</span><span class="tag">Testing</span>
+                  </div>
+                  <div class="impact">Impact: improved usability, reliability and data validation for business users.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Prism App <span class="label">Data Updates</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Developed and evolved a Power Apps solution to support updates and maintenance of Prism-related data.
+                    The project involved requirements gathering, prototype creation, iterative presentations and implementation of security restrictions and automations.
+                  </p>
+                  <p>
+                    Activities included frontend development, documentation, validation rules, data handling, automation design and stakeholder presentations.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">Power Automate</span><span class="tag">Validation</span><span class="tag">Security</span>
+                  </div>
+                  <div class="impact">Impact: reduced manual data-update effort and improved data reliability.</div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
 
-        <h2>UPBI / NSK</h2>
-        <div class="grid two">
-          <div class="card"><h3>Power Platform Training Program</h3><p>Beginner and intermediate Power Platform training delivered to corporate teams in Portuguese and English.</p><div class="impact">Impact: improved team autonomy and adoption of Power Platform best practices.</div><div class="meta"><span class="tag">Training</span><span class="tag">Power Apps</span><span class="tag">Power Automate</span></div></div>
-          <div class="card"><h3>Business Continuity Plan App</h3><p>Power Apps solution integrated with SharePoint lists to manage contingency and security-related records.</p><div class="impact">Impact: improved risk management, data collection and decision support.</div><div class="meta"><span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">BCP</span></div></div>
+        <div class="company-block">
+          <div class="company-title">
+            <h2>UPBI Data & AI / NSK</h2>
+            <span>Night shift project • Power Platform consulting and instruction</span>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card">
+              <h3>Power Platform Training Program <span class="label">Instructor</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Delivered beginner and intermediate Power Platform training sessions for corporate teams in Portuguese and English.
+                    The training focused on practical adoption, best practices and real use cases with Power Apps and Power Automate.
+                  </p>
+                  <p>
+                    Created instructional materials and supported teams in understanding how to apply low-code tools to their business processes.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">Power Automate</span><span class="tag">Training</span><span class="tag">PT/EN</span>
+                  </div>
+                  <div class="impact">Impact: improved team autonomy and adoption of Power Platform best practices.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Project Management Workflow Automation <span class="label">Process Automation</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Built Power Automate workflows integrated with SharePoint Lists to support project management, automated status updates,
+                    email reminders and cross-department communication.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Automate</span><span class="tag">SharePoint Lists</span><span class="tag">Notifications</span>
+                  </div>
+                  <div class="impact">Impact: improved visibility, process efficiency and communication.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <h3>Business Continuity Plan App <span class="label">Power Apps</span></h3>
+              <div class="project-grid">
+                <div>
+                  <p>
+                    Created a Power Apps application integrated with multiple SharePoint lists to manage records related to security and contingency plans.
+                    The solution streamlined data collection, form responses and risk-management information.
+                  </p>
+                </div>
+                <div>
+                  <div class="small-title">Technologies / Areas</div>
+                  <div class="meta">
+                    <span class="tag">Power Apps</span><span class="tag">SharePoint</span><span class="tag">BCP</span><span class="tag">Risk Management</span>
+                  </div>
+                  <div class="impact">Impact: improved data collection and decision-making for business continuity.</div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -201,13 +1116,20 @@
           business-sensitive data, system architecture details and production records are intentionally not displayed.
           Project descriptions are summarized to highlight professional experience, technologies and business impact.
         </div>
+        <div class="warning">
+          Some project names were generalized or summarized when needed to avoid exposing internal information.
+          The goal of this portfolio is to demonstrate professional scope, technical leadership and business impact.
+        </div>
       </div>
     </section>
 
     <section id="contact">
       <div class="container">
         <h2>Contact</h2>
-        <p class="section-intro">I am open to Tech Lead, Senior Consultant, Power Platform Lead, Solutions Architect and Enterprise Applications roles.</p>
+        <p class="section-intro">
+          Open to Tech Lead, Senior Consultant, Power Platform Lead, Solutions Architect, Senior Systems Analyst
+          and Enterprise Applications roles.
+        </p>
         <div class="actions">
           <a class="button primary" href="mailto:pedrop.alexandre@icloud.com">pedrop.alexandre@icloud.com</a>
           <a class="button" href="https://www.linkedin.com/in/pedro-alexandre-b485663b" target="_blank" rel="noopener">LinkedIn profile</a>
@@ -216,6 +1138,10 @@
     </section>
   </main>
 
-  <footer><div class="container">© 2026 Pedro Alexandre — Professional portfolio</div></footer>
+  <footer>
+    <div class="container">
+      © 2026 Pedro Alexandre — Professional portfolio
+    </div>
+  </footer>
 </body>
 </html>
