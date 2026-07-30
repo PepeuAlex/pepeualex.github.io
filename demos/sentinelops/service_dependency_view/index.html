@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Service Dependency View - SentinelOps</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ffb4ab",
+                        "background": "#001525",
+                        "secondary": "#51dbc7",
+                        "surface-container-high": "#162c3e",
+                        "inverse-primary": "#00677e",
+                        "primary-fixed-dim": "#49d6fd",
+                        "on-primary-fixed": "#001f27",
+                        "on-primary-container": "#004c5d",
+                        "on-tertiary-fixed": "#400009",
+                        "surface-tint": "#49d6fd",
+                        "outline-variant": "#3d494d",
+                        "tertiary-fixed": "#ffdad9",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffbebe",
+                        "error-container": "#93000a",
+                        "surface-dim": "#001525",
+                        "on-secondary-fixed": "#00201c",
+                        "secondary-container": "#00b19f",
+                        "surface-container": "#092133",
+                        "secondary-fixed": "#72f8e3",
+                        "on-primary-fixed-variant": "#004e5f",
+                        "surface-container-low": "#051d2e",
+                        "on-surface": "#cee5fd",
+                        "on-background": "#cee5fd",
+                        "secondary-fixed-dim": "#51dbc7",
+                        "on-secondary-container": "#003d35",
+                        "on-tertiary": "#680015",
+                        "on-primary": "#003542",
+                        "outline": "#869398",
+                        "tertiary-container": "#ff9597",
+                        "on-error": "#690005",
+                        "on-secondary": "#003731",
+                        "inverse-on-surface": "#1d3244",
+                        "surface-variant": "#213749",
+                        "tertiary-fixed-dim": "#ffb3b3",
+                        "primary": "#6bdcff",
+                        "on-tertiary-fixed-variant": "#920022",
+                        "on-tertiary-container": "#8f0021",
+                        "inverse-surface": "#cee5fd",
+                        "surface-bright": "#263b4e",
+                        "on-surface-variant": "#bcc9ce",
+                        "primary-container": "#27c2e8",
+                        "surface": "#001525",
+                        "surface-container-lowest": "#000f1d",
+                        "on-secondary-fixed-variant": "#005047",
+                        "surface-container-highest": "#213749",
+                        "primary-fixed": "#b4ebff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "sidebar-collapsed": "64px",
+                        "sidebar-width": "240px",
+                        "container-margin": "1rem",
+                        "unit-md": "1rem",
+                        "unit-xs": "0.25rem",
+                        "gutter": "0.75rem",
+                        "unit-sm": "0.5rem"
+                    },
+                    fontFamily: {
+                        "code-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    fontSize: {
+                        "code-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "code-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "700" }],
+                        "display": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Node Animations */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        .status-pulse::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .status-pulse.critical::before { background-color: theme('colors.error'); }
+        .status-pulse.warning::before { background-color: #facc15; }
+        .status-pulse.healthy::before { background-color: theme('colors.secondary'); }
+
+        .line-dash {
+            stroke-dasharray: 4 4;
+            animation: dash-flow 20s linear infinite;
+        }
+        .line-flow {
+            stroke-dasharray: 10 10;
+            animation: dash-flow 1s linear infinite reverse;
+        }
+        @keyframes dash-flow {
+            to { stroke-dashoffset: 1000; }
+        }
+
+        /* Map Canvas Drag */
+        #map-canvas {
+            cursor: grab;
+        }
+        #map-canvas:active {
+            cursor: grabbing;
+        }
+        
+        /* Custom Scrollbar for drawer */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: theme('colors.surface-variant'); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.outline-variant'); }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen w-screen overflow-hidden flex font-body-md">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container fixed left-0 top-0 h-full w-sidebar-collapsed hover:w-sidebar-width transition-all duration-300 z-40 border-r border-outline-variant bg-surface-container flex flex-col h-full pt-12 overflow-hidden group">
+<!-- Header -->
+<div class="px-gutter mb-8 flex items-center space-x-3 whitespace-nowrap overflow-hidden">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="dashboard">dashboard</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">SentinelOps</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">AI Command</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-gutter mb-6 whitespace-nowrap overflow-hidden">
+<button class="w-full h-10 bg-error/10 hover:bg-error/20 border border-error/30 text-error rounded-DEFAULT flex items-center justify-center space-x-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="font-label-caps text-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">New Incident</span>
+</button>
+</div>
+<!-- Tabs -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden font-label-caps text-label-caps">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="dashboard">dashboard</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Operations</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="warning">warning</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Incidents</span>
+</a>
+</li>
+<!-- ACTIVE TAB -->
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-primary border-l-2 border-primary bg-primary/10 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="dns" data-weight="fill">dns</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Services</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="emergency_home">emergency_home</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Alerts</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="person_alert">person_alert</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">On-Call</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="menu_book">menu_book</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Runbooks</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="history_edu">history_edu</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Reviews</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="analytics">analytics</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="settings">settings</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Settings</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Footer -->
+<div class="mt-auto border-t border-outline-variant font-label-caps text-label-caps">
+<ul class="py-2">
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="help">help</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Help</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-4 px-6 py-3 text-on-surface-variant opacity-70 hover:bg-surface-container-high hover:opacity-100 transition-all duration-200 ease-in-out whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[20px] shrink-0" data-icon="sensors">sensors</span>
+<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">Status</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="ml-sidebar-collapsed flex-1 relative bg-background overflow-hidden flex flex-col transition-all duration-300" id="main-content">
+<!-- Top Toolbar -->
+<div class="h-14 border-b border-outline-variant bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-between px-gutter z-10 absolute top-0 w-full">
+<div class="flex items-center space-x-4">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Topology Map</h2>
+<div class="h-4 w-px bg-outline-variant"></div>
+<div class="flex items-center space-x-2 text-error font-body-sm text-body-sm bg-error/10 px-2 py-1 rounded-DEFAULT border border-error/20">
+<span class="status-pulse critical relative w-2 h-2 rounded-full bg-error inline-block mr-1"></span>
+                    Active Incident: IN-8924
+                </div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" data-icon="search">search</span>
+<input class="bg-surface-container border border-outline-variant rounded-DEFAULT pl-8 pr-3 py-1 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64" placeholder="Search services (Cmd+K)" type="text"/>
+</div>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-DEFAULT transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
+</button>
+<div class="flex bg-surface-container border border-outline-variant rounded-DEFAULT overflow-hidden">
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors border-r border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<span class="px-2 py-1 text-body-sm font-body-sm flex items-center justify-center w-12 text-on-surface">100%</span>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors border-l border-outline-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Graph Canvas -->
+<div class="flex-1 relative mt-14 overflow-hidden" id="map-canvas">
+<!-- SVG Lines -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+<!-- Regular paths -->
+<path class="line-dash opacity-50" d="M 400 150 C 400 300, 200 200, 200 400" fill="none" stroke="theme('colors.outline-variant')" stroke-width="2"></path>
+<path class="line-dash opacity-50" d="M 400 150 C 400 300, 800 200, 800 400" fill="none" stroke="theme('colors.outline-variant')" stroke-width="2"></path>
+<!-- Critical Path Highlight -->
+<path class="line-flow" d="M 400 150 C 400 300, 500 250, 500 400" fill="none" stroke="theme('colors.error')" stroke-width="3"></path>
+<path class="line-flow" d="M 500 400 C 500 550, 650 450, 650 600" fill="none" stroke="theme('colors.error')" stroke-width="3"></path>
+</svg>
+<!-- Nodes -->
+<!-- Node: Load Balancer -->
+<div class="node absolute left-[300px] top-[100px] bg-surface-container-high border border-outline-variant rounded-DEFAULT p-3 w-48 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer hover:border-primary transition-colors z-10 group" onclick="openDrawer('lb-node')" style="transform: translate(0, 0);">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="router">router</span>
+<span class="font-label-caps text-label-caps text-on-surface">Ingress LB</span>
+</div>
+<span class="status-pulse critical relative w-2 h-2 rounded-full bg-error inline-block"></span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between">
+<span>REQ</span>
+<span class="text-on-surface">12.4k/s</span>
+</div>
+</div>
+<!-- Node: API Gateway -->
+<div class="node absolute left-[400px] top-[350px] bg-surface-container-high border-2 border-error rounded-DEFAULT p-3 w-48 shadow-[0_0_15px_rgba(255,180,171,0.2)] cursor-pointer z-10 group" onclick="openDrawer('api-node')">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="api">api</span>
+<span class="font-label-caps text-label-caps text-on-surface">API Gateway</span>
+</div>
+<span class="status-pulse critical relative w-2 h-2 rounded-full bg-error inline-block"></span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between mb-1">
+<span>ERR</span>
+<span class="text-error font-bold">14.2%</span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between">
+<span>LAT</span>
+<span class="text-error font-bold">850ms</span>
+</div>
+</div>
+<!-- Node: Auth Service -->
+<div class="node absolute left-[100px] top-[350px] bg-surface-container-high border border-outline-variant rounded-DEFAULT p-3 w-48 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer hover:border-primary transition-colors z-10 group" onclick="openDrawer('auth-node')">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="shield_person">shield_person</span>
+<span class="font-label-caps text-label-caps text-on-surface">Auth Service</span>
+</div>
+<span class="status-pulse healthy relative w-2 h-2 rounded-full bg-secondary inline-block"></span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between mb-1">
+<span>ERR</span>
+<span class="text-on-surface">0.01%</span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between">
+<span>LAT</span>
+<span class="text-on-surface">45ms</span>
+</div>
+</div>
+<!-- Node: Inventory DB -->
+<div class="node absolute left-[550px] top-[550px] bg-surface-container-high border border-error rounded-DEFAULT p-3 w-48 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer hover:border-primary transition-colors z-10 group" onclick="openDrawer('db-node')">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="database">database</span>
+<span class="font-label-caps text-label-caps text-on-surface">Inventory DB</span>
+</div>
+<span class="status-pulse critical relative w-2 h-2 rounded-full bg-error inline-block"></span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between mb-1">
+<span>CPU</span>
+<span class="text-error font-bold">98%</span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between">
+<span>IOPS</span>
+<span class="text-on-surface">45k</span>
+</div>
+</div>
+<!-- Node: Payment Gateway -->
+<div class="node absolute left-[700px] top-[350px] bg-surface-container-high border border-outline-variant rounded-DEFAULT p-3 w-48 shadow-[0_4px_12px_rgba(0,0,0,0.5)] cursor-pointer hover:border-primary transition-colors z-10 group" onclick="openDrawer('pay-node')">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="payments">payments</span>
+<span class="font-label-caps text-label-caps text-on-surface">Payment API</span>
+</div>
+<span class="status-pulse healthy relative w-2 h-2 rounded-full bg-secondary inline-block"></span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between">
+<span>LAT</span>
+<span class="text-on-surface">120ms</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Details Drawer (Right Side) -->
+<aside class="fixed right-0 top-0 h-full w-[360px] bg-surface-container-high border-l border-outline-variant shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col" id="details-drawer">
+<!-- Drawer Header -->
+<div class="h-14 border-b border-outline-variant flex items-center justify-between px-gutter bg-surface-container-high shrink-0">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="api" id="drawer-icon">api</span>
+<h3 class="font-headline-md text-headline-md text-on-surface" id="drawer-title">API Gateway</h3>
+</div>
+<button class="p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded-DEFAULT transition-colors" onclick="closeDrawer()">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto p-gutter space-y-6">
+<!-- Status Alert -->
+<div class="bg-error/10 border border-error/30 rounded-DEFAULT p-3">
+<div class="flex items-start space-x-2">
+<span class="material-symbols-outlined text-error text-[18px] mt-0.5" data-icon="error">error</span>
+<div>
+<h4 class="font-label-caps text-label-caps text-error">Critical Alert Active</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">High error rate detected in downstream connection to Inventory DB. Connection pool exhausted.</p>
+</div>
+</div>
+</div>
+<!-- Key Metrics -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-3 border-b border-outline-variant pb-1">Live Metrics</h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Latency (P99)</div>
+<div class="font-code-md text-code-md text-error">850ms <span class="text-on-surface-variant text-[10px]">↑ 400%</span></div>
+</div>
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Error Rate</div>
+<div class="font-code-md text-code-md text-error">14.2% <span class="text-on-surface-variant text-[10px]">↑ 14%</span></div>
+</div>
+<div class="bg-surface-container p-3 rounded-DEFAULT border border-outline-variant col-span-2">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Throughput</div>
+<div class="font-code-md text-code-md text-on-surface flex justify-between items-end">
+<span>4,200 req/s</span>
+<div class="h-6 w-32 flex items-end space-x-0.5 opacity-70">
+<!-- Sparkline mock -->
+<div class="w-2 bg-secondary h-[40%]"></div><div class="w-2 bg-secondary h-[45%]"></div><div class="w-2 bg-secondary h-[60%]"></div>
+<div class="w-2 bg-secondary h-[50%]"></div><div class="w-2 bg-secondary h-[80%]"></div><div class="w-2 bg-error h-[90%]"></div>
+<div class="w-2 bg-error h-[100%]"></div><div class="w-2 bg-error h-[95%]"></div><div class="w-2 bg-error h-[100%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Deployment History -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-3 border-b border-outline-variant pb-1">Recent Deployments</h4>
+<div class="space-y-3 relative before:absolute before:inset-y-0 before:left-2 before:w-px before:bg-outline-variant">
+<div class="relative pl-6">
+<div class="absolute left-[3px] top-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-surface-container-high"></div>
+<div class="font-body-sm text-body-sm text-on-surface">v2.1.4-hotfix <span class="text-on-surface-variant ml-2">12m ago</span></div>
+<div class="font-code-sm text-code-sm text-on-surface-variant mt-0.5">Rollback connection pool config</div>
+</div>
+<div class="relative pl-6">
+<div class="absolute left-[3px] top-1.5 w-2 h-2 rounded-full bg-surface-variant border border-outline-variant ring-2 ring-surface-container-high"></div>
+<div class="font-body-sm text-body-sm text-on-surface">v2.1.4 <span class="text-on-surface-variant ml-2">45m ago</span></div>
+<div class="font-code-sm text-code-sm text-on-surface-variant mt-0.5">Update dependency caching</div>
+</div>
+<div class="relative pl-6">
+<div class="absolute left-[3px] top-1.5 w-2 h-2 rounded-full bg-surface-variant border border-outline-variant ring-2 ring-surface-container-high"></div>
+<div class="font-body-sm text-body-sm text-on-surface">v2.1.3 <span class="text-on-surface-variant ml-2">2d ago</span></div>
+<div class="font-code-sm text-code-sm text-on-surface-variant mt-0.5">Routine security patch</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-4 flex space-x-3">
+<button class="flex-1 bg-surface-variant hover:bg-outline-variant text-on-surface font-body-sm text-body-sm py-2 rounded-DEFAULT border border-outline-variant transition-colors">
+                    View Logs
+                </button>
+<button class="flex-1 bg-primary/10 hover:bg-primary/20 text-primary font-body-sm text-body-sm py-2 rounded-DEFAULT border border-primary/30 transition-colors">
+                    Trace
+                </button>
+</div>
+</div>
+</aside>
+<script>
+        const drawer = document.getElementById('details-drawer');
+        const mainContent = document.getElementById('main-content');
+        
+        function openDrawer(nodeId) {
+            // In a real app, you'd fetch data based on nodeId and populate the drawer.
+            // For now, we just slide it in.
+            drawer.classList.remove('translate-x-full');
+            // Slight squeeze on main content if desired, though overlap is common in this style
+            // mainContent.classList.add('mr-[360px]'); 
+        }
+
+        function closeDrawer() {
+            drawer.classList.add('translate-x-full');
+            // mainContent.classList.remove('mr-[360px]');
+        }
+
+        // Basic drag implementation for the canvas
+        const canvas = document.getElementById('map-canvas');
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - canvas.offsetLeft;
+            startY = e.pageY - canvas.offsetTop;
+            scrollLeft = canvas.scrollLeft;
+            scrollTop = canvas.scrollTop;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - canvas.offsetLeft;
+            const y = e.pageY - canvas.offsetTop;
+            const walkX = (x - startX) * 2; // scroll-fast
+            const walkY = (y - startY) * 2;
+            
+            // Adjusting absolute position of inner elements instead of scroll for this simple mock
+            // A real implementation would use a transform matrix on a wrapper div
+        });
+    </script>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Collections - PrismHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#64636c",
+                        "on-primary-container": "#dcdfff",
+                        "inverse-on-surface": "#f1effd",
+                        "on-tertiary-fixed-variant": "#7e0089",
+                        "background": "#fbf8ff",
+                        "on-background": "#1a1b24",
+                        "primary": "#1e3cbd",
+                        "surface-tint": "#3751d0",
+                        "on-primary-fixed-variant": "#1536b8",
+                        "secondary-fixed": "#e4e1eb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#a230aa",
+                        "tertiary-fixed": "#ffd6f9",
+                        "surface-variant": "#e2e1ef",
+                        "on-surface": "#1a1b24",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "inverse-surface": "#2f303a",
+                        "on-primary-fixed": "#00115a",
+                        "surface-dim": "#dad9e6",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eeecfa",
+                        "inverse-primary": "#bac3ff",
+                        "secondary-fixed-dim": "#c7c5cf",
+                        "primary-container": "#3d57d6",
+                        "on-tertiary-fixed": "#37003c",
+                        "on-secondary-fixed-variant": "#46464e",
+                        "tertiary": "#850a8f",
+                        "on-secondary-fixed": "#1b1b22",
+                        "outline-variant": "#c5c5d6",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffa9fd",
+                        "on-surface-variant": "#444654",
+                        "surface": "#fbf8ff",
+                        "surface-container-high": "#e8e7f5",
+                        "outline": "#757685",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#ffd5f9",
+                        "secondary": "#5e5d66",
+                        "secondary-container": "#e4e1eb",
+                        "primary-fixed-dim": "#bac3ff",
+                        "surface-container-low": "#f4f2ff",
+                        "primary-fixed": "#dee0ff",
+                        "surface-container-highest": "#e2e1ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xxl": "48px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-md": ["JetBrains Mono"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "label-sm": ["10px", { "lineHeight": "12px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">PrismHub</span>
+<nav class="hidden md:flex items-center gap-md ml-xl">
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Explore</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Favorites</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Recent</a>
+<a class="font-label-md text-label-md text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 opacity-80 duration-150" href="#">Collections</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar (on_left in design, but pushing to right of links as per typical flex layout, or could be next to logo. Opting for right side of links) -->
+<div class="hidden md:flex relative group">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-64 bg-surface-container-low border border-outline-variant rounded-full py-2 pl-xl pr-md text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all text-on-surface placeholder:text-outline" placeholder="Search datasets..." type="text"/>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">dark_mode</span>
+</button>
+<img alt="User profile photo" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a business analyst in a bright, modern office setting. Light mode, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTl3mdDccBT7MHIz2luQ_vyhR1vUzeN-RibSrdH3T7yqDgqpyhEMZ8Cc7_7ijCuV6aemXdd1HcvSoiBCTaC1a_vR-P1VZvaPKz83nPOKGN9otGQR2IvdIPaymp5C37Pl3Ss3CpxGF55NAou0Dr_7FwOMCWZPcY7tH7nDroaQkiYspqdTRlLEc4nu1RNN1Cnh8m4OneJzhjzu_L-eoy5sF1NDFWbYsn6tgkZ0O1WawaoSbdGMW_fUDlDg"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[80px] pb-xxl px-margin-desktop md:px-[64px] max-w-container-max mx-auto">
+<!-- Header Section -->
+<section class="mb-xl text-center md:text-left pt-lg pb-md border-b border-outline-variant">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Curated Collections</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Expert-curated sets of dashboards, metrics, and certified data models tailored to specific business domains. Unlock premium insights to drive strategic decisions.
+            </p>
+</section>
+<!-- Collections Grid (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Executive Finance -->
+<a class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_16px_32px_-8px_rgba(30,60,189,0.1)] transition-all duration-300 relative h-full flex flex-col" href="#">
+<div class="h-40 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md">
+<span class="material-symbols-outlined text-[64px] text-primary opacity-20 absolute -bottom-4 -right-4 group-hover:scale-110 transition-transform duration-500">account_balance</span>
+<img alt="" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-50" data-alt="Abstract geometric data visualization with intersecting planes and line graphs in shades of royal blue and soft white. Modern corporate, light mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxDK3vSQysMD_y_98oY6PsE5pFy3QIJMUqaMW_SxqmvfuCMEZbz64R71tunoTXq41AkU4ih0HgCzhif87c7wZ74Xg3TvD_2PJHw9NCenDaS9Gq71_hUfCEh0wF52iubxI7FaLQtDF3E-cSVe55QmUnPc3fOzV8swynisqeL-kNpWePia_Oyy8tLwYyl2DTCNHS0h543B0leAwSRLdKLBL62dDMWrlIQFs13aEGfAApuhg1bLfRfu5fUg"/>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Executive Finance</h3>
+<span class="bg-primary-container/10 text-primary border border-primary/20 px-2 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">star</span> Premium
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">High-level financial KPIs, cash flow analysis, and revenue forecasting models for C-suite.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">12 Dashboards</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Supply Chain -->
+<a class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_16px_32px_-8px_rgba(30,60,189,0.1)] transition-all duration-300 relative h-full flex flex-col" href="#">
+<div class="h-40 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md">
+<span class="material-symbols-outlined text-[64px] text-primary opacity-20 absolute -bottom-4 -right-4 group-hover:scale-110 transition-transform duration-500">local_shipping</span>
+<img alt="" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-50" data-alt="Abstract logistics visualization showing flow nodes and connecting lines in light grey and blue. Clean, modern, light mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP7yoTcRH7w0wtw3YOYJfkH4gUblnq2dh9D-whqEYjO0tZM2cg2jhqf2t6Xhsh7ZHCT6pNvXN5tUjY2oIAbMhMtHGOP0R514BXgtaKDdTCmRNZE-jjnyzMurIXTJjiFNY9rHQNPqGgYIfcsq_ECJyDiTlHMYm0jqqy2IdZMGTK8sLpZ3Y7PfbP-TwrigAOPY8sis_UG04OQZBEaI-9eYPDCnRSSZPu6TNcp8Ezm6tLX59UgpC4dqA5pg"/>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Supply Chain</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">End-to-end visibility into logistics, inventory turnover, and supplier performance metrics.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">8 Dashboards</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Procurement (Locked) -->
+<div class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden relative h-full flex flex-col opacity-75 cursor-not-allowed">
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[48px] mb-2 bg-surface p-2 rounded-full shadow-sm">lock</span>
+<span class="font-label-md text-label-md text-secondary bg-surface px-3 py-1 rounded-full shadow-sm border border-outline-variant">Requires Pro License</span>
+</div>
+<div class="h-40 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md grayscale">
+<span class="material-symbols-outlined text-[64px] text-secondary opacity-20 absolute -bottom-4 -right-4">shopping_cart</span>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface grayscale">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Procurement</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Spend analysis, contract compliance, and vendor risk assessments.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">5 Dashboards</span>
+</div>
+</div>
+</div>
+<!-- People Analytics -->
+<a class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_16px_32px_-8px_rgba(30,60,189,0.1)] transition-all duration-300 relative h-full flex flex-col lg:col-span-2" href="#">
+<div class="h-48 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md">
+<span class="material-symbols-outlined text-[80px] text-primary opacity-20 absolute -bottom-4 -right-4 group-hover:scale-110 transition-transform duration-500">groups</span>
+<img alt="" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-60" data-alt="Wide abstract visualization of organizational network graphs, interconnected nodes representing workforce structure in a bright corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtLzJWgJTYdUUYHYpH2hceXw7WTsKCwtRrOI9LzII3H8H0NgWLpuu_bvHBlR5DbPSjyvpI3jg4c__4tZRGm7PIpL4bsaLKClo3DjxRViYwdOlj39dFPp42n8aGcGsFElFSsIrEaEaSkFG6ohFeyOEupW7fEUEvJ0J16-BMRue_PRHRzQ47JKaRXOhbhfsAHzwTE2K-6FV32_U21DEVyALeXOdm8n-5RI4v3XylGbK3svNqtqz4p3RkEg"/>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">People Analytics</h3>
+<span class="bg-primary-container/10 text-primary border border-primary/20 px-2 py-1 rounded-full font-label-sm text-label-sm">Trending</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">Deep dive into workforce demographics, retention risk models, employee engagement surveys, and compensation equity analysis.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">15 Dashboards</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Project Management -->
+<a class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_16px_32px_-8px_rgba(30,60,189,0.1)] transition-all duration-300 relative h-full flex flex-col" href="#">
+<div class="h-48 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md">
+<span class="material-symbols-outlined text-[64px] text-primary opacity-20 absolute -bottom-4 -right-4 group-hover:scale-110 transition-transform duration-500">task</span>
+<div class="absolute inset-0 bg-gradient-to-br from-transparent to-surface-variant opacity-50"></div>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Project Management</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Resource allocation, milestone tracking, and portfolio health.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">9 Dashboards</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- IT Operations -->
+<a class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_16px_32px_-8px_rgba(30,60,189,0.1)] transition-all duration-300 relative h-full flex flex-col" href="#">
+<div class="h-40 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md">
+<span class="material-symbols-outlined text-[64px] text-primary opacity-20 absolute -bottom-4 -right-4 group-hover:scale-110 transition-transform duration-500">dns</span>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">IT Operations</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">System uptime, incident response metrics, and infrastructure costs.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">11 Dashboards</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Compliance (Locked) -->
+<div class="group block bg-surface border border-outline-variant rounded-xl overflow-hidden relative h-full flex flex-col opacity-75 cursor-not-allowed">
+<div class="absolute inset-0 bg-surface/40 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[48px] mb-2 bg-surface p-2 rounded-full shadow-sm">lock</span>
+<span class="font-label-md text-label-md text-secondary bg-surface px-3 py-1 rounded-full shadow-sm border border-outline-variant">Requires Pro License</span>
+</div>
+<div class="h-40 bg-surface-container-low relative overflow-hidden flex items-center justify-center border-b border-outline-variant p-md grayscale">
+<span class="material-symbols-outlined text-[64px] text-secondary opacity-20 absolute -bottom-4 -right-4">policy</span>
+</div>
+<div class="p-md flex-grow flex flex-col justify-between bg-surface grayscale">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Compliance</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Regulatory tracking, audit trails, and data governance reports.</p>
+</div>
+<div class="mt-md flex items-center justify-between pt-sm border-t border-outline-variant/50">
+<span class="font-label-md text-label-md text-secondary">6 Dashboards</span>
+</div>
+</div>
+</div>
+<!-- Blank card for grid alignment if needed, or promotional callout -->
+<div class="border border-dashed border-outline-variant rounded-xl p-md flex flex-col items-center justify-center text-center bg-surface-container-lowest/50 hover:bg-surface-container-low transition-colors duration-300">
+<span class="material-symbols-outlined text-outline mb-sm text-2xl">library_add</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Request a Collection</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Need a custom set for your department?</p>
+<button class="bg-surface border border-outline-variant text-primary px-4 py-2 rounded font-label-md text-label-md hover:bg-surface-variant transition-colors">Contact Admin</button>
+</div>
+</div>
+</main>
+</body></html>

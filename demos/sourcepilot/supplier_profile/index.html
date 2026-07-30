@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supplier Profile - Veridian Logistics Group | SourcePilot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#3f4944",
+                        "primary-fixed-dim": "#8fd4bb",
+                        "inverse-surface": "#23342f",
+                        "surface-container": "#def2ea",
+                        "tertiary": "#664700",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#236a55",
+                        "primary-container": "#2a705b",
+                        "tertiary-container": "#855d00",
+                        "tertiary-fixed": "#ffdeaa",
+                        "surface-container-high": "#d9ede5",
+                        "outline": "#6f7974",
+                        "secondary-fixed-dim": "#aecebf",
+                        "outline-variant": "#bfc9c3",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#abf1d6",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "background": "#eafef6",
+                        "on-tertiary-fixed-variant": "#5f4100",
+                        "inverse-on-surface": "#e1f5ed",
+                        "primary": "#055744",
+                        "on-secondary-fixed-variant": "#304c41",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#eafef6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#e4f8f0",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#476458",
+                        "on-primary-container": "#aaf1d6",
+                        "on-surface": "#0e1f1a",
+                        "on-primary-fixed-variant": "#00513e",
+                        "secondary-container": "#c9eada",
+                        "inverse-primary": "#8fd4bb",
+                        "on-tertiary-fixed": "#271900",
+                        "tertiary-fixed-dim": "#f5bd58",
+                        "error-container": "#ffdad6",
+                        "surface": "#eafef6",
+                        "surface-container-highest": "#d3e7df",
+                        "on-background": "#0e1f1a",
+                        "secondary-fixed": "#c9eada",
+                        "on-secondary-container": "#4d6a5e",
+                        "surface-variant": "#d3e7df",
+                        "on-tertiary-container": "#ffdda9",
+                        "surface-dim": "#cbded7",
+                        "on-secondary-fixed": "#032017"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "3xl": "64px",
+                        "margin-desktop": "40px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "2xl": "48px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "max-width": "1440px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Public Sans"],
+                        "display-lg": ["Public Sans"],
+                        "body-lg": ["Public Sans"],
+                        "data-mono": ["Public Sans"],
+                        "body-md": ["Public Sans"],
+                        "body-sm": ["Public Sans"],
+                        "headline-lg-mobile": ["Public Sans"],
+                        "display-lg-mobile": ["Public Sans"],
+                        "headline-md": ["Public Sans"],
+                        "title-lg": ["Public Sans"],
+                        "label-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F5EF;
+            color: theme('colors.on-background');
+        }
+        .card-surface {
+            background-color: #FFFFFF;
+            border: 1px solid #DED9CD;
+            border-radius: theme('borderRadius.xl');
+            padding: theme('spacing.lg');
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<nav class="hidden md:flex bg-primary dark:bg-primary text-on-primary dark:text-on-primary docked full-width top-0 shadow-sm flex justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-16 z-50">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">SourcePilot</span>
+<div class="flex gap-md h-full items-center">
+<a class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors px-md py-sm rounded-md font-label-md text-label-md" href="#">Home</a>
+<a class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors px-md py-sm rounded-md font-label-md text-label-md" href="#">Requisitions</a>
+<a class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors px-md py-sm rounded-md font-label-md text-label-md" href="#">Sourcing</a>
+<a class="text-on-primary border-b-2 border-tertiary-fixed pb-1 hover:bg-primary-container/20 transition-colors px-md pt-sm rounded-t-md font-label-md text-label-md" href="#">Suppliers</a>
+<a class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors px-md py-sm rounded-md font-label-md text-label-md" href="#">Contracts</a>
+<a class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors px-md py-sm rounded-md font-label-md text-label-md" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary-container text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container/80 transition-colors">Copilot</button>
+<button class="text-on-primary hover:bg-primary-container/20 p-sm rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="text-on-primary hover:bg-primary-container/20 p-sm rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+<button class="text-on-primary hover:bg-primary-container/20 p-sm rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="account_circle">account_circle</span></button>
+</div>
+</nav>
+<div class="flex flex-1 w-full max-w-max-width mx-auto mt-16 px-margin-desktop py-xl gap-gutter">
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col gap-gutter">
+<!-- Header Section -->
+<header class="flex justify-between items-start mb-md">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<h1 class="font-headline-lg text-headline-lg text-primary">Veridian Logistics Group</h1>
+<span class="bg-surface-container-low text-primary px-sm py-xs rounded-full font-label-md text-label-md border border-outline-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span> Strategic Partner
+                        </span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Global Freight &amp; Supply Chain Solutions</p>
+</div>
+<div class="flex gap-sm">
+<button class="border border-[#DED9CD] text-[#173F35] px-md py-sm rounded-lg font-label-md text-label-md hover:bg-surface-container-lowest transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span> Edit Profile
+                    </button>
+<button class="bg-[#2A705B] text-white px-md py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span> Contact
+                    </button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Financial Health (Scoreboard) -->
+<section class="card-surface col-span-1 md:col-span-2 flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-[#DED9CD] pb-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span> Financial Health
+                        </h2>
+<span class="font-label-md text-label-md text-on-surface-variant">Last updated: Q3 2024</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md mt-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Altman Z-Score</span>
+<span class="font-headline-md text-headline-md text-primary mt-xs">2.8</span>
+<span class="font-body-sm text-body-sm text-primary-container flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span> Safe Zone
+                            </span>
+</div>
+<div class="flex flex-col border-l border-[#DED9CD] pl-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Credit Rating</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-xs">A-</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-xs">S&amp;P Global</span>
+</div>
+<div class="flex flex-col border-l border-[#DED9CD] pl-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Annual Rev</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-xs">$1.2B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-xs">+5.4% YoY</span>
+</div>
+<div class="flex flex-col border-l border-[#DED9CD] pl-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">DSO</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-xs">42 Days</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Industry Avg: 45</span>
+</div>
+</div>
+</section>
+<!-- Risk Assessment -->
+<section class="card-surface col-span-1 flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-[#DED9CD] pb-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="warning">warning</span> Risk Profile
+                        </h2>
+</div>
+<div class="flex items-center justify-center py-md relative">
+<!-- Simple CSS Donut representation -->
+<div class="w-24 h-24 rounded-full border-8 border-surface-variant border-t-primary-container border-r-primary-container transform rotate-45"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface">Low</span>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Geo-Political</span>
+<div class="w-1/2 bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-1/4"></div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Operational</span>
+<div class="w-1/2 bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full w-2/5"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ESG Performance & Approvals -->
+<section class="card-surface col-span-1 md:col-span-1 flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-[#DED9CD] pb-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="eco">eco</span> ESG Rating
+                        </h2>
+</div>
+<div class="flex items-end gap-sm mt-sm">
+<span class="font-display-lg text-display-lg text-primary leading-none">84</span>
+<span class="font-body-md text-body-md text-on-surface-variant pb-1">/ 100</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Top 15% in Logistics sector.</p>
+<div class="mt-auto border-t border-[#DED9CD] pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-sm">Recent Certifications</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">ISO 14001 Renewal</p>
+<p class="font-label-md text-label-md text-outline">Approved Oct 12, 2024</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Contracts -->
+<section class="card-surface col-span-1 md:col-span-2 flex flex-col gap-md">
+<div class="flex justify-between items-center border-b border-[#DED9CD] pb-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span> Active Contracts
+                        </h2>
+<button class="text-primary hover:bg-surface-container py-xs px-sm rounded font-label-md text-label-md transition-colors">View All</button>
+</div>
+<div class="overflow-x-auto mt-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant">
+<th class="py-sm px-sm font-label-md text-label-md text-on-surface-variant uppercase">Contract ID</th>
+<th class="py-sm px-sm font-label-md text-label-md text-on-surface-variant uppercase">Type</th>
+<th class="py-sm px-sm font-label-md text-label-md text-on-surface-variant uppercase">Value (USD)</th>
+<th class="py-sm px-sm font-label-md text-label-md text-on-surface-variant uppercase">Expiry</th>
+<th class="py-sm px-sm font-label-md text-label-md text-on-surface-variant uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<tr class="border-b border-surface-variant hover:bg-[#F7F5EF] transition-colors">
+<td class="py-md px-sm text-primary">MSA-2023-0042</td>
+<td class="py-md px-sm">Master Service</td>
+<td class="py-md px-sm">$5.4M</td>
+<td class="py-md px-sm">Dec 31, 2025</td>
+<td class="py-md px-sm"><span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full font-label-md text-label-md">Active</span></td>
+</tr>
+<tr class="hover:bg-[#F7F5EF] transition-colors">
+<td class="py-md px-sm text-primary">SOW-2024-019</td>
+<td class="py-md px-sm">EU Distribution</td>
+<td class="py-md px-sm">$1.2M</td>
+<td class="py-md px-sm">Jun 30, 2025</td>
+<td class="py-md px-sm"><span class="bg-primary-container/10 text-primary-container px-sm py-xs rounded-full font-label-md text-label-md">Active</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-dim dark:bg-surface-dim full-width bottom-0 border-t border-outline-variant flat no shadows w-full py-lg px-margin-desktop flex justify-between items-center max-w-max-width mx-auto mt-auto">
+<span class="font-title-lg text-title-lg text-secondary">SourcePilot</span>
+<div class="flex gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Documentation</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant">© 2024 SourcePilot Procurement Intelligence. All rights reserved.</p>
+</footer>
+</body></html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise Search - AtlasMind</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Public+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#5b4ab9",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#275f92",
+                      "on-secondary-fixed": "#291800",
+                      "outline": "#787584",
+                      "surface-container-highest": "#e5e1e8",
+                      "surface-container-high": "#ebe7ee",
+                      "on-secondary-container": "#724a00",
+                      "on-surface-variant": "#484552",
+                      "primary-fixed-dim": "#c8bfff",
+                      "surface": "#fcf8ff",
+                      "on-primary-fixed": "#190064",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#ffba4e",
+                      "tertiary-fixed": "#d1e4ff",
+                      "on-tertiary-fixed": "#001d35",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c9c4d5",
+                      "primary-container": "#7464d4",
+                      "on-surface": "#1c1b20",
+                      "tertiary-fixed-dim": "#9dcaff",
+                      "secondary-fixed": "#ffddb2",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#c8bfff",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fcf8ff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#fffbff",
+                      "inverse-surface": "#313035",
+                      "surface-dim": "#ddd8df",
+                      "secondary-fixed-dim": "#ffba4e",
+                      "on-tertiary-container": "#fdfcff",
+                      "surface-container-low": "#f6f2f9",
+                      "on-background": "#1c1b20",
+                      "surface-tint": "#5e4dbc",
+                      "on-error-container": "#93000a",
+                      "background": "#fcf8ff",
+                      "tertiary-container": "#4478ac",
+                      "surface-variant": "#e5e1e8",
+                      "inverse-on-surface": "#f4eff6",
+                      "secondary": "#815500",
+                      "on-secondary-fixed-variant": "#624000",
+                      "primary-fixed": "#e5deff",
+                      "surface-container": "#f1ecf3",
+                      "on-primary-fixed-variant": "#4533a2",
+                      "on-tertiary-fixed-variant": "#02497b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-lg": "32px",
+                      "pane-sidebar-width": "320px",
+                      "edge-margin": "24px",
+                      "stack-sm": "8px",
+                      "pane-nav-width": "64px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-sm": [
+                              "Public Sans"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Public Sans"
+                      ],
+                      "body-lg": [
+                              "Public Sans"
+                      ],
+                      "body-md": [
+                              "Public Sans"
+                      ],
+                      "label-sm": [
+                              "Public Sans"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .bg-noise {
+              background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+          }
+      </style>
+</head>
+<body class="bg-[#FAF9F6] text-on-surface font-body-md min-h-screen flex antialiased bg-noise">
+<!-- Global Navigation (Narrow) -->
+<nav class="fixed left-0 top-0 h-full w-[64px] bg-[#FAF9F6] border-r border-[#E5E1DA] flex flex-col z-50 transition-all duration-200 ease-in-out hidden md:flex items-center py-6">
+<div class="mb-8 font-display-lg text-[24px] font-bold text-primary">A</div>
+<div class="flex flex-col gap-6 w-full items-center">
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Ask Atlas">
+<span class="material-symbols-outlined">chat_bubble</span>
+</a>
+<!-- Active State -->
+<a class="border-l-4 border-primary text-primary font-bold bg-primary-container/5 w-full flex justify-center py-2 relative -ml-1 pl-1" href="#" title="Enterprise Search">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+</a>
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Documents">
+<span class="material-symbols-outlined">description</span>
+</a>
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Collections">
+<span class="material-symbols-outlined">folder_special</span>
+</a>
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Saved Answers">
+<span class="material-symbols-outlined">bookmark</span>
+</a>
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Team Spaces">
+<span class="material-symbols-outlined">groups</span>
+</a>
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Evaluations">
+<span class="material-symbols-outlined">analytics</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-6 items-center">
+<a class="text-on-surface-variant opacity-70 hover:bg-primary-container/10 p-2 rounded-lg transition-colors" href="#" title="Administration">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+</a>
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-[#E5E1DA]" data-alt="A small, professional avatar image of a user in a clean, minimalist, high-key light mode style, suitable for a sophisticated enterprise UI. Soft lighting, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANUygLKAHw1Yu5aZlzdNwzuUERvNlsFRdzyGA9wtByDdGeApySmmDPmJlRIRHrlmf4VRvr_9tGrqeTHBO2bDRVerjuSWlBf6vscDTJdw1FnWujUTmpgryfXyRo8XF9_hvK0svY9jkEM76fZdr-5CIfHwoIrdLVkTouH-m-d_l4DFYOoGDHOcDoj52d0XZmBhBqEQcybHDblJgTnHsLCpi19rl99GO7JFcJ-_zu9Yj28zE7NLgoM-7H"/>
+</div>
+</nav>
+<!-- Contextual Sidebar/Explorer -->
+<aside class="fixed left-0 md:left-[64px] top-0 h-full w-full md:w-[320px] bg-[#FAF9F6] border-r border-[#E5E1DA] hidden md:flex flex-col z-40 overflow-y-auto">
+<div class="p-edge-margin pb-4 border-b border-[#E5E1DA]">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Filters</h2>
+</div>
+<div class="p-edge-margin flex flex-col gap-stack-lg">
+<!-- Filter Group: Source -->
+<div class="flex flex-col gap-stack-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Source</h3>
+<div class="flex flex-col gap-2 mt-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-0 bg-transparent transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">SharePoint</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-0 bg-transparent transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Google Drive</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-0 bg-transparent transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Internal Wiki</span>
+</label>
+</div>
+</div>
+<!-- Filter Group: Document Type -->
+<div class="flex flex-col gap-stack-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Document Type</h3>
+<div class="flex flex-wrap gap-2 mt-2">
+<button class="px-3 py-1.5 border border-[#E5E1DA] rounded-DEFAULT font-label-sm text-label-sm text-on-surface hover:border-primary hover:text-primary transition-all bg-white">PDF</button>
+<button class="px-3 py-1.5 border border-primary bg-primary/5 rounded-DEFAULT font-label-sm text-label-sm text-primary transition-all">Doc</button>
+<button class="px-3 py-1.5 border border-[#E5E1DA] rounded-DEFAULT font-label-sm text-label-sm text-on-surface hover:border-primary hover:text-primary transition-all bg-white">Spreadsheets</button>
+</div>
+</div>
+<!-- Filter Group: Department -->
+<div class="flex flex-col gap-stack-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Department</h3>
+<select class="mt-2 block w-full rounded-DEFAULT border-[#E5E1DA] bg-white py-2 pl-3 pr-10 font-body-sm text-body-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+<option>All Departments</option>
+<option>Engineering</option>
+<option>Marketing</option>
+<option>Legal</option>
+</select>
+</div>
+<!-- Filter Group: Date -->
+<div class="flex flex-col gap-stack-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Date Modified</h3>
+<select class="mt-2 block w-full rounded-DEFAULT border-[#E5E1DA] bg-white py-2 pl-3 pr-10 font-body-sm text-body-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+<option>Any time</option>
+<option>Past 24 hours</option>
+<option>Past week</option>
+<option>Past month</option>
+</select>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-[384px] p-edge-margin md:p-[48px] max-w-container-max mx-auto w-full flex flex-col min-h-screen">
+<!-- Search Header Area -->
+<header class="mb-stack-lg max-w-4xl w-full">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-6">Enterprise Search</h1>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline-variant group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-[#E5E1DA] rounded-lg font-body-lg text-body-lg placeholder-outline-variant focus:ring-0 focus:border-primary focus:border-b-2 shadow-sm transition-all outline-none" placeholder="Search everything across the workspace..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+<button class="bg-primary text-white p-2 rounded hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Results & Analytics Area -->
+<div class="flex flex-col lg:flex-row gap-gutter w-full max-w-6xl">
+<!-- Results Column -->
+<div class="flex-1 flex flex-col gap-stack-md">
+<div class="flex justify-between items-end mb-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing 1-10 of 42 results for <span class="font-semibold text-on-surface">"Q3 Strategy"</span></p>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sort by:</span>
+<select class="text-body-sm border-none bg-transparent py-0 pl-1 pr-6 focus:ring-0 text-primary font-medium cursor-pointer">
+<option>Relevance</option>
+<option>Date (Newest)</option>
+</select>
+</div>
+</div>
+<!-- Result Card 1 -->
+<article class="bg-surface-container-lowest border border-[#E5E1DA] rounded-lg p-6 hover:shadow-[0_12px_32px_rgba(34,33,38,0.05)] hover:border-outline-variant transition-all duration-300 relative group cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">description</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Project Alpha: Q3 Go-to-Market Strategy</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-DEFAULT font-label-sm text-label-sm">Internal</span>
+<div class="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-DEFAULT border border-emerald-100">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-label-sm text-label-sm font-bold">98% Match</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed line-clamp-2">
+                        The comprehensive approach for the <mark class="bg-secondary-fixed text-on-secondary-fixed px-1 rounded">Q3 strategy</mark> involves aligning sales and marketing efforts around the new product launch. We anticipate a 15% increase in market penetration if the <mark class="bg-secondary-fixed text-on-secondary-fixed px-1 rounded">strategy</mark> is executed...
+                    </p>
+<div class="flex items-center gap-4 text-outline font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">folder</span> Marketing Dept</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">person</span> Sarah Jenkins</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> Oct 12, 2023</span>
+</div>
+</article>
+<!-- Result Card 2 -->
+<article class="bg-surface-container-lowest border border-[#E5E1DA] rounded-lg p-6 hover:shadow-[0_12px_32px_rgba(34,33,38,0.05)] hover:border-outline-variant transition-all duration-300 relative group cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#EA4335]">picture_as_pdf</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Q3 Financial Projections &amp; Budget Review.pdf</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 bg-error-container text-on-error-container rounded-DEFAULT font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lock</span> Confidential</span>
+<div class="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-DEFAULT border border-emerald-100">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-label-sm text-label-sm font-bold">85% Match</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed line-clamp-2">
+                        Adjustments to the <mark class="bg-secondary-fixed text-on-secondary-fixed px-1 rounded">Q3 strategy</mark> budget require board approval before implementation. The attached models outline three potential scenarios based on current market volatility and the revised <mark class="bg-secondary-fixed text-on-secondary-fixed px-1 rounded">strategy</mark> goals.
+                    </p>
+<div class="flex items-center gap-4 text-outline font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">folder</span> Finance</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">person</span> David Chen</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> Oct 10, 2023</span>
+</div>
+</article>
+</div>
+<!-- Analytics Sidebar -->
+<div class="w-full lg:w-[320px] shrink-0">
+<div class="bg-surface-container-lowest border border-[#E5E1DA] rounded-lg p-6 sticky top-[48px]">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">insights</span>
+                        Search Insights
+                    </h3>
+<div class="flex flex-col gap-6">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Total Documents Scanned</p>
+<p class="font-display-lg text-[32px] text-primary font-bold">14,208</p>
+</div>
+<div class="h-px bg-[#E5E1DA] w-full"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Top Extracted Entities</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface font-body-sm text-[13px]">Project Alpha</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface font-body-sm text-[13px]">Q3</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface font-body-sm text-[13px]">Marketing</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface font-body-sm text-[13px]">Budget</span>
+<span class="px-2 py-1 bg-surface-container-high rounded text-on-surface font-body-sm text-[13px]">Launch</span>
+</div>
+</div>
+<div class="h-px bg-[#E5E1DA] w-full"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2">Confidence Score</p>
+<div class="w-full bg-surface-container-highest rounded-full h-2 mb-1">
+<div class="bg-primary h-2 rounded-full" style="width: 92%"></div>
+</div>
+<p class="text-right font-label-sm text-[11px] text-outline">High (92% Avg)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

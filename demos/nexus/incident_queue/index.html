@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Incident Queue - Nexus Service Cloud</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b7c4ff",
+                        "secondary": "#6745c8",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dde1ff",
+                        "tertiary-fixed-dim": "#91cdff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#001452",
+                        "inverse-surface": "#283043",
+                        "on-secondary-fixed-variant": "#4e28af",
+                        "surface": "#faf9ff",
+                        "on-background": "#131b2d",
+                        "on-secondary-fixed": "#20005f",
+                        "outline": "#747686",
+                        "surface-dim": "#d2daf2",
+                        "surface-tint": "#2150dd",
+                        "surface-container-high": "#e1e8ff",
+                        "on-primary-container": "#e6e8ff",
+                        "background": "#faf9ff",
+                        "surface-bright": "#faf9ff",
+                        "primary-container": "#315ce8",
+                        "primary": "#0040cf",
+                        "on-tertiary-fixed-variant": "#004b72",
+                        "surface-container-highest": "#dae2fa",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "secondary-fixed": "#e8deff",
+                        "tertiary-fixed": "#cce5ff",
+                        "on-tertiary-container": "#daecff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#131b2d",
+                        "outline-variant": "#c4c5d7",
+                        "surface-variant": "#dae2fa",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary": "#005682",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#006fa7",
+                        "on-tertiary-fixed": "#001e31",
+                        "on-surface-variant": "#434655",
+                        "secondary-container": "#9a7aff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#0038b7",
+                        "on-secondary-container": "#300084",
+                        "secondary-fixed-dim": "#cdbdff",
+                        "surface-container": "#e9edff",
+                        "inverse-on-surface": "#edf0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1600px",
+                        "stack-xs": "4px",
+                        "sidebar-collapsed": "64px",
+                        "margin-desktop": "24px",
+                        "sidebar-width": "260px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "table-data": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "table-data": ["13px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "display-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-border { border-color: #DFE4EC; }
+        .row-hover:hover { background-color: rgba(0, 64, 207, 0.05); }
+        .row-hover:hover td { border-top: 1px solid rgba(0, 64, 207, 0.2); border-bottom: 1px solid rgba(0, 64, 207, 0.2); }
+        .row-hover:hover td:first-child { border-left: 1px solid rgba(0, 64, 207, 0.2); }
+        .row-hover:hover td:last-child { border-right: 1px solid rgba(0, 64, 207, 0.2); }
+    </style>
+</head>
+<body class="bg-[#F4F6FA] text-on-background font-body-md h-screen overflow-hidden flex font-sans antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-50 bg-inverse-surface dark:bg-on-background docked left-0 h-screen w-sidebar-width transition-all duration-300 border-r border-outline-variant dark:border-outline flat no shadows hidden md:flex">
+<div class="p-6 pb-2 border-b border-outline/20">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold">N</div>
+<div>
+<h1 class="font-display-md text-display-md text-surface-lowest dark:text-surface-bright leading-tight">Nexus Service Cloud</h1>
+<p class="text-surface-variant text-xs">ITSM Suite</p>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm">add</span> New Record
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto py-4">
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">assignment_ind</span> My Work</a></li>
+<li><a class="flex items-center gap-3 border-l-4 border-primary dark:border-primary-fixed-dim bg-primary-container/10 text-primary-fixed-dim font-bold px-4 py-2 translate-x-1 transition-transform" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">error</span> Incidents</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">list_alt</span> Requests</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">report_problem</span> Problems</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">published_with_changes</span> Changes</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">inventory_2</span> Service Catalog</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">menu_book</span> Knowledge</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">devices</span> Assets</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">hub</span> CMDB</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">bar_chart</span> Reports</a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">settings</span> Administration</a></li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-sidebar-width w-full transition-all duration-300">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-sidebar-width h-16 flex justify-between items-center px-margin-desktop z-40 bg-surface/80 backdrop-blur-md bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked full-width top-0">
+<div class="flex items-center gap-4 flex-1">
+<div class="hidden md:flex items-center bg-surface-container-low border border-outline-variant rounded-md px-3 py-1.5 w-64 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
+<span class="material-symbols-outlined text-outline text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-full p-0 text-on-surface placeholder:text-outline" placeholder="Global Search /" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined">help</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined">apps</span></button>
+<div class="ml-2 w-8 h-8 rounded-full bg-primary-container text-primary-fixed-dim flex items-center justify-center font-bold text-sm border border-primary/20 overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate IT service desk agent in a modern, brightly lit office environment. The person is looking slightly off-camera with a neutral, focused expression. High-key lighting, cool modern color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5O0VR10cZY1r9UgKHemK_nVP8bDFqxigBvChxYaTV5utmV_EC6YYqL4cQXPjQI_-WoCHG2KXw2BjlZHw95jwa43f9R9FHK_9r13wT-l1actHsRKUOFJg5PaX9BSkxcM0uarotSmfUzmW6W7oFYofDKabbyFIQqcu91TGAsKjlXdpwQY-MXLwh_NtiU-4fzuzNGXXkeOnnaTrrAvK2neeM3pazg9RwlrTnM5MMGj2S8IfF1j3-pipY"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace Canvas -->
+<main class="flex-1 overflow-y-auto mt-16 p-margin-mobile md:p-margin-desktop bg-[#F4F6FA]">
+<!-- Control Bar (Glassmorphism card) -->
+<div class="bg-white/80 backdrop-blur-md rounded-lg custom-border border shadow-sm p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sticky top-0 z-30">
+<div class="flex flex-wrap items-center gap-3">
+<div class="relative group">
+<button class="flex items-center gap-2 bg-surface text-on-surface border custom-border px-3 py-1.5 rounded-md text-sm font-medium hover:bg-surface-container-low transition-colors">
+                            My Open Incidents <span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</button>
+</div>
+<div class="h-6 w-px bg-outline-variant hidden sm:block"></div>
+<div class="flex items-center gap-2 text-sm bg-blue-50 text-primary px-3 py-1.5 rounded-md border border-blue-100">
+<span class="material-symbols-outlined text-sm">filter_alt</span>
+<span class="font-medium">Status = Open <span class="text-blue-400 font-normal px-1">AND</span> Priority = Critical</span>
+<button class="ml-1 hover:text-primary-fixed text-primary/70"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<div class="flex items-center gap-2 text-sm text-on-surface-variant mr-2">
+<span class="material-symbols-outlined text-sm">format_list_bulleted</span> Group By: 
+                        <select class="bg-transparent border-none text-on-surface font-medium focus:ring-0 p-0 text-sm py-1 cursor-pointer">
+<option>Priority</option>
+<option>Status</option>
+<option>Assignee</option>
+</select>
+</div>
+<button class="bg-surface border border-outline-variant text-on-surface px-3 py-1.5 rounded-md text-sm font-medium hover:bg-surface-container-low transition-colors flex items-center gap-1">
+                        Assign
+                    </button>
+<button class="bg-surface border border-outline-variant text-on-surface px-3 py-1.5 rounded-md text-sm font-medium hover:bg-surface-container-low transition-colors flex items-center gap-1">
+                        Resolve
+                    </button>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="bg-white rounded-lg custom-border border shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse text-table-data font-table-data">
+<thead>
+<tr class="bg-[#F4F6FA] border-b custom-border text-on-surface-variant">
+<th class="py-2 px-4 font-medium w-12"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="py-2 px-4 font-medium w-24">ID</th>
+<th class="py-2 px-4 font-medium">Subject</th>
+<th class="py-2 px-4 font-medium w-28">Status</th>
+<th class="py-2 px-4 font-medium w-28">Priority</th>
+<th class="py-2 px-4 font-medium w-40">Assignee</th>
+<th class="py-2 px-4 font-medium w-32">SLA</th>
+<th class="py-2 px-4 font-medium w-32">Updated</th>
+</tr>
+</thead>
+<tbody class="divide-y custom-border text-on-surface">
+<!-- Row 1 -->
+<tr class="row-hover bg-white transition-colors cursor-pointer group">
+<td class="py-2 px-4 border-l-2 border-transparent group-hover:border-primary"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-2 px-4 font-label-mono text-primary group-hover:underline">INC001245</td>
+<td class="py-2 px-4 font-medium truncate max-w-[200px] md:max-w-md">Database connection timeout on production cluster</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Open
+                                    </span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-50 text-red-700 border border-red-200">
+                                        Critical
+                                    </span>
+</td>
+<td class="py-2 px-4 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface">JS</div>
+<span class="truncate">John Smith</span>
+</td>
+<td class="py-2 px-4 font-label-mono text-red-600 font-bold">00:14:22</td>
+<td class="py-2 px-4 text-on-surface-variant text-xs">2 min ago</td>
+</tr>
+<!-- Row 2 -->
+<tr class="row-hover bg-white transition-colors cursor-pointer group">
+<td class="py-2 px-4 border-l-2 border-transparent group-hover:border-primary"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-2 px-4 font-label-mono text-primary group-hover:underline">INC001246</td>
+<td class="py-2 px-4 font-medium truncate max-w-[200px] md:max-w-md">API Gateway latency spikes in EU region</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Open
+                                    </span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-50 text-red-700 border border-red-200">
+                                        Critical
+                                    </span>
+</td>
+<td class="py-2 px-4 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface">AL</div>
+<span class="truncate">Ada Lovelace</span>
+</td>
+<td class="py-2 px-4 font-label-mono text-orange-600 font-bold">01:45:00</td>
+<td class="py-2 px-4 text-on-surface-variant text-xs">15 min ago</td>
+</tr>
+<!-- Row 3 -->
+<tr class="row-hover bg-white transition-colors cursor-pointer group">
+<td class="py-2 px-4 border-l-2 border-transparent group-hover:border-primary"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-2 px-4 font-label-mono text-primary group-hover:underline">INC001242</td>
+<td class="py-2 px-4 font-medium truncate max-w-[200px] md:max-w-md">SSO Authentication failure for remote users</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span> In Progress
+                                    </span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-orange-50 text-orange-700 border border-orange-200">
+                                        High
+                                    </span>
+</td>
+<td class="py-2 px-4 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface">JS</div>
+<span class="truncate">John Smith</span>
+</td>
+<td class="py-2 px-4 font-label-mono text-on-surface">04:12:30</td>
+<td class="py-2 px-4 text-on-surface-variant text-xs">1 hr ago</td>
+</tr>
+<!-- Row 4 -->
+<tr class="row-hover bg-gray-50/50 transition-colors cursor-pointer group">
+<td class="py-2 px-4 border-l-2 border-transparent group-hover:border-primary"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-2 px-4 font-label-mono text-primary group-hover:underline">INC001238</td>
+<td class="py-2 px-4 font-medium text-on-surface-variant truncate max-w-[200px] md:max-w-md line-through">Printer malfunction on Floor 4</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="material-symbols-outlined text-[10px]">check</span> Resolved
+                                    </span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-gray-100 text-gray-700 border border-gray-200">
+                                        Low
+                                    </span>
+</td>
+<td class="py-2 px-4 flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface">Un</div>
+<span class="truncate text-on-surface-variant">Unassigned</span>
+</td>
+<td class="py-2 px-4 font-label-mono text-on-surface-variant">--:--:--</td>
+<td class="py-2 px-4 text-on-surface-variant text-xs">Yesterday</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-surface-container-low border-t custom-border p-3 flex justify-between items-center text-xs text-on-surface-variant">
+<div>Showing 1-4 of 42 incidents</div>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:bg-surface-variant rounded disabled:opacity-50"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<span>Page 1 of 11</span>
+<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

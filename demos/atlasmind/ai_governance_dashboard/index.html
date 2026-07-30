@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AtlasMind - AI Governance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Public+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#5b4ab9",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#275f92",
+                      "on-secondary-fixed": "#291800",
+                      "outline": "#787584",
+                      "surface-container-highest": "#e5e1e8",
+                      "surface-container-high": "#ebe7ee",
+                      "on-secondary-container": "#724a00",
+                      "on-surface-variant": "#484552",
+                      "primary-fixed-dim": "#c8bfff",
+                      "surface": "#fcf8ff",
+                      "on-primary-fixed": "#190064",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#ffba4e",
+                      "tertiary-fixed": "#d1e4ff",
+                      "on-tertiary-fixed": "#001d35",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c9c4d5",
+                      "primary-container": "#7464d4",
+                      "on-surface": "#1c1b20",
+                      "tertiary-fixed-dim": "#9dcaff",
+                      "secondary-fixed": "#ffddb2",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#c8bfff",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fcf8ff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#fffbff",
+                      "inverse-surface": "#313035",
+                      "surface-dim": "#ddd8df",
+                      "secondary-fixed-dim": "#ffba4e",
+                      "on-tertiary-container": "#fdfcff",
+                      "surface-container-low": "#f6f2f9",
+                      "on-background": "#1c1b20",
+                      "surface-tint": "#5e4dbc",
+                      "on-error-container": "#93000a",
+                      "background": "#fcf8ff",
+                      "tertiary-container": "#4478ac",
+                      "surface-variant": "#e5e1e8",
+                      "inverse-on-surface": "#f4eff6",
+                      "secondary": "#815500",
+                      "on-secondary-fixed-variant": "#624000",
+                      "primary-fixed": "#e5deff",
+                      "surface-container": "#f1ecf3",
+                      "on-primary-fixed-variant": "#4533a2",
+                      "on-tertiary-fixed-variant": "#02497b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-lg": "32px",
+                      "pane-sidebar-width": "320px",
+                      "edge-margin": "24px",
+                      "stack-sm": "8px",
+                      "pane-nav-width": "64px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-sm": [
+                              "Public Sans"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Public Sans"
+                      ],
+                      "body-lg": [
+                              "Public Sans"
+                      ],
+                      "body-md": [
+                              "Public Sans"
+                      ],
+                      "label-sm": [
+                              "Public Sans"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #FAF9F6; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E5E1DA;
+            box-shadow: 0 4px 24px rgba(34, 33, 38, 0.02);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #5b4ab9;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #5b4ab9;
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body-md bg-surface antialiased">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-edge-margin h-16 ml-pane-nav-width fixed top-0 z-40 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline transition-opacity duration-150">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed-dim" style="font-size: 24px; line-height: 1;">AtlasMind</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-64 pl-9 pr-4 py-1.5 bg-surface-container-low border-b border-outline-variant focus:border-primary focus:outline-none transition-colors font-body-sm text-body-sm text-on-surface bg-transparent" placeholder="Search governance logs..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small, professional headshot of an executive in a minimalist studio setting with soft lighting. They look authoritative yet approachable, suitable for a profile avatar in a high-end enterprise application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE5-HRVqxZuPE5tpGmEnW_eENMnYkQYAt9kCEvagtVjqZyW0bJ_HVY800GWX2bzNDCRO-0-IaMwKVHHDE9GpL6TZmWtfKhYI1lh3ER8Ps24IWjJDmeE2JAVAeNT4Of-JcqiBOuWrI2446jJnwJcgdflJwuflwzcskcj6jRiiKLEu5UnWInBFxSSbKCrVa6IeBt2bGjgVzveVrc6-cddKnSukL20DeJ2XU9NCKtM7KnK_L9ikxQZTyu"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-50 bg-surface dark:bg-surface-dim docked h-screen w-pane-nav-width border-r border-outline-variant dark:border-outline flat no shadows transition-all duration-200 ease-in-out">
+<div class="flex flex-col items-center py-6 gap-8">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="font-display-lg text-on-primary-container font-bold text-xl">A</span>
+</div>
+<div class="flex flex-col gap-4 w-full px-2">
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Ask Atlas">
+<span class="material-symbols-outlined group-hover:text-primary">chat_bubble</span>
+</a>
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Enterprise Search">
+<span class="material-symbols-outlined group-hover:text-primary">search</span>
+</a>
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Documents">
+<span class="material-symbols-outlined group-hover:text-primary">description</span>
+</a>
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Collections">
+<span class="material-symbols-outlined group-hover:text-primary">folder_special</span>
+</a>
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Saved Answers">
+<span class="material-symbols-outlined group-hover:text-primary">bookmark</span>
+</a>
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Team Spaces">
+<span class="material-symbols-outlined group-hover:text-primary">groups</span>
+</a>
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 transition-colors group" href="#" title="Evaluations">
+<span class="material-symbols-outlined group-hover:text-primary">analytics</span>
+</a>
+<!-- Active State -->
+<a class="w-full aspect-square flex flex-col items-center justify-center rounded-lg border-l-4 border-primary text-primary font-bold dark:text-primary-fixed-dim bg-primary-container/10" href="#" title="Administration">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-pane-nav-width pt-16 min-h-screen">
+<div class="max-w-container-max mx-auto px-edge-margin py-stack-lg">
+<header class="mb-stack-lg flex justify-between items-end">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">AI Governance</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Monitor, evaluate, and configure enterprise model behavior.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 border border-outline-variant text-on-surface font-label-md text-label-md rounded hover:bg-surface-container-low transition-colors">Export Report</button>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-md text-label-md rounded hover:bg-primary-container transition-colors shadow-sm">Save Configuration</button>
+</div>
+</header>
+<div class="bento-grid">
+<!-- Model Configuration (Col 1-4) -->
+<div class="col-span-12 lg:col-span-4 glass-panel rounded-xl p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Model Core</h2>
+<span class="px-2 py-1 bg-surface-container-low text-primary font-label-sm text-label-sm rounded-full border border-primary/20">Active</span>
+</div>
+<div class="mb-6">
+<label class="font-label-md text-label-md text-on-surface-variant block mb-2">Current Runtime Model</label>
+<div class="flex items-center justify-between p-4 border border-outline-variant rounded-lg bg-surface-container-lowest">
+<span class="font-body-lg text-body-lg text-on-surface">GPT-4-Enterprise</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Temperature (0.2)</label>
+<span class="font-label-sm text-label-sm text-outline">Precise</span>
+</div>
+<div class="w-full h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-1/5"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Context Window (128k)</label>
+<span class="font-label-sm text-label-sm text-outline">Max</span>
+</div>
+<div class="w-full h-1.5 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Response Quality Score (Col 5-12) -->
+<div class="col-span-12 lg:col-span-8 glass-panel rounded-xl p-6 relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Response Quality Index</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Trailing 30-day sentiment and accuracy aggregate</p>
+</div>
+<div class="text-right">
+<span class="block font-display-lg-mobile text-display-lg-mobile text-on-surface">94.2</span>
+<span class="font-label-sm text-label-sm text-[#2e7d32] flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +1.4% vs last mo
+                            </span>
+</div>
+</div>
+<!-- Abstract Chart Representation -->
+<div class="h-48 w-full relative flex items-end justify-between px-2 pb-2">
+<!-- Simulated grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between border-b border-l border-outline-variant/30 pb-2 pl-2">
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+<div class="w-full border-t border-outline-variant/20 h-0"></div>
+</div>
+<!-- Simulated Line Chart with SVG -->
+<svg class="absolute inset-0 w-full h-full pb-2 pl-2" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4478ac" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#4478ac" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q10,75 20,60 T40,50 T60,30 T80,20 T100,10 L100,100 L0,100 Z" fill="url(#chartGradient)"></path>
+<path d="M0,80 Q10,75 20,60 T40,50 T60,30 T80,20 T100,10" fill="none" stroke="#4478ac" stroke-width="2"></path>
+<!-- Data points -->
+<circle cx="20" cy="60" fill="#4478ac" r="2"></circle>
+<circle cx="60" cy="30" fill="#4478ac" r="2"></circle>
+<circle cx="100" cy="10" fill="#4478ac" r="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Hallucination Flags (Col 1-6) -->
+<div class="col-span-12 lg:col-span-6 glass-panel rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Review Queue</h2>
+<span class="px-3 py-1 bg-error-container text-on-error-container font-label-sm text-label-sm rounded-full">3 High Priority</span>
+</div>
+<div class="space-y-4">
+<div class="p-4 border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface">Citation Mismatch: Q3 Earnings</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2h ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Model cited paragraph 4 from the SEC filing, but the requested financial data is located in paragraph 7.</p>
+</div>
+<div class="p-4 border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface">Tone Deviation: HR Policy</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5h ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Response tone was overly colloquial for formal policy documentation request.</p>
+</div>
+</div>
+<button class="w-full mt-4 py-2 text-center text-primary font-label-md text-label-md hover:bg-primary-container/5 rounded transition-colors">View All Flags</button>
+</div>
+<!-- Prompt Versions & Toggles (Col 7-12) -->
+<div class="col-span-12 lg:col-span-6 flex flex-col gap-6">
+<!-- Policy Toggles -->
+<div class="glass-panel rounded-xl p-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6">Guardrails &amp; Handlers</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<span class="block font-label-md text-label-md text-on-surface mb-1">PII Masking (Strict)</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Automatically redact names, SSNs, and emails.</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-outline z-10 transition-transform duration-200" id="toggle1" name="toggle1" style="right: 0; border-color: #5b4ab9;" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-outline cursor-pointer transition-colors duration-200" for="toggle1" style="background-color: #5b4ab9;"></label>
+</div>
+</div>
+<hr class="border-outline-variant/50"/>
+<div class="flex items-center justify-between">
+<div>
+<span class="block font-label-md text-label-md text-on-surface mb-1">External Web Search</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Allow model to query external indices for recent data.</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-outline z-10 transition-transform duration-200" id="toggle2" name="toggle2" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-outline cursor-pointer transition-colors duration-200" for="toggle2"></label>
+</div>
+</div>
+</div>
+</div>
+<!-- Prompt Versions Table -->
+<div class="glass-panel rounded-xl p-6 flex-grow">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-4">System Prompts</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Version</th>
+<th class="py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Deployed</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-3 text-on-surface font-medium">v4.2.1 (Current)</td>
+<td class="py-3"><span class="px-2 py-0.5 bg-[#e8f5e9] text-[#2e7d32] rounded text-xs">Active</span></td>
+<td class="py-3 text-on-surface-variant">Oct 12, 2023</td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-3 text-on-surface">v4.2.0</td>
+<td class="py-3"><span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant rounded text-xs">Archived</span></td>
+<td class="py-3 text-on-surface-variant">Sep 28, 2023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Audit History Log (Col 1-12) -->
+<div class="col-span-12 glass-panel rounded-xl p-6 mt-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6">Recent Audit Activity</h2>
+<ul class="space-y-4">
+<li class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-sm">edit_document</span>
+</div>
+<div class="pb-4 border-b border-outline-variant/30 w-full flex justify-between">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface"><span class="font-medium">Sarah Jenkins</span> updated System Prompt to v4.2.1</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Added specific formatting constraints for financial outputs.</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">2 hrs ago</span>
+</div>
+</li>
+<li class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/20 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-tertiary text-sm">tune</span>
+</div>
+<div class="w-full flex justify-between">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface"><span class="font-medium">System Auto-Tuner</span> adjusted Temperature</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Decreased from 0.3 to 0.2 based on factual accuracy drift.</p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">Yesterday</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple toggle logic for presentation
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                if(this.checked) {
+                    this.style.right = '0';
+                    this.style.borderColor = '#5b4ab9';
+                    this.nextElementSibling.style.backgroundColor = '#5b4ab9';
+                } else {
+                    this.style.right = '1.5rem';
+                    this.style.borderColor = '#787584';
+                    this.nextElementSibling.style.backgroundColor = '#787584';
+                }
+            });
+            // Init
+            if(!toggle.checked) {
+                toggle.style.right = '1.5rem';
+                toggle.style.borderColor = '#787584';
+                toggle.nextElementSibling.style.backgroundColor = '#787584';
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlowCircuit - Invoice Approval AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..900&amp;family=Inter:wght@400..700&amp;family=JetBrains+Mono:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#334f00",
+                      "on-tertiary": "#55006c",
+                      "on-surface": "#e2e2e8",
+                      "surface-container-lowest": "#0c0e12",
+                      "tertiary": "#f2afff",
+                      "inverse-surface": "#e2e2e8",
+                      "on-secondary-fixed": "#121f00",
+                      "on-tertiary-fixed": "#340043",
+                      "surface-bright": "#37393e",
+                      "on-primary": "#002f67",
+                      "on-tertiary-container": "#4a005f",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed": "#b9f556",
+                      "tertiary-fixed-dim": "#f2afff",
+                      "secondary-container": "#74ab00",
+                      "inverse-on-surface": "#2f3035",
+                      "on-primary-container": "#00285a",
+                      "primary-container": "#468fff",
+                      "on-tertiary-fixed-variant": "#780097",
+                      "primary-fixed": "#d7e2ff",
+                      "tertiary-container": "#cd64ea",
+                      "surface-variant": "#333539",
+                      "error-container": "#93000a",
+                      "secondary": "#9ed83c",
+                      "error": "#ffb4ab",
+                      "outline-variant": "#414754",
+                      "primary-fixed-dim": "#acc7ff",
+                      "primary": "#acc7ff",
+                      "on-secondary": "#223600",
+                      "outline": "#8b919f",
+                      "surface-container-highest": "#333539",
+                      "surface-tint": "#acc7ff",
+                      "on-surface-variant": "#c1c6d6",
+                      "on-primary-fixed-variant": "#004591",
+                      "on-secondary-container": "#243900",
+                      "tertiary-fixed": "#fcd7ff",
+                      "on-error": "#690005",
+                      "inverse-primary": "#005cbd",
+                      "background": "#111317",
+                      "surface-dim": "#111317",
+                      "surface-container-high": "#282a2e",
+                      "surface": "#111317",
+                      "surface-container-low": "#1a1c20",
+                      "on-primary-fixed": "#001a40",
+                      "secondary-fixed-dim": "#9ed83c",
+                      "surface-container": "#1e2024",
+                      "on-background": "#e2e2e8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "node-gap": "32px",
+                      "grid-unit": "8px",
+                      "gutter": "16px",
+                      "canvas-dot": "1px",
+                      "sidebar-width": "280px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Geist"
+                      ],
+                      "mono-label": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-sm": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "mono-code": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-label": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "mono-code": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .canvas-bg {
+            background-color: #101216;
+            background-image: radial-gradient(#292E37 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .node-port {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #171A20;
+            border: 1px solid #292E37;
+        }
+        .node-port.active {
+            border-color: #3D8BFF;
+            background-color: #3D8BFF;
+            box-shadow: 0 0 4px #3D8BFF;
+        }
+        .wire {
+            stroke: #3D8BFF;
+            stroke-width: 2px;
+            fill: none;
+            stroke-linecap: round;
+        }
+        /* Electric Blue overrides for specific parts since we can't add to config via style tag easily, though we should use theme colors where possible. We'll stick to inline or specific classes for the highly requested #3D8BFF if primary isn't exact, but primary is #acc7ff. Let's use custom class for the exact brand color requested in prompt if it deviates, but wait, instructions say "ONLY USE theme-derived Tailwind classes". I will try to use primary-container or similar if it matches electric blue conceptually, but the prompt explicitly mentions #3D8BFF. I will use arbitrary for the exact prompt-specified colors if they are not in config, but rule says DO NOT use arbitrary hex colors. Let's look at config: primary-container is #468fff. Close enough to electric blue. */
+        
+        .electric-border { border-color: #468fff; } /* Primary Container */
+        .electric-glow { box-shadow: 0 0 8px rgba(70, 143, 255, 0.3); }
+        .electric-bg { background-color: #468fff; }
+        .electric-text { color: #468fff; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen flex flex-col overflow-hidden font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface-container-high border-b border-outline-variant flex justify-between items-center w-full px-gutter h-16 z-50 shrink-0">
+<div class="flex items-center gap-4">
+<span class="font-display text-display font-black text-primary">FlowCircuit</span>
+<div class="h-6 w-px bg-outline-variant mx-2 hidden md:block"></div>
+<span class="font-headline-sm text-headline-sm hidden md:block">Invoice Approval AI</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">Dev</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">Staging</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-mono-label text-mono-label" href="#">Prod</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 rounded border border-outline-variant text-on-background hover:bg-surface-variant transition-colors font-mono-label text-mono-label">Test</button>
+<button class="px-4 py-2 rounded bg-primary-container text-on-primary-container hover:opacity-90 transition-opacity font-mono-label text-mono-label">Deploy</button>
+</div>
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small circular user profile picture featuring a highly stylized, dark-mode 3D rendered avatar of a futuristic robot head. The background is a sleek matte black, matching the technical minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTgNnxhFxCmUt6BHtHCpIVozXhWxSlRvMBok4LcnOX5V2psecazw8D6JaLDFJyEx0ON4XhevyFCMrUiQLgb3dKlDqwG44a5y_uugYELjj3COt2QABxraGvb96C0SZahG_3qePbTU511n2DqWF9puadC9MVZ0NoDW8ncLlcvC5HRNrKCAjQSr9MPPmtDxV3u6yH0U6pO2drIf-pq7MQ3568pBpCq1fXQSVvwzqlN5Zhbaxhbu4kNHQT"/>
+</div>
+</header>
+<!-- Main Workspace -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Left Sidebar (Nodes Library) -->
+<aside class="w-sidebar-width bg-surface-container border-r border-outline-variant flex flex-col z-40 hidden md:flex shrink-0">
+<div class="p-4 border-b border-outline-variant">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Library</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Drag nodes to canvas</p>
+</div>
+</div>
+<input class="w-full bg-surface border border-outline-variant rounded p-2 font-mono-label text-mono-label text-on-background focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" placeholder="Search nodes..." type="text"/>
+</div>
+<div class="flex-1 overflow-y-auto p-2 space-y-2">
+<!-- Trigger Node Item -->
+<div class="p-3 rounded border border-outline-variant bg-surface hover:border-primary-container cursor-grab flex items-center gap-3 group transition-colors">
+<div class="w-8 h-8 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div>
+<div class="font-mono-label text-mono-label">HTTP Trigger</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Start via webhook</div>
+</div>
+<span class="material-symbols-outlined ml-auto text-outline-variant group-hover:text-primary-container opacity-0 group-hover:opacity-100 transition-opacity text-[16px]">drag_indicator</span>
+</div>
+<!-- Schedule Node Item -->
+<div class="p-3 rounded border border-outline-variant bg-surface hover:border-primary-container cursor-grab flex items-center gap-3 group transition-colors">
+<div class="w-8 h-8 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<div>
+<div class="font-mono-label text-mono-label">Schedule</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Cron-based start</div>
+</div>
+</div>
+<!-- AI Node Item -->
+<div class="p-3 rounded border border-outline-variant bg-surface hover:border-primary-container cursor-grab flex items-center gap-3 group transition-colors">
+<div class="w-8 h-8 rounded bg-tertiary-container/10 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+</div>
+<div>
+<div class="font-mono-label text-mono-label">AI Prompt</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">LLM processing</div>
+</div>
+</div>
+<!-- Database Node Item -->
+<div class="p-3 rounded border border-outline-variant bg-surface hover:border-primary-container cursor-grab flex items-center gap-3 group transition-colors">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">database</span>
+</div>
+<div>
+<div class="font-mono-label text-mono-label">DB Query</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">SQL operations</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Canvas -->
+<main class="flex-1 canvas-bg relative overflow-hidden flex flex-col">
+<!-- Canvas Overlay / Navigation Controls -->
+<div class="absolute top-4 left-4 z-10 flex gap-2">
+<button class="w-8 h-8 rounded bg-surface border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[18px]">add</span></button>
+<button class="w-8 h-8 rounded bg-surface border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<button class="w-8 h-8 rounded bg-surface border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary-container transition-colors"><span class="material-symbols-outlined text-[18px]">fit_screen</span></button>
+</div>
+<!-- SVG Wires Layer -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0">
+<!-- Trigger to AI -->
+<path class="wire" d="M 280 160 C 340 160, 320 160, 380 160"></path>
+<!-- AI to Condition -->
+<path class="wire" d="M 640 160 C 700 160, 680 160, 740 160"></path>
+</svg>
+<!-- Nodes Layer -->
+<div class="relative w-full h-full z-10">
+<!-- Node 1: HTTP Webhook -->
+<div class="absolute top-[100px] left-[60px] w-[240px] bg-surface-container-high rounded border border-outline-variant shadow-lg flex flex-col">
+<div class="p-3 border-b border-outline-variant flex items-center justify-between bg-surface-container/50 rounded-t">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">bolt</span>
+<span class="font-mono-label text-mono-label">HTTP Webhook</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[16px] cursor-grab">drag_indicator</span>
+</div>
+<div class="p-4 flex-1">
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-2">Method: POST</div>
+<div class="bg-surface border border-outline-variant rounded px-2 py-1 font-mono-code text-mono-code text-xs text-on-surface truncate">/api/v1/invoice/new</div>
+</div>
+<!-- Output Port -->
+<div class="absolute -right-[5px] top-[50%] -translate-y-1/2 node-port active"></div>
+</div>
+<!-- Node 2: Extract Data (Active) -->
+<div class="absolute top-[100px] left-[380px] w-[280px] bg-surface-container-high rounded border electric-border electric-glow flex flex-col z-20">
+<!-- Input Port -->
+<div class="absolute -left-[5px] top-[50%] -translate-y-1/2 node-port active"></div>
+<div class="p-3 border-b border-outline-variant flex items-center justify-between bg-surface-container/50 rounded-t">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-container text-[16px]">psychology</span>
+<span class="font-mono-label text-mono-label text-primary-container">Extract Data</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[16px] cursor-grab">drag_indicator</span>
+</div>
+<div class="p-4 flex-1 space-y-3">
+<div>
+<div class="font-mono-label text-mono-label text-on-surface-variant mb-1">Model</div>
+<div class="bg-surface border border-outline-variant rounded px-2 py-1 font-body-sm text-body-sm">GPT-4 Turbo</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Extracted Fields:</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-container/10 text-tertiary-container font-mono-label text-[10px]">4</span>
+</div>
+</div>
+<!-- Output Port -->
+<div class="absolute -right-[5px] top-[50%] -translate-y-1/2 node-port active"></div>
+</div>
+<!-- Node 3: Condition -->
+<div class="absolute top-[100px] left-[740px] w-[220px] bg-surface-container-high rounded border border-outline-variant flex flex-col">
+<div class="absolute -left-[5px] top-[50%] -translate-y-1/2 node-port active"></div>
+<div class="p-3 border-b border-outline-variant flex items-center justify-between bg-surface-container/50 rounded-t">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">alt_route</span>
+<span class="font-mono-label text-mono-label">Condition</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[16px] cursor-grab">drag_indicator</span>
+</div>
+<div class="p-4 flex-1">
+<div class="bg-surface border border-outline-variant rounded px-2 py-1 font-mono-code text-mono-code text-xs text-on-surface text-center">Amount &gt; $500</div>
+</div>
+<!-- Output Ports (True/False) -->
+<div class="absolute -right-[5px] top-[30%] -translate-y-1/2 node-port"></div>
+<div class="absolute -right-[5px] top-[70%] -translate-y-1/2 node-port"></div>
+</div>
+</div>
+<!-- Bottom Console -->
+<div class="absolute bottom-0 left-0 right-0 bg-surface-container border-t border-outline-variant max-h-[200px] flex flex-col z-30">
+<div class="flex items-center justify-between px-4 py-2 border-b border-outline-variant cursor-pointer hover:bg-surface-variant/50 transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span class="font-mono-label text-mono-label">Console</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Waiting for input...</span>
+<span class="material-symbols-outlined text-[16px] ml-2">expand_more</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Inspector Panel -->
+<aside class="w-[320px] bg-surface-container border-l border-outline-variant flex flex-col z-40 shrink-0">
+<div class="p-4 border-b border-outline-variant flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-background">Properties</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- Node Identifier -->
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-tertiary-container text-[18px]">psychology</span>
+<h3 class="font-mono-label text-mono-label text-on-background text-lg">Extract Data</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AI Step Node ID: node_7a8f9c</p>
+</div>
+<div class="h-px w-full bg-outline-variant"></div>
+<!-- Settings Form -->
+<div class="space-y-4">
+<div>
+<label class="block font-mono-label text-mono-label text-on-surface-variant mb-2">AI Model</label>
+<select class="w-full bg-surface border border-outline-variant rounded p-2 font-body-md text-body-md text-on-background focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all">
+<option>GPT-4 Turbo</option>
+<option>Claude 3 Opus</option>
+<option>Custom Fine-tune</option>
+</select>
+</div>
+<div>
+<label class="block font-mono-label text-mono-label text-on-surface-variant mb-2">System Prompt</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded p-2 font-mono-code text-mono-code text-xs text-on-background focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all h-24 resize-none">Extract invoice details into JSON format including VendorName, TotalAmount, and Date.</textarea>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

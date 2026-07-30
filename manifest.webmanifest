@@ -1,0 +1,9 @@
+{
+  "name": "Pedro Alexandre \u2014 Engineering Portfolio",
+  "short_name": "Pedro Portfolio",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#132c4a",
+  "icons": []
+}

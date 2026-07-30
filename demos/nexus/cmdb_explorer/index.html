@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CMDB Explorer - Nexus Service Cloud</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b7c4ff",
+                        "secondary": "#6745c8",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dde1ff",
+                        "tertiary-fixed-dim": "#91cdff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#001452",
+                        "inverse-surface": "#283043",
+                        "on-secondary-fixed-variant": "#4e28af",
+                        "surface": "#faf9ff",
+                        "on-background": "#131b2d",
+                        "on-secondary-fixed": "#20005f",
+                        "outline": "#747686",
+                        "surface-dim": "#d2daf2",
+                        "surface-tint": "#2150dd",
+                        "surface-container-high": "#e1e8ff",
+                        "on-primary-container": "#e6e8ff",
+                        "background": "#faf9ff",
+                        "surface-bright": "#faf9ff",
+                        "primary-container": "#315ce8",
+                        "primary": "#0040cf",
+                        "on-tertiary-fixed-variant": "#004b72",
+                        "surface-container-highest": "#dae2fa",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "secondary-fixed": "#e8deff",
+                        "tertiary-fixed": "#cce5ff",
+                        "on-tertiary-container": "#daecff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#131b2d",
+                        "outline-variant": "#c4c5d7",
+                        "surface-variant": "#dae2fa",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary": "#005682",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#006fa7",
+                        "on-tertiary-fixed": "#001e31",
+                        "on-surface-variant": "#434655",
+                        "secondary-container": "#9a7aff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#0038b7",
+                        "on-secondary-container": "#300084",
+                        "secondary-fixed-dim": "#cdbdff",
+                        "surface-container": "#e9edff",
+                        "inverse-on-surface": "#edf0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1600px",
+                        "stack-xs": "4px",
+                        "sidebar-collapsed": "64px",
+                        "margin-desktop": "24px",
+                        "sidebar-width": "260px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "table-data": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "table-data": ["13px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .graph-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #DFE4EC 1px, transparent 0);
+            background-size: 24px 24px;
+            background-color: #F4F6FA;
+        }
+        
+        .connector {
+            stroke: #DFE4EC;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        
+        .connector-active {
+            stroke: #0040cf;
+            stroke-width: 2;
+        }
+        
+        .connector-error {
+            stroke: #ba1a1a;
+            stroke-width: 2;
+            stroke-dasharray: 4;
+            animation: dash 20s linear infinite;
+        }
+        
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        .node-card {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .node-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(32, 40, 58, 0.08);
+            border-color: #0040cf;
+        }
+
+        .node-card.selected {
+            border-width: 2px;
+            border-color: #0040cf;
+            box-shadow: 0 4px 12px rgba(0, 64, 207, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden flex font-sans">
+<!-- TopNavBar -->
+<nav class="fixed top-0 right-0 left-0 h-16 flex justify-between items-center px-margin-desktop z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant shadow-sm w-full transition-all duration-300 pl-[260px] md:pl-[260px]">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96 hidden md:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-10 pl-10 pr-12 bg-surface-container-low border border-outline-variant/50 rounded-lg font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Global Search" type="text"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 font-label-mono text-outline-variant bg-surface px-1.5 py-0.5 rounded border border-outline-variant/30 text-[10px]">/</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors mr-2">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="h-8 w-px bg-outline-variant/50 mx-2"></div>
+<button class="flex items-center gap-3 hover:bg-surface-container-low p-1.5 rounded-lg transition-colors">
+<img class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-highest" data-alt="A small, professional headshot of an IT service agent in a bright, modern office setting. Light mode aesthetic, corporate style, high quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgQ7aRaf2JOYDL40Qwv4uy72xLMP28HeVf7i9QgkF5lU9Df_cy95tMItBdm5iZoENybC1xcXJ6TzXXNd1WUn3ZfeZUM15dD9ZVozg0AVyyGgqhlxA0OQQh8TfImdgyxYBJa346jODtztxfBCwM4xiwTyo2AP4LjpD-U_2IDlOp1L0hbu9TVW4AnE05eVmb6K7mXpaVc6HI--er9Z_loU25y-ze6kL3x4wp0t5RrYEd9mrY93Ran6FE"/>
+</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-50 bg-inverse-surface text-on-secondary w-sidebar-width transition-all duration-300 border-r border-outline-variant/20 shadow-none">
+<div class="h-16 flex items-center px-6 border-b border-white/10 shrink-0">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">cloud</span>
+</div>
+<div>
+<h1 class="font-label-bold text-label-bold text-white tracking-wide">Nexus Service Cloud</h1>
+<p class="text-[10px] text-inverse-primary/80 uppercase tracking-widest mt-0.5">ITSM Suite</p>
+</div>
+</div>
+</div>
+<div class="p-4 shrink-0">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-fixed-variant text-white font-label-bold py-2.5 rounded-lg transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>New Record</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto py-2 px-3 space-y-1 custom-scrollbar">
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">assignment_ind</span>
+<span class="font-body-sm">My Work</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">error</span>
+<span class="font-body-sm">Incidents</span>
+<span class="ml-auto bg-error text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">list_alt</span>
+<span class="font-body-sm">Requests</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">report_problem</span>
+<span class="font-body-sm">Problems</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">published_with_changes</span>
+<span class="font-body-sm">Changes</span>
+</a>
+<div class="h-px bg-white/10 mx-3 my-2"></div>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">inventory_2</span>
+<span class="font-body-sm">Service Catalog</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">menu_book</span>
+<span class="font-body-sm">Knowledge</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">devices</span>
+<span class="font-body-sm">Assets</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-3 border-l-4 border-primary bg-primary/20 text-white font-label-bold px-3 py-2.5 rounded-r-lg group relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"></div>
+<span class="material-symbols-outlined text-[20px] relative z-10" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-body-sm relative z-10">CMDB</span>
+</a>
+<div class="h-px bg-white/10 mx-3 my-2"></div>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">bar_chart</span>
+<span class="font-body-sm">Reports</span>
+</a>
+<a class="flex items-center gap-3 text-surface-variant px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-surface-variant group-hover:text-white transition-colors">settings</span>
+<span class="font-body-sm">Administration</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/10 shrink-0">
+<div class="bg-white/5 rounded-lg p-3 border border-white/10">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-mono text-[10px] text-surface-variant uppercase tracking-wider">System Status</span>
+<div class="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-body-sm text-white">All services operational</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 ml-[260px] mt-16 flex h-[calc(100vh-64px)] relative overflow-hidden bg-background">
+<!-- Toolbar Overlay -->
+<div class="absolute top-4 left-4 z-20 flex gap-2">
+<div class="bg-surface border border-outline-variant/60 rounded-lg shadow-sm flex items-center p-1">
+<button class="px-3 py-1.5 text-on-surface text-body-sm font-medium hover:bg-surface-container-low rounded-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                    Filter
+                </button>
+<div class="w-px h-4 bg-outline-variant/40 mx-1"></div>
+<button class="px-3 py-1.5 text-on-surface text-body-sm font-medium hover:bg-surface-container-low rounded-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                    Views
+                </button>
+<div class="w-px h-4 bg-outline-variant/40 mx-1"></div>
+<button class="px-3 py-1.5 text-on-surface text-body-sm font-medium hover:bg-surface-container-low rounded-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">layers</span>
+                    Depth: 2
+                </button>
+</div>
+<div class="bg-surface border border-outline-variant/60 rounded-lg shadow-sm p-1 flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded-md transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded-md transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded-md transition-colors" title="Fit to Screen">
+<span class="material-symbols-outlined text-[18px]">fit_screen</span>
+</button>
+</div>
+</div>
+<div class="absolute top-4 right-[320px] z-20 flex gap-2">
+<div class="bg-surface border border-outline-variant/60 rounded-lg shadow-sm flex items-center p-1 px-3">
+<label class="flex items-center gap-2 cursor-pointer">
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="block bg-primary w-8 h-5 rounded-full"></div>
+<div class="dot absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition transform translate-x-3"></div>
+</div>
+<span class="text-body-sm font-medium text-on-surface">Impact Analysis</span>
+</label>
+</div>
+</div>
+<!-- Graph Canvas Area -->
+<div class="flex-1 relative graph-pattern overflow-hidden cursor-move" id="graph-container">
+<!-- SVG Connectors Layer -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
+<!-- App to DB -->
+<path class="connector" d="M 400 300 L 400 450 L 300 450"></path>
+<path class="connector" d="M 400 300 L 400 450 L 500 450"></path>
+<!-- App to Servers -->
+<path class="connector" d="M 400 300 L 400 150 L 250 150"></path>
+<path class="connector connector-active" d="M 400 300 L 400 150 L 550 150"></path>
+<!-- DB to Storage (Error Path) -->
+<path class="connector connector-error" d="M 300 530 L 300 620"></path>
+</svg>
+<!-- Nodes Layer -->
+<div class="absolute inset-0" style="z-index: 10;">
+<!-- Central Node: Application -->
+<div class="absolute top-[260px] left-[320px] w-40 node-card bg-surface border-2 border-primary rounded-xl shadow-[0_4px_20px_rgba(33,80,221,0.15)] flex flex-col overflow-hidden cursor-pointer">
+<div class="bg-primary/5 p-3 flex flex-col items-center justify-center border-b border-primary/20 relative">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#10b981]"></div>
+<div class="w-12 h-12 bg-primary-container text-primary rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">apps</span>
+</div>
+<span class="font-label-bold text-on-surface text-center">Global ERP</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Business App</span>
+</div>
+</div>
+<!-- Web Server 1 -->
+<div class="absolute top-[110px] left-[170px] w-40 node-card bg-surface border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden cursor-pointer">
+<div class="p-3 flex flex-col items-center justify-center border-b border-outline-variant/30 relative">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#10b981]"></div>
+<div class="w-10 h-10 bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[20px]">dns</span>
+</div>
+<span class="font-label-bold text-on-surface text-center">WEB-PROD-01</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Linux Server</span>
+</div>
+</div>
+<!-- Web Server 2 (Selected) -->
+<div class="absolute top-[110px] left-[470px] w-40 node-card selected bg-surface border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden cursor-pointer z-20">
+<div class="p-3 flex flex-col items-center justify-center border-b border-outline-variant/30 relative bg-primary/5">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#f59e0b]"></div>
+<div class="w-10 h-10 bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[20px]">dns</span>
+</div>
+<span class="font-label-bold text-on-surface text-center">WEB-PROD-02</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Linux Server</span>
+</div>
+<div class="bg-surface-container-lowest p-2 text-center border-t border-primary/20">
+<span class="text-[10px] text-primary font-medium flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[12px]">warning</span> CPU High
+                        </span>
+</div>
+</div>
+<!-- Database 1 -->
+<div class="absolute top-[410px] left-[220px] w-40 node-card bg-surface border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden cursor-pointer">
+<div class="p-3 flex flex-col items-center justify-center border-b border-outline-variant/30 relative">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#ef4444] animate-pulse"></div>
+<div class="w-10 h-10 bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[20px]">database</span>
+</div>
+<span class="font-label-bold text-on-surface text-center">DB-MAIN-P</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Oracle DB</span>
+</div>
+</div>
+<!-- Database 2 -->
+<div class="absolute top-[410px] left-[420px] w-40 node-card bg-surface border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden cursor-pointer">
+<div class="p-3 flex flex-col items-center justify-center border-b border-outline-variant/30 relative">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#10b981]"></div>
+<div class="w-10 h-10 bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[20px]">database</span>
+</div>
+<span class="font-label-bold text-on-surface text-center">DB-REPLICA</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider mt-1">Oracle DB</span>
+</div>
+</div>
+<!-- Storage Array (Impacted) -->
+<div class="absolute top-[580px] left-[220px] w-40 node-card bg-error-container/20 border border-error/40 rounded-xl shadow-sm flex flex-col overflow-hidden cursor-pointer">
+<div class="p-3 flex flex-col items-center justify-center relative">
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#ef4444]"></div>
+<div class="w-10 h-10 bg-error-container text-error rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-[20px]">storage</span>
+</div>
+<span class="font-label-bold text-error text-center">SAN-CLUSTER-A</span>
+<span class="text-[10px] text-error/80 uppercase tracking-wider mt-1">Storage</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Contextual Details Drawer -->
+<aside class="w-[320px] bg-surface border-l border-outline-variant shadow-[-4px_0_24px_rgba(0,0,0,0.02)] flex flex-col z-30 shrink-0 transform transition-transform duration-300">
+<!-- Header -->
+<div class="p-5 border-b border-outline-variant/60 flex items-start justify-between bg-surface-container-lowest">
+<div class="flex gap-3">
+<div class="w-10 h-10 bg-surface-container text-on-surface rounded-lg flex items-center justify-center border border-outline-variant/30 shrink-0">
+<span class="material-symbols-outlined text-[20px]">dns</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-on-surface leading-tight">WEB-PROD-02</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#f59e0b]/10 text-[#d97706] border border-[#f59e0b]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span> Degraded
+                            </span>
+<span class="text-label-mono text-on-surface-variant">Linux Server</span>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container p-1 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Content Tabs -->
+<div class="flex border-b border-outline-variant/40 px-2 bg-surface">
+<button class="px-4 py-2.5 text-body-sm font-medium text-primary border-b-2 border-primary mb-[-1px]">Attributes</button>
+<button class="px-4 py-2.5 text-body-sm font-medium text-on-surface-variant hover:text-on-surface">Related Incidents <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded-full text-[10px] ml-1">2</span></button>
+<button class="px-4 py-2.5 text-body-sm font-medium text-on-surface-variant hover:text-on-surface">Changes</button>
+</div>
+<!-- Details Scroll Area -->
+<div class="flex-1 overflow-y-auto p-5 space-y-6">
+<!-- Quick Actions -->
+<div class="grid grid-cols-2 gap-2">
+<button class="py-1.5 border border-outline-variant/60 rounded-md text-body-sm font-medium hover:bg-surface-container-low transition-colors flex items-center justify-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px]">add_alert</span> Create Incident
+                    </button>
+<button class="py-1.5 border border-outline-variant/60 rounded-md text-body-sm font-medium hover:bg-surface-container-low transition-colors flex items-center justify-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[16px]">edit_document</span> New Change
+                    </button>
+</div>
+<!-- Attributes Grid -->
+<div>
+<h3 class="font-label-bold text-on-surface mb-3 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">info</span> Core Information
+                    </h3>
+<div class="space-y-3">
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Asset Tag</span>
+<span class="font-body-sm text-on-surface">AST-2023-8849</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Operating System</span>
+<span class="font-body-sm text-on-surface">Red Hat Enterprise Linux 8.4</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">IP Address</span>
+<span class="font-label-mono text-on-surface">10.45.122.9</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Environment</span>
+<span class="font-body-sm text-on-surface">Production</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-0.5">Location</span>
+<span class="font-body-sm text-on-surface">US-East (Ashburn Data Center)</span>
+</div>
+</div>
+</div>
+<div class="h-px w-full bg-outline-variant/40"></div>
+<!-- Ownership -->
+<div>
+<h3 class="font-label-bold text-on-surface mb-3 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">group</span> Support &amp; Ownership
+                    </h3>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/30">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider">Support Group</span>
+<span class="text-body-sm text-primary hover:underline cursor-pointer">Linux Admins</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-secondary text-white rounded-full flex items-center justify-center text-[10px] font-bold">JD</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-on-surface leading-tight">Jane Doe</span>
+<span class="text-[10px] text-on-surface-variant">System Owner</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

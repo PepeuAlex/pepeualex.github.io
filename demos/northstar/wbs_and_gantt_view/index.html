@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Northstar PPM - WBS &amp; Gantt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-low": "#f2f3ff",
+                        "primary-container": "#4467e8",
+                        "surface": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#f9f7ff",
+                        "surface-tint": "#2c52d3",
+                        "tertiary-container": "#007d93",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#0037b9",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dde1ff",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed-variant": "#30447d",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "on-surface-variant": "#444654",
+                        "tertiary": "#006274",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-background": "#0f1b35",
+                        "inverse-surface": "#25304b",
+                        "surface-container-high": "#e2e7ff",
+                        "inverse-primary": "#b8c4ff",
+                        "on-tertiary-container": "#eefaff",
+                        "surface-container": "#eaedff",
+                        "secondary-container": "#a9bcfe",
+                        "outline": "#747686",
+                        "secondary": "#495c97",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#001f26",
+                        "outline-variant": "#c4c5d7",
+                        "surface-variant": "#dae2ff",
+                        "on-primary-fixed": "#001453",
+                        "on-secondary-fixed": "#00174c",
+                        "on-surface": "#0f1b35",
+                        "primary": "#254cce",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#374a84",
+                        "surface-dim": "#ced9fd",
+                        "tertiary-fixed-dim": "#5bd6f3",
+                        "surface-container-highest": "#dae2ff",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "tertiary-fixed": "#adecff",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dbe1ff",
+                        "error-container": "#ffdad6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "sidebar-width": "72px",
+                        "context-bar-height": "56px",
+                        "unit": "4px",
+                        "container-padding": "24px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "numeric-bold": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "numeric-bold": ["18px", { lineHeight: "24px", fontWeight: "700" }],
+                        "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .gantt-grid-bg {
+            background-image: linear-gradient(to right, #E3E7EF 1px, transparent 1px);
+            background-size: 100px 100%; /* Represents weeks/days depending on zoom */
+        }
+        /* Custom scrollbar for horizontal Gantt area */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f2f3ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #c4c5d7;
+            border-radius: 4px;
+        }
+        .wbs-row {
+            height: 40px; /* Fixed height for alignment */
+        }
+        .dependency-line {
+            position: absolute;
+            border: 1px solid #747686;
+            z-index: 5;
+        }
+        .dependency-arrow {
+            position: absolute;
+            width: 0; 
+            height: 0; 
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 6px solid #747686;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface fixed left-0 top-0 h-full w-sidebar-width border-r border-outline-variant dark:border-outline flex flex-col items-center py-unit z-50">
+<div class="mb-8 mt-4 w-10 h-10 bg-primary-container rounded flex items-center justify-center text-on-primary-container font-headline-sm font-bold shadow-sm" title="Northstar PPM">
+            N
+        </div>
+<div class="flex flex-col gap-2 w-full px-2">
+<!-- Portfolio (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Portfolio">
+<span class="material-symbols-outlined">dashboard</span>
+</a>
+<!-- Projects (Active) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-primary border-l-4 border-primary bg-primary-container/10 dark:bg-primary-fixed/10 transition-all" href="#" title="Projects">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder</span>
+</a>
+<!-- Roadmap (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Roadmap">
+<span class="material-symbols-outlined">timeline</span>
+</a>
+<!-- Resources (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Resources">
+<span class="material-symbols-outlined">groups</span>
+</a>
+<!-- Financials (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Financials">
+<span class="material-symbols-outlined">payments</span>
+</a>
+<!-- Risks (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Risks">
+<span class="material-symbols-outlined">warning</span>
+</a>
+<!-- Reports (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Reports">
+<span class="material-symbols-outlined">analytics</span>
+</a>
+</div>
+<div class="mt-auto mb-4 w-full px-2">
+<!-- Admin (Inactive) -->
+<a class="flex flex-col items-center justify-center w-full py-3 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#" title="Admin">
+<span class="material-symbols-outlined">settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width w-[calc(100%-72px)] h-screen flex flex-col bg-surface relative">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-on-background fixed top-0 right-0 w-[calc(100%-72px)] z-40 border-b border-outline-variant dark:border-outline h-context-bar-height px-container-padding flex justify-between items-center">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Cloud Infrastructure Migration</h1>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container font-label-md rounded text-xs">Active</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="px-4 py-1.5 bg-primary text-on-primary font-label-md rounded shadow-sm hover:bg-surface-tint transition-colors ml-4">
+                    Quick Create
+                </button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden ml-2 cursor-pointer flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Contextual Controls & Filters (Below TopNav) -->
+<div class="mt-context-bar-height h-14 bg-surface border-b border-outline-variant px-container-padding flex items-center justify-between z-30 shrink-0 shadow-[0_1px_2px_rgba(15,27,53,0.02)]">
+<div class="flex gap-1 bg-surface-container-low p-1 rounded-lg border border-outline-variant/50">
+<button class="px-3 py-1 text-sm font-label-md text-on-surface bg-surface shadow-sm rounded border border-outline-variant/30">WBS &amp; Gantt</button>
+<button class="px-3 py-1 text-sm font-label-md text-on-surface-variant hover:text-on-surface rounded">Kanban</button>
+<button class="px-3 py-1 text-sm font-label-md text-on-surface-variant hover:text-on-surface rounded">Details</button>
+</div>
+<div class="flex items-center gap-4">
+<!-- Gantt Controls -->
+<div class="flex items-center border border-outline-variant rounded bg-surface-container-lowest overflow-hidden">
+<button class="px-2 py-1 text-on-surface-variant hover:bg-surface-container-high transition-colors border-r border-outline-variant flex items-center justify-center" title="Zoom Out">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<select class="bg-transparent border-none text-sm font-label-md text-on-surface focus:ring-0 py-1 pl-2 pr-6 cursor-pointer">
+<option>Weeks</option>
+<option>Days</option>
+<option>Months</option>
+</select>
+<button class="px-2 py-1 text-on-surface-variant hover:bg-surface-container-high transition-colors border-l border-outline-variant flex items-center justify-center" title="Zoom In">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+</div>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-label-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">today</span> Today
+                </button>
+<div class="w-px h-6 bg-outline-variant"></div>
+<label class="flex items-center gap-2 cursor-pointer">
+<div class="relative">
+<input checked="" class="sr-only group" type="checkbox"/>
+<div class="block w-8 h-5 bg-error rounded-full"></div>
+<div class="dot absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition transform translate-x-3"></div>
+</div>
+<span class="font-label-md text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">route</span>
+                        Critical Path
+                    </span>
+</label>
+</div>
+</div>
+<!-- Split Screen Container -->
+<!-- Using a horizontal scroll container where the left WBS is sticky -->
+<div class="flex-1 overflow-auto custom-scrollbar bg-surface-container-lowest relative flex">
+<!-- Left Side: WBS Table (Sticky) -->
+<div class="sticky left-0 top-0 w-[450px] lg:w-[550px] bg-surface border-r border-outline-variant z-20 shrink-0 shadow-[4px_0_12px_rgba(15,27,53,0.05)] flex flex-col">
+<!-- WBS Header -->
+<div class="flex items-center h-10 border-b border-outline bg-surface-container-low text-on-surface-variant font-label-md text-[11px] uppercase tracking-wider select-none z-30 sticky top-0">
+<div class="w-8 shrink-0 flex justify-center"></div>
+<div class="flex-1 pl-2 border-r border-outline-variant/30 h-full flex items-center">Task Name</div>
+<div class="w-20 shrink-0 px-2 border-r border-outline-variant/30 h-full flex items-center">Start</div>
+<div class="w-20 shrink-0 px-2 border-r border-outline-variant/30 h-full flex items-center">End</div>
+<div class="w-12 shrink-0 px-2 border-r border-outline-variant/30 h-full flex items-center justify-center">Dur</div>
+<div class="w-16 shrink-0 px-2 h-full flex items-center justify-end">%</div>
+</div>
+<!-- WBS Rows -->
+<div class="flex flex-col font-body-md text-sm text-on-surface">
+<!-- Row 1: Epic (Expanded) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="w-8 shrink-0 flex justify-center items-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+</div>
+<div class="flex-1 pl-1 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate font-semibold text-primary">
+                            1. Phase 1: Planning
+                            <span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 transition-opacity ml-auto hover:text-primary">edit</span>
+</div>
+<div class="w-20 shrink-0 px-2 text-xs text-on-surface-variant border-r border-outline-variant/30 h-full flex items-center">Oct 01</div>
+<div class="w-20 shrink-0 px-2 text-xs text-on-surface-variant border-r border-outline-variant/30 h-full flex items-center">Oct 14</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center">10d</div>
+<div class="w-16 shrink-0 px-2 text-xs font-numeric-bold flex items-center justify-end">100%</div>
+</div>
+<!-- Row 2: Task (Completed) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-lowest">
+<div class="w-8 shrink-0 flex justify-center items-center text-outline-variant">
+<!-- indent space -->
+</div>
+<div class="flex-1 pl-4 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate">
+<span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+                            1.1 Requirements
+                            <span class="material-symbols-outlined text-[14px] text-outline opacity-0 group-hover:opacity-100 transition-opacity ml-auto hover:text-primary">edit</span>
+</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center">Oct 01</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center">Oct 05</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center">5d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end">100%</div>
+</div>
+<!-- Row 3: Task (Completed) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-lowest">
+<div class="w-8 shrink-0 flex justify-center items-center text-outline-variant">
+</div>
+<div class="flex-1 pl-4 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate">
+<span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+                            1.2 Architecture Design
+                        </div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center">Oct 06</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center">Oct 14</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center">7d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end">100%</div>
+</div>
+<!-- Row 4: Epic (Expanded, Critical) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="w-8 shrink-0 flex justify-center items-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span>
+</div>
+<div class="flex-1 pl-1 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate font-semibold text-primary">
+                            2. Phase 2: Execution
+                        </div>
+<div class="w-20 shrink-0 px-2 text-xs text-on-surface-variant border-r border-outline-variant/30 h-full flex items-center">Oct 15</div>
+<div class="w-20 shrink-0 px-2 text-xs text-on-surface-variant border-r border-outline-variant/30 h-full flex items-center">Nov 20</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center">26d</div>
+<div class="w-16 shrink-0 px-2 text-xs font-numeric-bold flex items-center justify-end">45%</div>
+</div>
+<!-- Row 5: Task (In Progress, Critical Path) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 bg-error-container/20 hover:bg-error-container/40 transition-colors group cursor-pointer">
+<div class="w-8 shrink-0 flex justify-center items-center">
+</div>
+<div class="flex-1 pl-4 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate text-error font-medium">
+<span class="material-symbols-outlined text-[16px] text-error">expand_more</span>
+                            2.1 Data Migration
+                            <span class="w-2 h-2 rounded-full bg-error ml-2" title="Critical Task"></span>
+</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center font-medium">Oct 15</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center font-medium text-error">Oct 28</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center">10d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end">60%</div>
+</div>
+<!-- Row 6: Subtask -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 bg-surface-container-lowest hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="w-8 shrink-0"></div>
+<div class="flex-1 pl-10 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate text-on-surface-variant">
+                            2.1.1 Schema Mapping
+                        </div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center text-on-surface-variant">Oct 15</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center text-on-surface-variant">Oct 18</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center text-on-surface-variant">4d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end text-on-surface-variant">100%</div>
+</div>
+<!-- Row 7: Subtask (Critical) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 bg-surface-container-lowest hover:bg-surface-container-high transition-colors group cursor-pointer relative">
+<!-- Active row indicator subtle left border -->
+<div class="absolute left-0 top-0 bottom-0 w-[3px] bg-error"></div>
+<div class="w-8 shrink-0"></div>
+<div class="flex-1 pl-10 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate font-medium">
+                            2.1.2 Sync Execution
+                        </div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center font-medium">Oct 19</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center font-medium">Oct 28</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center font-medium">8d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end font-medium">40%</div>
+</div>
+<!-- Row 8: Milestone -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="w-8 shrink-0 flex justify-center items-center">
+<span class="material-symbols-outlined text-[16px] text-tertiary">diamond</span>
+</div>
+<div class="flex-1 pl-1 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate font-semibold text-tertiary">
+                            M1: Data Synced
+                        </div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center text-tertiary">Oct 28</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center text-tertiary">Oct 28</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center text-tertiary">0d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end text-tertiary">0%</div>
+</div>
+<!-- Row 9: Task (Future) -->
+<div class="flex items-center wbs-row border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-lowest">
+<div class="w-8 shrink-0 flex justify-center items-center text-outline-variant">
+</div>
+<div class="flex-1 pl-4 flex items-center gap-2 pr-2 border-r border-outline-variant/30 h-full truncate text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+                            2.2 API Gateway Setup
+                        </div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center text-outline">Oct 29</div>
+<div class="w-20 shrink-0 px-2 text-xs border-r border-outline-variant/30 h-full flex items-center text-outline">Nov 10</div>
+<div class="w-12 shrink-0 px-2 text-xs text-center border-r border-outline-variant/30 h-full flex items-center justify-center text-outline">9d</div>
+<div class="w-16 shrink-0 px-2 text-xs flex items-center justify-end text-outline">0%</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Gantt Timeline -->
+<!-- Setting a wide absolute width to force horizontal scrolling container -->
+<div class="w-[1200px] shrink-0 relative bg-surface-container-lowest gantt-grid-bg">
+<!-- Today Marker Line -->
+<div class="absolute top-0 bottom-0 left-[480px] w-px bg-primary z-20 border-l border-dashed border-primary">
+<div class="absolute -top-1 -translate-x-1/2 bg-primary text-on-primary text-[10px] font-label-md px-1 rounded">Today</div>
+</div>
+<!-- Timeline Header (Sticky Top) -->
+<div class="h-10 border-b border-outline bg-surface-container-low flex items-center sticky top-0 z-30 font-label-md text-[11px] text-on-surface-variant">
+<!-- Assuming 100px = 1 week for this mockup -->
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W40</span>
+<span class="text-[9px] opacity-70">Oct 01</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W41</span>
+<span class="text-[9px] opacity-70">Oct 08</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W42</span>
+<span class="text-[9px] opacity-70">Oct 15</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold bg-primary/10 text-primary px-1 rounded -ml-1">W43</span>
+<span class="text-[9px] opacity-70 text-primary">Oct 22</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W44</span>
+<span class="text-[9px] opacity-70">Oct 29</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W45</span>
+<span class="text-[9px] opacity-70">Nov 05</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W46</span>
+<span class="text-[9px] opacity-70">Nov 12</span>
+</div>
+<div class="w-[100px] border-r border-outline-variant/50 h-full flex flex-col justify-center px-2">
+<span class="font-bold">W47</span>
+<span class="text-[9px] opacity-70">Nov 19</span>
+</div>
+</div>
+<!-- Gantt Rows Container (matching WBS rows in height 40px each) -->
+<div class="relative w-full z-10 pt-[2px]"> <!-- slight padding to center bars vertically in rows -->
+<!-- Row 1: Epic (Phase 1) - Dark Blue summarizing bar -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<div class="absolute top-[10px] left-[0px] w-[180px] h-[16px] bg-secondary rounded-sm overflow-hidden flex items-center px-2 text-[10px] text-white shadow-sm" title="Phase 1: Planning">
+<div class="absolute top-0 bottom-0 left-0 bg-primary/20 w-full z-0"></div> <!-- Progress fill full -->
+<span class="z-10 font-medium">Phase 1</span>
+<!-- Polygon ends for epic bar -->
+<div class="absolute -bottom-[2px] left-0 w-0 h-0 border-l-[6px] border-l-secondary border-b-[6px] border-b-transparent"></div>
+<div class="absolute -bottom-[2px] right-0 w-0 h-0 border-r-[6px] border-r-secondary border-b-[6px] border-b-transparent"></div>
+</div>
+</div>
+<!-- Row 2: 1.1 Requirements (Completed) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<!-- Actual Bar -->
+<div class="absolute top-[12px] left-[0px] w-[60px] h-[16px] bg-secondary-container rounded-sm overflow-hidden border border-secondary/30 shadow-sm z-10">
+<!-- Progress fill 100% -->
+<div class="absolute top-0 bottom-0 left-0 bg-secondary/80 w-full"></div>
+</div>
+<!-- Dependency Line to Row 3 (down and right) -->
+<div class="dependency-line border-t-0 border-l-0 border-r border-b" style="left: 60px; top: 20px; width: 10px; height: 20px;"></div>
+<div class="dependency-arrow" style="left: 70px; top: 36px;"></div>
+</div>
+<!-- Row 3: 1.2 Architecture Design -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<!-- Baseline Ghost Bar (Underneath) -->
+<div class="absolute top-[14px] left-[65px] w-[100px] h-[12px] border border-dashed border-outline bg-surface-container-high/50 rounded-sm z-0"></div>
+<!-- Actual Bar -->
+<div class="absolute top-[12px] left-[70px] w-[110px] h-[16px] bg-secondary-container rounded-sm overflow-hidden border border-secondary/30 shadow-sm z-10">
+<div class="absolute top-0 bottom-0 left-0 bg-secondary/80 w-full"></div>
+</div>
+<!-- Dependency Line to Phase 2 Execution (down and right to Row 5) -->
+<div class="dependency-line border-t-0 border-l-0 border-r border-b" style="left: 180px; top: 20px; width: 10px; height: 60px;"></div>
+<div class="dependency-arrow border-error" style="left: 190px; top: 76px; border-left-color: #ba1a1a;"></div> <!-- Red arrow for critical path link -->
+</div>
+<!-- Row 4: Epic (Phase 2) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<div class="absolute top-[10px] left-[190px] w-[450px] h-[16px] bg-secondary rounded-sm overflow-hidden shadow-sm" title="Phase 2: Execution">
+<div class="absolute top-0 bottom-0 left-0 bg-primary-container w-[45%] z-0"></div> <!-- Progress fill 45% -->
+<!-- Polygon ends -->
+<div class="absolute -bottom-[2px] left-0 w-0 h-0 border-l-[6px] border-l-secondary border-b-[6px] border-b-transparent z-10"></div>
+<div class="absolute -bottom-[2px] right-0 w-0 h-0 border-r-[6px] border-r-secondary border-b-[6px] border-b-transparent z-10"></div>
+</div>
+</div>
+<!-- Row 5: 2.1 Data Migration (Critical Path Epic-level task) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20 bg-error-container/5">
+<div class="absolute top-[12px] left-[190px] w-[180px] h-[16px] bg-error/20 rounded-sm overflow-hidden border border-error shadow-sm z-10">
+<div class="absolute top-[2px] bottom-[2px] left-[2px] bg-error w-[60%] rounded-sm opacity-80"></div>
+</div>
+</div>
+<!-- Row 6: 2.1.1 Schema Mapping (Completed) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<div class="absolute top-[12px] left-[190px] w-[50px] h-[16px] bg-secondary-container rounded-sm overflow-hidden border border-secondary/30 shadow-sm z-10">
+<div class="absolute top-0 bottom-0 left-0 bg-secondary/80 w-full"></div>
+</div>
+<!-- Dependency Line to Row 7 (down and right, critical path red) -->
+<div class="dependency-line border-t-0 border-l-0 border-r border-b border-error" style="left: 240px; top: 20px; width: 10px; height: 20px;"></div>
+<div class="dependency-arrow" style="left: 250px; top: 36px; border-left-color: #ba1a1a;"></div>
+</div>
+<!-- Row 7: 2.1.2 Sync Execution (In Progress, Critical Path) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20 bg-error-container/5">
+<!-- Baseline Ghost Bar -->
+<div class="absolute top-[14px] left-[250px] w-[120px] h-[12px] border border-dashed border-error/50 bg-error-container/30 rounded-sm z-0"></div>
+<!-- Actual Bar -->
+<div class="absolute top-[12px] left-[250px] w-[120px] h-[16px] bg-error-container rounded-sm overflow-hidden border border-error shadow-sm z-10">
+<!-- Fill crossing today line -->
+<div class="absolute top-[1px] bottom-[1px] left-[1px] bg-error w-[40%] rounded-sm"></div>
+</div>
+<!-- Dependency Line to Milestone (right) -->
+<div class="dependency-line border-t border-l-0 border-r-0 border-b-0 border-error" style="left: 370px; top: 20px; width: 10px; height: 0px;"></div>
+</div>
+<!-- Row 8: Milestone M1 (Diamond) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<div class="absolute top-[12px] left-[380px] w-4 h-4 bg-tertiary border-2 border-white rotate-45 shadow-md z-10 rounded-[2px]" title="M1: Data Synced (Oct 28)"></div>
+<div class="absolute top-[10px] left-[405px] text-[10px] font-bold text-tertiary z-10">M1</div>
+<!-- Dependency Line to Row 9 -->
+<div class="dependency-line border-t-0 border-l-0 border-r border-b" style="left: 388px; top: 20px; width: 10px; height: 20px;"></div>
+<div class="dependency-arrow" style="left: 398px; top: 36px;"></div>
+</div>
+<!-- Row 9: 2.2 API Gateway Setup (Future) -->
+<div class="wbs-row relative w-full border-b border-outline-variant/20">
+<div class="absolute top-[12px] left-[400px] w-[160px] h-[16px] bg-surface-variant rounded-sm overflow-hidden border border-outline shadow-sm z-10 opacity-70">
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

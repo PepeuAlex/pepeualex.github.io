@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Incident Detail - Nexus Service Cloud</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b7c4ff",
+                        "secondary": "#6745c8",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dde1ff",
+                        "tertiary-fixed-dim": "#91cdff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#001452",
+                        "inverse-surface": "#283043",
+                        "on-secondary-fixed-variant": "#4e28af",
+                        "surface": "#faf9ff",
+                        "on-background": "#131b2d",
+                        "on-secondary-fixed": "#20005f",
+                        "outline": "#747686",
+                        "surface-dim": "#d2daf2",
+                        "surface-tint": "#2150dd",
+                        "surface-container-high": "#e1e8ff",
+                        "on-primary-container": "#e6e8ff",
+                        "background": "#faf9ff",
+                        "surface-bright": "#faf9ff",
+                        "primary-container": "#315ce8",
+                        "primary": "#0040cf",
+                        "on-tertiary-fixed-variant": "#004b72",
+                        "surface-container-highest": "#dae2fa",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "secondary-fixed": "#e8deff",
+                        "tertiary-fixed": "#cce5ff",
+                        "on-tertiary-container": "#daecff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#131b2d",
+                        "outline-variant": "#c4c5d7",
+                        "surface-variant": "#dae2fa",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary": "#005682",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#006fa7",
+                        "on-tertiary-fixed": "#001e31",
+                        "on-surface-variant": "#434655",
+                        "secondary-container": "#9a7aff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#0038b7",
+                        "on-secondary-container": "#300084",
+                        "secondary-fixed-dim": "#cdbdff",
+                        "surface-container": "#e9edff",
+                        "inverse-on-surface": "#edf0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1600px",
+                        "stack-xs": "4px",
+                        "sidebar-collapsed": "64px",
+                        "margin-desktop": "24px",
+                        "sidebar-width": "260px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "table-data": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "table-data": ["13px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F4F6FA; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Tonal Layers & Depth */
+        .layer-1 { background-color: #FFFFFF; border: 1px solid #DFE4EC; }
+        .layer-2 { box-shadow: 0 4px 4px rgba(32, 40, 58, 0.05); }
+        .input-ring:focus { outline: none; box-shadow: 0 0 0 2px #315ce8; }
+        .tab-active { border-bottom: 2px solid #0040cf; color: #0040cf; font-weight: 600; }
+        .tab-inactive { color: #434655; border-bottom: 2px solid transparent; }
+        .tab-inactive:hover { color: #131b2d; border-color: #DFE4EC; }
+    </style>
+</head>
+<body class="text-on-background h-screen overflow-hidden flex flex-col md:flex-row font-body-md">
+<!-- SideNavBar (Predicted Component) -->
+<nav class="hidden md:flex flex-col z-50 docked left-0 h-screen w-sidebar-width transition-all duration-300 bg-inverse-surface dark:bg-on-background border-r border-outline-variant dark:border-outline shrink-0">
+<div class="flex items-center gap-4 px-margin-desktop h-16 border-b border-inverse-surface/10">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-surface-lowest text-xl" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div>
+<h1 class="font-display-md text-display-md text-surface-lowest dark:text-surface-bright leading-none">Nexus Service Cloud</h1>
+<p class="font-body-sm text-body-sm text-surface-lowest/70 mt-1">ITSM Suite</p>
+</div>
+</div>
+<div class="px-4 py-4">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-2 px-4 rounded hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-base">add</span>
+<span class="font-label-bold text-label-bold">New Record</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto py-2">
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">assignment_ind</span> <span class="font-label-bold text-label-bold">My Work</span></a></li>
+<li><a class="flex items-center gap-3 border-l-4 border-primary dark:border-primary-fixed-dim bg-primary-container/10 text-primary-fixed-dim font-bold px-4 py-2 translate-x-1 transition-transform" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">error</span> <span class="font-label-bold text-label-bold">Incidents</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">list_alt</span> <span class="font-label-bold text-label-bold">Requests</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">report_problem</span> <span class="font-label-bold text-label-bold">Problems</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">published_with_changes</span> <span class="font-label-bold text-label-bold">Changes</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">inventory_2</span> <span class="font-label-bold text-label-bold">Service Catalog</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">menu_book</span> <span class="font-label-bold text-label-bold">Knowledge</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">devices</span> <span class="font-label-bold text-label-bold">Assets</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">hub</span> <span class="font-label-bold text-label-bold">CMDB</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">bar_chart</span> <span class="font-label-bold text-label-bold">Reports</span></a></li>
+<li><a class="flex items-center gap-3 text-surface-variant dark:text-outline-variant px-4 py-2 hover:bg-primary-container/20 hover:text-surface-lowest transition-colors" href="#"><span class="material-symbols-outlined">settings</span> <span class="font-label-bold text-label-bold">Administration</span></a></li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col h-screen min-w-0 bg-[#F4F6FA]">
+<!-- TopNavBar (Predicted Component) -->
+<header class="h-16 flex justify-between items-center px-margin-desktop z-40 bg-surface/80 backdrop-blur-md shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline shrink-0">
+<div class="flex items-center gap-4 flex-1">
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-3 text-outline text-xl">search</span>
+<input class="w-full bg-surface pl-10 pr-12 py-2 rounded-lg border border-outline-variant text-body-md input-ring transition-shadow placeholder:text-outline" placeholder="Global Search" type="text"/>
+<div class="absolute right-3 px-1.5 py-0.5 bg-surface-variant rounded border border-outline-variant font-label-mono text-label-mono text-on-surface-variant">/</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 rounded-lg transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant/10 rounded-lg transition-colors hidden sm:block">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2 hidden sm:block"></div>
+<img alt="User Avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant cursor-pointer" data-alt="Professional headshot of a corporate IT user, well-lit, modern corporate environment, wearing a dark blue button-down shirt, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_j56ds2pfFDbgGuYIT9eTPQjdz5Rp1DISg2-xmCf1BoMjz1p2BfIDuhY_TNTomCO8eT8NiUK8TiT_Q1zcrQHahi796-4wEtnz-SwE0hH3CtHyTTDEgs3ImbenRpkzfs3SrSGMLBIos44eoDO1kzKDw8vZy6bRnUZBiY4fKZLc2DsNNnSlqf8KtQ1hjTWVfCa9jdmGGP30jRonRWZrianY3rA3TJyEpNml6SzJBWqtz6rjXbyRFG2b"/>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 overflow-auto p-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Column 1: Metadata (Left) -->
+<aside class="lg:col-span-3 flex flex-col gap-stack-md">
+<!-- Metadata Card -->
+<div class="layer-1 rounded-xl p-4 flex flex-col gap-4">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline">info</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Record Details</h3>
+</div>
+<div class="space-y-4">
+<!-- Priority (High/Critical Status Badge) -->
+<div class="flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Priority</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#ffdad6] text-[#ba1a1a] border border-[#ffdad6] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ba1a1a]"></span> 1 - Critical
+                            </span>
+</div>
+<!-- State -->
+<div class="flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-on-surface-variant">State</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#dae2fa] text-[#0040cf] border border-[#dae2fa]">In Progress</span>
+</div>
+<div class="h-px w-full bg-outline-variant/50"></div>
+<!-- Data Fields -->
+<div class="grid gap-2">
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Caller</label>
+<div class="flex items-center gap-2">
+<img alt="Caller" class="w-5 h-5 rounded-full object-cover" data-alt="Small circular portrait of a professional female employee, neutral corporate background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmsdLGRK8PPRy2LtClZ0N3Ud6heeqRzWqqlEMd6KmZGKRYeVjNEAWD6WhMAwIPZrg1jRsJqyOGbtP8fuXvhWCr0ZzswrJ0pGwSzw-EeJwMauxMti3l8O1RZEISad_JlCNd8ruycteHL16LKaNsv5LgBAoxiTTIdODyYezRwJDZ5pZDM_zbomW2K5wFCJOAKKagJXFbIqxRbqcRHt6PGP4ol3Omwri6HSSBUoXvMX5rAN8YlXtShLww"/>
+<span class="font-body-md text-on-surface">Sarah Jenkins</span>
+</div>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Category</label>
+<span class="font-body-md text-on-surface">Network</span>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Sub-category</label>
+<span class="font-body-md text-on-surface">Connectivity</span>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Service</label>
+<span class="font-body-md text-on-surface text-primary hover:underline cursor-pointer">Enterprise WAN</span>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Configuration Item (CI)</label>
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded border border-outline-variant w-max">
+<span class="material-symbols-outlined text-[14px] text-outline">router</span>
+<span class="font-label-mono text-label-mono text-on-surface">RTR-CHI-01</span>
+</div>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Contact Type</label>
+<span class="font-body-md text-on-surface">Phone</span>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Assignment Group</label>
+<span class="font-body-md text-on-surface">Network L2 Support</span>
+</div>
+<div>
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-1">Assigned To</label>
+<span class="font-body-md text-on-surface">Unassigned</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Column 2: Center Workspace (Center) -->
+<section class="lg:col-span-6 flex flex-col gap-stack-md">
+<!-- Record Header & Actions -->
+<div class="layer-1 rounded-xl p-4 flex flex-col gap-4 relative overflow-hidden">
+<!-- Subtle Accent bar at top -->
+<div class="absolute top-0 left-0 w-full h-1 bg-error"></div>
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-mono text-label-mono text-outline">INC008922</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant text-[10px] font-bold text-on-surface-variant">P1</span>
+</div>
+<h2 class="font-display-md text-display-md text-on-background leading-tight">Network Outage - Chicago Data Center</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Core switch unresponsiveness reported causing loss of connectivity to all services hosted in CHI-DC.</p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap gap-2 shrink-0">
+<button class="bg-surface text-on-surface border border-[#DFE4EC] hover:bg-surface-container-low px-3 py-1.5 rounded font-label-bold text-label-bold transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">person_add</span> Assign
+                            </button>
+<button class="bg-surface text-on-surface border border-[#DFE4EC] hover:bg-surface-container-low px-3 py-1.5 rounded font-label-bold text-label-bold transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> Escalate
+                            </button>
+<button class="bg-surface text-on-surface border border-[#DFE4EC] hover:bg-surface-container-low px-3 py-1.5 rounded font-label-bold text-label-bold transition-colors flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">link</span> Link PRB
+                            </button>
+<button class="bg-[#315CE8] text-white hover:bg-[#0040cf] px-4 py-1.5 rounded font-label-bold text-label-bold transition-colors flex items-center gap-1 shadow-sm border border-[#0040cf]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Resolve
+                            </button>
+</div>
+</div>
+</div>
+<!-- Resolution (Collapsed) -->
+<div class="layer-1 rounded-xl px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors border border-[#DFE4EC]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+<span class="font-label-bold text-label-bold">Resolution Information</span>
+</div>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+<!-- Activity Stream -->
+<div class="layer-1 rounded-xl flex-1 flex flex-col min-h-[500px]">
+<!-- Tabs -->
+<div class="flex border-b border-outline-variant px-2 pt-2">
+<button class="px-4 py-2 font-label-bold text-label-bold tab-active">All</button>
+<button class="px-4 py-2 font-label-bold text-label-bold tab-inactive">Activity</button>
+<button class="px-4 py-2 font-label-bold text-label-bold tab-inactive flex items-center gap-1">
+                            Work Notes <span class="w-1.5 h-1.5 rounded-full bg-[#315CE8]"></span>
+</button>
+<button class="px-4 py-2 font-label-bold text-label-bold tab-inactive">Customer Comments</button>
+</div>
+<!-- Input Area -->
+<div class="p-4 border-b border-outline-variant bg-[#F4F6FA]/50">
+<div class="relative bg-surface rounded-lg border border-outline-variant focus-within:ring-2 focus-within:ring-[#315CE8] focus-within:border-transparent transition-all">
+<textarea class="w-full bg-transparent border-none focus:ring-0 resize-none p-3 font-body-md text-on-surface placeholder:text-outline h-20" placeholder="Type a work note (Internal) or comment (Customer)..."></textarea>
+<div class="flex justify-between items-center px-3 py-2 border-t border-outline-variant bg-surface-container-low/50 rounded-b-lg">
+<div class="flex gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded"><span class="material-symbols-outlined text-[18px]">attach_file</span></button>
+</div>
+<div class="flex gap-2 items-center">
+<label class="flex items-center gap-1.5 cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-[#315CE8] focus:ring-[#315CE8]" type="checkbox"/>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Work note (Internal)</span>
+</label>
+<button class="bg-[#315CE8] text-white px-3 py-1 rounded font-label-bold text-label-bold hover:bg-[#0040cf] transition-colors">Post</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline -->
+<div class="p-4 flex-1 overflow-y-auto space-y-6">
+<!-- Timeline Item: System -->
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center z-10 shrink-0">
+<span class="material-symbols-outlined text-[16px] text-outline">history</span>
+</div>
+<div class="w-px h-full bg-[#DFE4EC] my-1"></div>
+</div>
+<div class="flex-1 pb-4">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-bold text-label-bold text-on-surface">System</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Just now</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface">
+                                    Priority changed from <span class="line-through text-outline">3 - Moderate</span> to <span class="font-medium">1 - Critical</span>.
+                                </div>
+</div>
+</div>
+<!-- Timeline Item: Work Note (Internal) - Deep Slate hint -->
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-[#e1e8ff] border border-[#315CE8]/30 flex items-center justify-center z-10 shrink-0">
+<span class="material-symbols-outlined text-[16px] text-[#315CE8]">notes</span>
+</div>
+<div class="w-px h-full bg-[#DFE4EC] my-1"></div>
+</div>
+<div class="flex-1 pb-4">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-bold text-label-bold text-on-surface">David Chen (Network Admin)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">10 mins ago</span>
+</div>
+<div class="bg-[#283043] rounded-lg p-3 relative text-[#edf0ff] font-body-md border border-[#131b2d]">
+<span class="absolute -left-2 top-3 w-0 h-0 border-y-8 border-y-transparent border-r-8 border-r-[#283043]"></span>
+<div class="font-label-bold text-[10px] text-[#b7c4ff] mb-1 uppercase tracking-wider">Work Note (Internal)</div>
+<p>Initial diagnostics show core switch RTR-CHI-01 is not responding to ICMP or SNMP polling. Attempting out-of-band management access now.</p>
+</div>
+</div>
+</div>
+<!-- Timeline Item: Caller -->
+<div class="flex gap-3">
+<div class="flex flex-col items-center">
+<img alt="Caller" class="w-8 h-8 rounded-full border border-outline-variant z-10 shrink-0 object-cover" data-alt="Small circular portrait of a professional female employee, neutral corporate background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmUceJxdQ8QgpuyQvELO2Zbh4zJ9Qftie0p7RiOhEyvnYERHmAirkT5AF6-SQlOPb8UAB43pTiHkz5vu36ppJku3A7iKGIDkQIf3SnX5yRuDZYXbKducM3hodm7rFAfVurSAXu0SJoxBDdLQ_ZVpXWT306ObNBGBbHJs1kjoCD6PcQq8jywwliQ8sPRfiawiFqk8KDDiS7Y_0FoOw-zgtCui2P6qqzOvAJYe7plewQErBqfrZL1NCb"/>
+<div class="w-px h-full bg-transparent my-1"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-bold text-label-bold text-on-surface">Sarah Jenkins</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">25 mins ago</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 relative text-on-surface font-body-md border border-outline-variant">
+<span class="absolute -left-2 top-3 w-0 h-0 border-y-8 border-y-transparent border-r-8 border-r-outline-variant"></span>
+<span class="absolute -left-[7px] top-[13px] w-0 h-0 border-y-[7px] border-y-transparent border-r-[7px] border-r-surface-container-low"></span>
+<p>We've lost access to all internal applications on the Chicago campus. VPN users are also reporting issues connecting to resources hosted there.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Column 3: Intelligence & Context (Right) -->
+<aside class="lg:col-span-3 flex flex-col gap-stack-md">
+<!-- SLA Progress -->
+<div class="layer-1 rounded-xl p-4 flex flex-col gap-4">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline">timer</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">SLAs</h3>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-body-sm font-label-bold mb-1">
+<span class="text-on-surface">Resolution (P1)</span>
+<span class="text-error">1h 45m left</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error w-1/4 rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-sm font-label-bold mb-1">
+<span class="text-on-surface">Response</span>
+<span class="text-primary">Achieved</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Recommendations -->
+<div class="layer-1 rounded-xl p-4 flex flex-col gap-3 border-l-4 border-l-[#6745c8] bg-gradient-to-br from-surface to-[#f1ebff]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#6745c8]">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Nexus AI Insights</h3>
+</div>
+<div class="space-y-2">
+<div class="bg-surface p-2 rounded border border-outline-variant hover:border-[#6745c8] cursor-pointer transition-colors shadow-sm">
+<div class="text-[10px] font-bold text-[#6745c8] uppercase mb-1">Similar Incident Found</div>
+<div class="font-label-bold text-label-bold text-on-surface">INC008102: CHI Core Switch Reboot</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Resolved 2 weeks ago by David Chen.</div>
+</div>
+<div class="bg-surface p-2 rounded border border-outline-variant hover:border-[#6745c8] cursor-pointer transition-colors shadow-sm">
+<div class="text-[10px] font-bold text-[#6745c8] uppercase mb-1">Suggested Article</div>
+<div class="font-label-bold text-label-bold text-on-surface">KB00992: Out-of-band Management Access</div>
+</div>
+</div>
+</div>
+<!-- Related Records -->
+<div class="layer-1 rounded-xl p-4 flex flex-col gap-2">
+<div class="flex justify-between items-center border-b border-outline-variant pb-2 mb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">account_tree</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Related</h3>
+</div>
+<button class="text-[#315CE8] hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-container-low rounded cursor-pointer group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-outline">report_problem</span>
+<div>
+<div class="font-label-bold text-label-bold text-primary group-hover:underline">PRB00114</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant">Under Investigation</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-container-low rounded cursor-pointer group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-outline">published_with_changes</span>
+<div>
+<div class="font-label-bold text-label-bold text-primary group-hover:underline">CHG00552 (Pending)</div>
+<div class="font-body-sm text-[11px] text-on-surface-variant">Emergency Router Firmware Update</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Affected Assets -->
+<div class="layer-1 rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center gap-2 border-b border-outline-variant pb-2 mb-1">
+<span class="material-symbols-outlined text-outline">devices</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Affected Assets</h3>
+</div>
+<div class="space-y-1">
+<!-- Technical Connectors aesthetic -->
+<div class="flex items-start gap-2 relative">
+<div class="w-4 h-4 border-l border-b border-outline mt-2 rounded-bl shrink-0"></div>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant flex-1 flex justify-between items-center">
+<span class="font-label-mono text-label-mono">SW-CHI-ACC-01</span>
+<span class="w-2 h-2 rounded-full bg-error"></span>
+</div>
+</div>
+<div class="flex items-start gap-2 relative">
+<div class="w-4 h-4 border-l border-b border-outline mt-2 rounded-bl shrink-0"></div>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant flex-1 flex justify-between items-center">
+<span class="font-label-mono text-label-mono">SW-CHI-ACC-02</span>
+<span class="w-2 h-2 rounded-full bg-error"></span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

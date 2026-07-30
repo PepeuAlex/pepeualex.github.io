@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Access Request Workflow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#64636c",
+                    "on-primary-container": "#dcdfff",
+                    "inverse-on-surface": "#f1effd",
+                    "on-tertiary-fixed-variant": "#7e0089",
+                    "background": "#fbf8ff",
+                    "on-background": "#1a1b24",
+                    "primary": "#1e3cbd",
+                    "surface-tint": "#3751d0",
+                    "on-primary-fixed-variant": "#1536b8",
+                    "secondary-fixed": "#e4e1eb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#a230aa",
+                    "tertiary-fixed": "#ffd6f9",
+                    "surface-variant": "#e2e1ef",
+                    "on-surface": "#1a1b24",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "inverse-surface": "#2f303a",
+                    "on-primary-fixed": "#00115a",
+                    "surface-dim": "#dad9e6",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eeecfa",
+                    "inverse-primary": "#bac3ff",
+                    "secondary-fixed-dim": "#c7c5cf",
+                    "primary-container": "#3d57d6",
+                    "on-tertiary-fixed": "#37003c",
+                    "on-secondary-fixed-variant": "#46464e",
+                    "tertiary": "#850a8f",
+                    "on-secondary-fixed": "#1b1b22",
+                    "outline-variant": "#c5c5d6",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffa9fd",
+                    "on-surface-variant": "#444654",
+                    "surface": "#fbf8ff",
+                    "surface-container-high": "#e8e7f5",
+                    "outline": "#757685",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#ffd5f9",
+                    "secondary": "#5e5d66",
+                    "secondary-container": "#e4e1eb",
+                    "primary-fixed-dim": "#bac3ff",
+                    "surface-container-low": "#f4f2ff",
+                    "primary-fixed": "#dee0ff",
+                    "surface-container-highest": "#e2e1ef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "xxl": "48px",
+                    "margin-desktop": "32px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Geist"
+                    ],
+                    "headline-lg": [
+                            "Geist"
+                    ],
+                    "body-md": [
+                            "Geist"
+                    ],
+                    "label-md": [
+                            "JetBrains Mono"
+                    ],
+                    "label-sm": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-lg-mobile": [
+                            "Geist"
+                    ],
+                    "display-lg": [
+                            "Geist"
+                    ],
+                    "headline-md": [
+                            "Geist"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-sm": [
+                            "10px",
+                            {
+                                    "lineHeight": "12px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased">
+<!-- TopNavBar (Suppressed as this is a focused task/transactional flow) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flat no shadows">
+<div class="flex items-center gap-md">
+<button aria-label="Go Back" class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors flex items-center justify-center h-8 w-8 rounded-full bg-surface-container-low hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">PrismHub</div>
+</div>
+<div class="flex gap-lg">
+<button class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<img alt="User profile photo" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small, circular profile picture of a professional user in a modern corporate setting. The lighting is soft and natural, emphasizing trust and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjIIyK71Eo5JPyIyO08HWJ5zMa3Ukr8w_wanxIez0FPM77j_MLHzVkgE17wlVq6V2PIV5xh6uCVkW5qRNmOsk0vYR86HXBq0YvHvF37UPb4Wh4xzpSw1EIKOhb6BTcUUtgcVyVC9Y0a3xb5sIGd5PhIlK1KgMvs4CuPdMIsQYQcxN-mS3jBkxZoYz_1ZDNxBsDEVc6ldaZWicj9WX5i22a2nVXdpBtvCq4tbxrNOwvI16SqaOeQLJJXA"/>
+</div>
+</header>
+<main class="pt-[96px] pb-xxl px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex justify-center">
+<div class="w-full max-w-3xl flex flex-col gap-xl">
+<!-- Header Section -->
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">lock</span>
+                    ACCESS REQUEST
+                </div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
+                    Request Access to: Q3 Financial Performance Dashboard
+                </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Please provide justification and required permissions to proceed with the approval workflow.
+                </p>
+</div>
+<!-- Bento Grid Layout for Form and Timeline -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Form Column -->
+<div class="md:col-span-8 flex flex-col gap-lg bg-surface border border-outline-variant rounded-xl p-lg">
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface" for="justification">Business Justification</label>
+<textarea class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md resize-none p-sm" id="justification" placeholder="Explain why you need access to this dataset..." rows="4"></textarea>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface" for="role">Requested Role</label>
+<select class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md p-sm appearance-none" id="role">
+<option>Viewer</option>
+<option>Editor</option>
+<option>Analyst</option>
+</select>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-label-md text-on-surface" for="duration">Duration</label>
+<select class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md p-sm appearance-none" id="duration">
+<option>Permanent</option>
+<option>30 days</option>
+<option>90 days</option>
+</select>
+</div>
+</div>
+<div class="pt-md flex justify-end">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-[10px] rounded hover:bg-surface-tint transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">send</span>
+                            Submit Request
+                        </button>
+</div>
+</div>
+<!-- Side Column: Workflow & Comments -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Workflow Timeline -->
+<div class="bg-surface border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider border-b border-outline-variant pb-sm">Approval Chain</h3>
+<div class="relative pl-6 flex flex-col gap-lg border-l border-outline-variant ml-3 mt-sm">
+<!-- Step 1 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 bg-primary-container text-on-primary-container rounded-full w-5 h-5 flex items-center justify-center outline outline-4 outline-surface">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Draft</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Completed</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 bg-surface-container-high border-2 border-primary text-primary rounded-full w-5 h-5 flex items-center justify-center outline outline-4 outline-surface">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 0;">hourglass_empty</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Manager Approval</span>
+<span class="font-label-sm text-label-sm text-primary">Pending Submission</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative opacity-50">
+<div class="absolute -left-[31px] top-0 bg-surface border border-outline-variant text-outline rounded-full w-5 h-5 flex items-center justify-center outline outline-4 outline-surface">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Data Owner Approval</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Locked</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative opacity-50">
+<div class="absolute -left-[31px] top-0 bg-surface border border-outline-variant text-outline rounded-full w-5 h-5 flex items-center justify-center outline outline-4 outline-surface">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 0;">key</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Granted</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Locked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Comments / Feed -->
+<div class="bg-surface border border-outline-variant rounded-xl p-lg flex flex-col gap-md">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider border-b border-outline-variant pb-sm">Notifications</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex gap-sm items-start">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-primary mt-0.5 shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">info</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">Data Owner SLA for this asset is typically 48 hours.</p>
+</div>
+<div class="flex gap-sm items-start">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-secondary mt-0.5 shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">chat</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">Approval comments will appear here once the request is submitted.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

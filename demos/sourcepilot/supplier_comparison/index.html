@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supplier Comparison Matrix - SourcePilot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#3f4944",
+                        "primary-fixed-dim": "#8fd4bb",
+                        "inverse-surface": "#23342f",
+                        "surface-container": "#def2ea",
+                        "tertiary": "#664700",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#236a55",
+                        "primary-container": "#2a705b",
+                        "tertiary-container": "#855d00",
+                        "tertiary-fixed": "#ffdeaa",
+                        "surface-container-high": "#d9ede5",
+                        "outline": "#6f7974",
+                        "secondary-fixed-dim": "#aecebf",
+                        "outline-variant": "#bfc9c3",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#abf1d6",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "background": "#F7F5EF",
+                        "on-tertiary-fixed-variant": "#5f4100",
+                        "inverse-on-surface": "#e1f5ed",
+                        "primary": "#055744",
+                        "on-secondary-fixed-variant": "#304c41",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#eafef6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#e4f8f0",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#476458",
+                        "on-primary-container": "#aaf1d6",
+                        "on-surface": "#0e1f1a",
+                        "on-primary-fixed-variant": "#00513e",
+                        "secondary-container": "#c9eada",
+                        "inverse-primary": "#8fd4bb",
+                        "on-tertiary-fixed": "#271900",
+                        "tertiary-fixed-dim": "#f5bd58",
+                        "error-container": "#ffdad6",
+                        "surface": "#ffffff",
+                        "surface-container-highest": "#d3e7df",
+                        "on-background": "#0e1f1a",
+                        "secondary-fixed": "#c9eada",
+                        "on-secondary-container": "#4d6a5e",
+                        "surface-variant": "#d3e7df",
+                        "on-tertiary-container": "#ffdda9",
+                        "surface-dim": "#cbded7",
+                        "on-secondary-fixed": "#032017",
+                        "brand-gold": "#D9A441",
+                        "brand-border": "#DED9CD",
+                        "brand-forest": "#173F35",
+                        "brand-sand": "#F7F5EF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "16px"
+                    },
+                    "spacing": {
+                        "3xl": "64px",
+                        "margin-desktop": "40px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "2xl": "48px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "max-width": "1440px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Public Sans"],
+                        "display-lg": ["Public Sans"],
+                        "body-lg": ["Public Sans"],
+                        "data-mono": ["Public Sans"],
+                        "body-md": ["Public Sans"],
+                        "body-sm": ["Public Sans"],
+                        "headline-lg-mobile": ["Public Sans"],
+                        "display-lg-mobile": ["Public Sans"],
+                        "headline-md": ["Public Sans"],
+                        "title-lg": ["Public Sans"],
+                        "label-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for horizontal scrolling areas */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F7F5EF; 
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #DED9CD; 
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #bfc9c3; 
+        }
+
+        /* Slider overrides */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #2A705B;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #DED9CD;
+            border-radius: 2px;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- Top Navigation (Shell) -->
+<nav class="bg-primary dark:bg-primary docked full-width top-0 shadow-sm z-50">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-16">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary fill">rocket_launch</span>
+<span class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">SourcePilot</span>
+</div>
+<!-- Links -->
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-primary/80 hover:text-on-primary font-label-md text-label-md hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Home</a>
+<a class="text-on-primary/80 hover:text-on-primary font-label-md text-label-md hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Requisitions</a>
+<a class="text-on-primary/80 hover:text-on-primary font-label-md text-label-md hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Sourcing</a>
+<a class="text-on-primary border-b-2 border-tertiary-fixed pb-1 font-label-md text-label-md hover:bg-primary-container/20 transition-colors px-2 rounded-t mt-1" href="#">Suppliers</a>
+<a class="text-on-primary/80 hover:text-on-primary font-label-md text-label-md hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Contracts</a>
+<a class="text-on-primary/80 hover:text-on-primary font-label-md text-label-md hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Analytics</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2">
+<button class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-on-primary/80 hover:text-on-primary hover:bg-primary-container/20 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<button class="bg-surface text-primary font-label-md text-label-md px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-surface-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm">smart_toy</span> Copilot
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content Layout -->
+<div class="flex-grow flex w-full max-w-max-width mx-auto">
+<!-- Side Navigation (Suppressed for this specific tool view as it implies a focused journey, but keeping minimal context if needed. Actually, prompt says "comparison table", let's focus on canvas and hide side nav to give space to horizontal matrix) -->
+<!-- Canvas -->
+<main class="flex-grow p-margin-mobile md:p-margin-desktop w-full overflow-hidden flex flex-col gap-xl">
+<!-- Page Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-border pb-4">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md uppercase tracking-wider">Logistics RFQ #8492</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-md text-label-md">Evaluation Phase</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Supplier Comparison Matrix</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">Evaluate shortlisted vendors based on weighted criteria, AI-driven insights, and historical performance data.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-brand-border text-brand-forest rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Export PDF
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Propose Award
+                    </button>
+</div>
+</header>
+<!-- Layout Split: Criteria Controls (Left) + Matrix (Right) -->
+<div class="flex flex-col lg:flex-row gap-gutter h-full">
+<!-- Left Column: Weights & AI Context -->
+<aside class="w-full lg:w-[320px] flex-shrink-0 flex flex-col gap-6">
+<!-- Weighted Criteria Controls -->
+<div class="bg-surface border border-brand-border rounded-card p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-title-lg text-title-lg text-on-surface">Evaluation Weights</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Adjust relative importance to recalculate overall scores.</p>
+<div class="flex flex-col gap-5">
+<!-- Slider 1 -->
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-2">
+<span class="text-on-surface">Price &amp; Commercials</span>
+<span class="text-primary-container">40%</span>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="40"/>
+</div>
+<!-- Slider 2 -->
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-2">
+<span class="text-on-surface">Quality &amp; Reliability</span>
+<span class="text-primary-container">30%</span>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="30"/>
+</div>
+<!-- Slider 3 -->
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-2">
+<span class="text-on-surface">ESG Score</span>
+<span class="text-brand-gold font-bold">20%</span>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="20"/>
+</div>
+<!-- Slider 4 -->
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-2">
+<span class="text-on-surface">Delivery Timeline</span>
+<span class="text-primary-container">10%</span>
+</div>
+<input class="w-full" max="100" min="0" type="range" value="10"/>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-brand-border flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total Weight</span>
+<span class="font-data-mono text-data-mono text-on-surface">100%</span>
+</div>
+</div>
+<!-- Market Context Card -->
+<div class="bg-surface-container-low border border-brand-border rounded-card p-6">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">info</span>
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Market Context</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Freight rates in APAC are trending +4% higher this quarter. Consider locking in long-term contracts if PrimeFreight offers stable terms.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Horizontal Matrix -->
+<div class="flex-grow overflow-hidden bg-surface border border-brand-border rounded-card shadow-sm flex flex-col">
+<!-- Matrix Header/Nav -->
+<div class="px-6 py-4 border-b border-brand-border bg-brand-sand flex justify-between items-center">
+<h2 class="font-title-lg text-title-lg text-on-surface">Vendor Comparison</h2>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface rounded text-on-surface-variant font-label-md text-label-md border border-brand-border shadow-sm">3 Shortlisted</span>
+</div>
+</div>
+<!-- Scrollable Matrix Area -->
+<div class="overflow-x-auto custom-scrollbar p-6 flex-grow">
+<div class="min-w-[900px] flex gap-6 h-full">
+<!-- Row Labels Column (Sticky theoretically, but minimal here) -->
+<div class="w-40 flex-shrink-0 flex flex-col pt-[180px] gap-4">
+<div class="h-12 flex items-center font-label-md text-label-md uppercase text-on-surface-variant">Overall Score</div>
+<div class="h-12 flex items-center font-label-md text-label-md uppercase text-on-surface-variant">Proposed Price</div>
+<div class="h-12 flex items-center font-label-md text-label-md uppercase text-on-surface-variant">Delivery Time</div>
+<div class="h-12 flex items-center font-label-md text-label-md uppercase text-on-surface-variant">Quality Score</div>
+<div class="h-12 flex items-center font-label-md text-label-md uppercase text-on-surface-variant">ESG Rating</div>
+<div class="h-12 flex items-center font-label-md text-label-md uppercase text-on-surface-variant">Risk Level</div>
+</div>
+<!-- Supplier 1: EcoLogistics -->
+<div class="flex-1 min-w-[280px] flex flex-col border border-brand-border rounded-lg bg-surface relative overflow-hidden transition-all hover:shadow-md group">
+<!-- Top Highlight -->
+<div class="h-1 w-full bg-brand-gold absolute top-0 left-0"></div>
+<!-- Supplier Header -->
+<div class="p-4 border-b border-brand-border h-[180px] flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<div class="w-12 h-12 bg-surface-variant rounded flex items-center justify-center text-primary-container font-headline-md">EL</div>
+<span class="px-2 py-1 bg-[#fdf6e3] text-brand-gold border border-[#fbebc3] rounded text-[10px] font-bold uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">star</span> Top Match</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">EcoLogistics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Global freight &amp; warehousing</p>
+<button class="mt-auto w-full py-1.5 border border-brand-border rounded font-label-md text-label-md text-brand-forest hover:bg-surface-variant transition-colors">View Profile</button>
+</div>
+<!-- Data Rows -->
+<div class="flex flex-col gap-4 p-4">
+<div class="h-12 flex items-center font-data-mono text-data-mono text-primary font-bold text-lg">92 / 100</div>
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface">$1.24M / yr</div>
+<div class="h-12 flex items-center font-body-md text-body-md text-on-surface">3-5 Days Avg</div>
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface">98.5%</div>
+<div class="h-12 flex items-center">
+<span class="px-2 py-1 bg-surface-container text-primary-container rounded font-label-md text-label-md">A+ (Leader)</span>
+</div>
+<div class="h-12 flex items-center">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded font-label-md text-label-md">Low</span>
+</div>
+</div>
+<!-- AI Insights -->
+<div class="mt-auto p-4 bg-[#fdfaef] border-t border-brand-border border-dashed">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-brand-gold text-[16px]">smart_toy</span>
+<span class="font-label-md text-label-md text-on-surface">AI Insights</span>
+</div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-2">
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5">add</span> Strongest ESG alignment with your targets.</li>
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-error mt-0.5">remove</span> Price is 8% above baseline budget.</li>
+</ul>
+</div>
+</div>
+<!-- Supplier 2: PrimeFreight -->
+<div class="flex-1 min-w-[280px] flex flex-col border border-brand-border rounded-lg bg-surface relative overflow-hidden transition-all hover:shadow-md">
+<!-- Supplier Header -->
+<div class="p-4 border-b border-brand-border h-[180px] flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<div class="w-12 h-12 bg-surface-variant rounded flex items-center justify-center text-primary-container font-headline-md">PF</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">PrimeFreight</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">APAC focused logistics</p>
+<button class="mt-auto w-full py-1.5 border border-brand-border rounded font-label-md text-label-md text-brand-forest hover:bg-surface-variant transition-colors">View Profile</button>
+</div>
+<!-- Data Rows -->
+<div class="flex flex-col gap-4 p-4">
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface text-lg">85 / 100</div>
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface">$1.05M / yr</div>
+<div class="h-12 flex items-center font-body-md text-body-md text-on-surface">2-4 Days Avg</div>
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface">95.0%</div>
+<div class="h-12 flex items-center">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded font-label-md text-label-md">B (Average)</span>
+</div>
+<div class="h-12 flex items-center">
+<span class="px-2 py-1 bg-[#fff0f0] text-error rounded font-label-md text-label-md">Medium</span>
+</div>
+</div>
+<!-- AI Insights -->
+<div class="mt-auto p-4 bg-surface-container-low border-t border-brand-border border-dashed">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-primary-container text-[16px]">smart_toy</span>
+<span class="font-label-md text-label-md text-on-surface">AI Insights</span>
+</div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-2">
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5">add</span> Lowest overall cost option.</li>
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-error mt-0.5">remove</span> Historical delays during peak Q4 season.</li>
+</ul>
+</div>
+</div>
+<!-- Supplier 3: GlobalShift -->
+<div class="flex-1 min-w-[280px] flex flex-col border border-brand-border rounded-lg bg-surface relative overflow-hidden transition-all hover:shadow-md opacity-75 hover:opacity-100">
+<!-- Supplier Header -->
+<div class="p-4 border-b border-brand-border h-[180px] flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<div class="w-12 h-12 bg-surface-variant rounded flex items-center justify-center text-primary-container font-headline-md">GS</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">GlobalShift</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Enterprise shipping solutions</p>
+<button class="mt-auto w-full py-1.5 border border-brand-border rounded font-label-md text-label-md text-brand-forest hover:bg-surface-variant transition-colors">View Profile</button>
+</div>
+<!-- Data Rows -->
+<div class="flex flex-col gap-4 p-4">
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface text-lg">78 / 100</div>
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface">$1.35M / yr</div>
+<div class="h-12 flex items-center font-body-md text-body-md text-on-surface">5-7 Days Avg</div>
+<div class="h-12 flex items-center font-data-mono text-data-mono text-on-surface">99.2%</div>
+<div class="h-12 flex items-center">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded font-label-md text-label-md">C (Lagging)</span>
+</div>
+<div class="h-12 flex items-center">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded font-label-md text-label-md">Low</span>
+</div>
+</div>
+<!-- AI Insights -->
+<div class="mt-auto p-4 bg-surface-container-low border-t border-brand-border border-dashed">
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-primary-container text-[16px]">smart_toy</span>
+<span class="font-label-md text-label-md text-on-surface">AI Insights</span>
+</div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant space-y-2">
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5">add</span> Exceptional quality control history.</li>
+<li class="flex items-start gap-1"><span class="material-symbols-outlined text-[16px] text-error mt-0.5">remove</span> Poor ESG reporting compliance.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-dim dark:bg-surface-dim full-width bottom-0 border-t border-outline-variant flat no shadows">
+<div class="w-full py-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto gap-4">
+<span class="font-title-lg text-title-lg text-secondary">SourcePilot</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant text-center">© 2024 SourcePilot Procurement Intelligence. All rights reserved.</span>
+<div class="flex gap-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Documentation</a>
+</div>
+</div>
+</footer>
+</body></html>

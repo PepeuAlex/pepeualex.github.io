@@ -1,0 +1,744 @@
+[
+  {
+    "slug": "sentinelops",
+    "source": "stitch_sentinelops_incident_command_center",
+    "inner": "stitch_sentinelops_incident_command_center",
+    "name": "SentinelOps",
+    "category_en": "AI Incident Command Center",
+    "category_pt": "Central de Comando de Incidentes com IA",
+    "summary_en": "A mission-critical workspace for coordinating production incidents, affected services, responders, runbooks and AI-assisted investigation.",
+    "summary_pt": "Um workspace de missão crítica para coordenar incidentes de produção, serviços afetados, responsáveis, runbooks e investigação assistida por IA.",
+    "problem_en": "Operations teams need a single source of truth during high-pressure incidents. The product unifies alert context, timelines, service dependencies and stakeholder communication.",
+    "problem_pt": "Equipes de operações precisam de uma fonte única de verdade durante incidentes críticos. O produto unifica alertas, linhas do tempo, dependências e comunicação.",
+    "users_en": "SREs, incident commanders, support leads and engineering managers.",
+    "users_pt": "SREs, líderes de incidentes, suporte e gestores de engenharia.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "WebSockets",
+      "FastAPI (target)",
+      "PostgreSQL",
+      "AI workflows"
+    ],
+    "accent": "#27c2e8",
+    "audiences": [
+      "software",
+      "typescript",
+      "python",
+      "systems",
+      "ai"
+    ],
+    "screens": [
+      "operations_overview",
+      "active_incidents",
+      "incident_war_room",
+      "service_dependency_view",
+      "post_incident_review"
+    ],
+    "screen_labels": {
+      "operations_overview": [
+        "Operations Overview",
+        "Visão Operacional"
+      ],
+      "active_incidents": [
+        "Active Incidents",
+        "Incidentes Ativos"
+      ],
+      "incident_war_room": [
+        "Incident War Room",
+        "Sala do Incidente"
+      ],
+      "service_dependency_view": [
+        "Service Dependencies",
+        "Dependências de Serviço"
+      ],
+      "post_incident_review": [
+        "Post-Incident Review",
+        "Revisão Pós-Incidente"
+      ]
+    },
+    "highlights_en": [
+      "Real-time operational timeline",
+      "Service dependency impact view",
+      "AI-assisted investigation and runbook suggestions",
+      "Post-incident review workflow"
+    ],
+    "highlights_pt": [
+      "Linha do tempo operacional em tempo real",
+      "Visualização de impacto por dependências",
+      "Investigação e runbooks assistidos por IA",
+      "Fluxo de revisão pós-incidente"
+    ],
+    "images": [
+      "assets/projects/sentinelops/01-operations_overview.webp",
+      "assets/projects/sentinelops/02-active_incidents.webp",
+      "assets/projects/sentinelops/03-incident_war_room.webp",
+      "assets/projects/sentinelops/04-service_dependency_view.webp",
+      "assets/projects/sentinelops/05-post_incident_review.webp"
+    ],
+    "demos": [
+      "demos/sentinelops/operations_overview/index.html",
+      "demos/sentinelops/active_incidents/index.html",
+      "demos/sentinelops/incident_war_room/index.html",
+      "demos/sentinelops/service_dependency_view/index.html",
+      "demos/sentinelops/post_incident_review/index.html"
+    ]
+  },
+  {
+    "slug": "northstar",
+    "source": "stitch_northstar_ppm_interface_design",
+    "inner": "stitch_northstar_ppm_interface_design",
+    "name": "Northstar PPM",
+    "category_en": "Project Portfolio & Resource Planner",
+    "category_pt": "Portfólio de Projetos e Planejamento de Recursos",
+    "summary_en": "An executive planning product for portfolios, WBS structures, Gantt schedules, budgets, risks and team capacity.",
+    "summary_pt": "Um produto de planejamento executivo para portfólios, WBS, cronogramas Gantt, orçamentos, riscos e capacidade de equipes.",
+    "problem_en": "Project leaders need connected visibility across strategic priorities, schedules, finances and constrained resources.",
+    "problem_pt": "Líderes de projetos precisam de visibilidade integrada sobre prioridades, cronogramas, finanças e recursos limitados.",
+    "users_en": "Executives, PMO leaders, project managers and resource managers.",
+    "users_pt": "Executivos, PMO, gerentes de projetos e gestores de recursos.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "WBS/Gantt",
+      "SQL",
+      "Resource analytics",
+      "Power BI Embedded"
+    ],
+    "accent": "#4467e8",
+    "audiences": [
+      "software",
+      "typescript",
+      "dotnet",
+      "systems",
+      "power"
+    ],
+    "screens": [
+      "executive_portfolio",
+      "project_portfolio",
+      "project_workspace",
+      "wbs_and_gantt_view",
+      "resource_planning",
+      "risk_management"
+    ],
+    "screen_labels": {
+      "executive_portfolio": [
+        "Executive Portfolio",
+        "Portfólio Executivo"
+      ],
+      "project_portfolio": [
+        "Project Portfolio",
+        "Portfólio de Projetos"
+      ],
+      "project_workspace": [
+        "Project Workspace",
+        "Workspace do Projeto"
+      ],
+      "wbs_and_gantt_view": [
+        "WBS & Gantt",
+        "WBS e Gantt"
+      ],
+      "resource_planning": [
+        "Resource Planning",
+        "Planejamento de Recursos"
+      ],
+      "risk_management": [
+        "Risk Management",
+        "Gestão de Riscos"
+      ]
+    },
+    "highlights_en": [
+      "Synchronized WBS and Gantt",
+      "Capacity and allocation heatmaps",
+      "Portfolio health and financial indicators",
+      "Risk matrix and mitigation tracking"
+    ],
+    "highlights_pt": [
+      "WBS e Gantt sincronizados",
+      "Mapas de capacidade e alocação",
+      "Indicadores financeiros e de saúde do portfólio",
+      "Matriz de riscos e acompanhamento de mitigação"
+    ],
+    "images": [
+      "assets/projects/northstar/01-executive_portfolio.webp",
+      "assets/projects/northstar/02-project_portfolio.webp",
+      "assets/projects/northstar/03-project_workspace.webp",
+      "assets/projects/northstar/04-wbs_and_gantt_view.webp",
+      "assets/projects/northstar/05-resource_planning.webp",
+      "assets/projects/northstar/06-risk_management.webp"
+    ],
+    "demos": [
+      "demos/northstar/executive_portfolio/index.html",
+      "demos/northstar/project_portfolio/index.html",
+      "demos/northstar/project_workspace/index.html",
+      "demos/northstar/wbs_and_gantt_view/index.html",
+      "demos/northstar/resource_planning/index.html",
+      "demos/northstar/risk_management/index.html"
+    ]
+  },
+  {
+    "slug": "sourcepilot",
+    "source": "stitch_sourcepilot_procurement_intelligence_platform",
+    "inner": "stitch_sourcepilot_procurement_intelligence_platform",
+    "name": "SourcePilot",
+    "category_en": "Procurement Intelligence & Copilot",
+    "category_pt": "Inteligência de Compras e Copilot",
+    "summary_en": "A procurement workspace for requisitions, sourcing events, supplier comparison, approvals and evidence-based AI recommendations.",
+    "summary_pt": "Um workspace de compras para requisições, sourcing, comparação de fornecedores, aprovações e recomendações de IA com evidências.",
+    "problem_en": "Procurement decisions are fragmented across spreadsheets, quotations and approval threads. SourcePilot creates a structured, auditable decision process.",
+    "problem_pt": "Decisões de compras ficam fragmentadas em planilhas, cotações e aprovações. O SourcePilot cria um processo estruturado e auditável.",
+    "users_en": "Requesters, buyers, procurement managers, suppliers and approvers.",
+    "users_pt": "Solicitantes, compradores, gestores, fornecedores e aprovadores.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Copilot Studio concepts",
+      "REST APIs",
+      "SQL/Oracle",
+      "Approval workflows"
+    ],
+    "accent": "#2a705b",
+    "audiences": [
+      "software",
+      "typescript",
+      "power",
+      "ai",
+      "systems"
+    ],
+    "screens": [
+      "procurement_home",
+      "purchase_requisition",
+      "sourcing_event_workspace",
+      "supplier_comparison",
+      "procurement_copilot",
+      "supplier_profile"
+    ],
+    "screen_labels": {
+      "procurement_home": [
+        "Procurement Home",
+        "Início de Compras"
+      ],
+      "purchase_requisition": [
+        "Purchase Requisition",
+        "Requisição de Compra"
+      ],
+      "sourcing_event_workspace": [
+        "Sourcing Event",
+        "Evento de Sourcing"
+      ],
+      "supplier_comparison": [
+        "Supplier Comparison",
+        "Comparação de Fornecedores"
+      ],
+      "procurement_copilot": [
+        "Procurement Copilot",
+        "Copilot de Compras"
+      ],
+      "supplier_profile": [
+        "Supplier Profile",
+        "Perfil do Fornecedor"
+      ]
+    },
+    "highlights_en": [
+      "Guided requisition workflow",
+      "Weighted supplier comparison",
+      "Cited AI recommendations",
+      "Supplier risk and performance view"
+    ],
+    "highlights_pt": [
+      "Fluxo guiado de requisição",
+      "Comparação ponderada de fornecedores",
+      "Recomendações de IA com fontes",
+      "Visão de risco e desempenho de fornecedores"
+    ],
+    "images": [
+      "assets/projects/sourcepilot/01-procurement_home.webp",
+      "assets/projects/sourcepilot/02-purchase_requisition.webp",
+      "assets/projects/sourcepilot/03-sourcing_event_workspace.webp",
+      "assets/projects/sourcepilot/04-supplier_comparison.webp",
+      "assets/projects/sourcepilot/05-procurement_copilot.webp",
+      "assets/projects/sourcepilot/06-supplier_profile.webp"
+    ],
+    "demos": [
+      "demos/sourcepilot/procurement_home/index.html",
+      "demos/sourcepilot/purchase_requisition/index.html",
+      "demos/sourcepilot/sourcing_event_workspace/index.html",
+      "demos/sourcepilot/supplier_comparison/index.html",
+      "demos/sourcepilot/procurement_copilot/index.html",
+      "demos/sourcepilot/supplier_profile/index.html"
+    ]
+  },
+  {
+    "slug": "nexus",
+    "source": "stitch_nexus_service_cloud_itsm",
+    "inner": "stitch_nexus_service_cloud_itsm",
+    "name": "Nexus Service Cloud",
+    "category_en": "ITSM & CMDB Platform",
+    "category_pt": "Plataforma ITSM e CMDB",
+    "summary_en": "A modular service-management platform covering incidents, requests, changes, knowledge, assets and configuration relationships.",
+    "summary_pt": "Uma plataforma modular de gestão de serviços com incidentes, solicitações, mudanças, conhecimento, ativos e relacionamentos de configuração.",
+    "problem_en": "IT teams need consistent workflows and context across service operations. Nexus connects ticket execution with assets, SLAs and service dependencies.",
+    "problem_pt": "Equipes de TI precisam de fluxos consistentes e contexto entre operações. O Nexus conecta chamados, ativos, SLAs e dependências.",
+    "users_en": "Service desk agents, IT managers, change approvers and business requesters.",
+    "users_pt": "Agentes de service desk, gestores de TI, aprovadores e solicitantes.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "ASP.NET/FastAPI (target)",
+      "SQL",
+      "Redis",
+      "CMDB"
+    ],
+    "accent": "#315ce8",
+    "audiences": [
+      "software",
+      "typescript",
+      "dotnet",
+      "python",
+      "systems"
+    ],
+    "screens": [
+      "service_operations_home",
+      "incident_queue",
+      "incident_detail",
+      "service_catalog",
+      "cmdb_explorer",
+      "change_calendar",
+      "knowledge_base",
+      "mobile_requester_experience"
+    ],
+    "screen_labels": {
+      "service_operations_home": [
+        "Service Operations",
+        "Operações de Serviço"
+      ],
+      "incident_queue": [
+        "Incident Queue",
+        "Fila de Incidentes"
+      ],
+      "incident_detail": [
+        "Incident Detail",
+        "Detalhe do Incidente"
+      ],
+      "service_catalog": [
+        "Service Catalog",
+        "Catálogo de Serviços"
+      ],
+      "cmdb_explorer": [
+        "CMDB Explorer",
+        "Explorador CMDB"
+      ],
+      "change_calendar": [
+        "Change Calendar",
+        "Calendário de Mudanças"
+      ],
+      "knowledge_base": [
+        "Knowledge Base",
+        "Base de Conhecimento"
+      ],
+      "mobile_requester_experience": [
+        "Mobile Requester",
+        "Solicitante Mobile"
+      ]
+    },
+    "highlights_en": [
+      "Configurable service queues",
+      "Relationship-aware CMDB",
+      "Change calendar and conflict visibility",
+      "Responsive requester experience"
+    ],
+    "highlights_pt": [
+      "Filas configuráveis de atendimento",
+      "CMDB com relacionamentos",
+      "Calendário de mudanças e conflitos",
+      "Experiência responsiva do solicitante"
+    ],
+    "images": [
+      "assets/projects/nexus/01-service_operations_home.webp",
+      "assets/projects/nexus/02-incident_queue.webp",
+      "assets/projects/nexus/03-incident_detail.webp",
+      "assets/projects/nexus/04-service_catalog.webp",
+      "assets/projects/nexus/05-cmdb_explorer.webp",
+      "assets/projects/nexus/06-change_calendar.webp",
+      "assets/projects/nexus/07-knowledge_base.webp",
+      "assets/projects/nexus/08-mobile_requester_experience.webp"
+    ],
+    "demos": [
+      "demos/nexus/service_operations_home/index.html",
+      "demos/nexus/incident_queue/index.html",
+      "demos/nexus/incident_detail/index.html",
+      "demos/nexus/service_catalog/index.html",
+      "demos/nexus/cmdb_explorer/index.html",
+      "demos/nexus/change_calendar/index.html",
+      "demos/nexus/knowledge_base/index.html",
+      "demos/nexus/mobile_requester_experience/index.html"
+    ]
+  },
+  {
+    "slug": "atlasmind",
+    "source": "stitch_atlasmind_enterprise_knowledge_workspace",
+    "inner": "stitch_atlasmind_enterprise_knowledge_workspace",
+    "name": "AtlasMind",
+    "category_en": "Enterprise Knowledge Workspace",
+    "category_pt": "Workspace Corporativo de Conhecimento",
+    "summary_en": "A research-focused AI workspace for searching corporate documents, producing cited answers and governing knowledge workflows.",
+    "summary_pt": "Um workspace de pesquisa com IA para buscar documentos corporativos, produzir respostas citadas e governar fluxos de conhecimento.",
+    "problem_en": "Employees lose time locating trusted information across disconnected documents. AtlasMind combines search, evidence and governed AI assistance.",
+    "problem_pt": "Colaboradores perdem tempo buscando informações confiáveis em documentos desconectados. O AtlasMind combina busca, evidências e IA governada.",
+    "users_en": "Operations teams, analysts, compliance specialists and knowledge managers.",
+    "users_pt": "Equipes operacionais, analistas, compliance e gestores de conhecimento.",
+    "stack": [
+      "React",
+      "Python/FastAPI (target)",
+      "Vector search",
+      "RAG concepts",
+      "LLM governance",
+      "Document indexing"
+    ],
+    "accent": "#7868d8",
+    "audiences": [
+      "software",
+      "python",
+      "ai",
+      "systems"
+    ],
+    "screens": [
+      "ask_atlas_knowledge_workspace",
+      "enterprise_search",
+      "document_reader_hr_policy_2024",
+      "collections_pack",
+      "ai_governance_dashboard",
+      "upload_and_index_workspace"
+    ],
+    "screen_labels": {
+      "ask_atlas_knowledge_workspace": [
+        "Ask Atlas",
+        "Pergunte ao Atlas"
+      ],
+      "enterprise_search": [
+        "Enterprise Search",
+        "Busca Corporativa"
+      ],
+      "document_reader_hr_policy_2024": [
+        "Document Reader",
+        "Leitor de Documentos"
+      ],
+      "collections_pack": [
+        "Knowledge Collections",
+        "Coleções de Conhecimento"
+      ],
+      "ai_governance_dashboard": [
+        "AI Governance",
+        "Governança de IA"
+      ],
+      "upload_and_index_workspace": [
+        "Upload & Index",
+        "Upload e Indexação"
+      ]
+    },
+    "highlights_en": [
+      "Cited conversational answers",
+      "Document evidence viewer",
+      "AI evaluation and governance",
+      "Permission-aware knowledge collections"
+    ],
+    "highlights_pt": [
+      "Respostas conversacionais citadas",
+      "Visualização de evidências",
+      "Avaliação e governança de IA",
+      "Coleções com controle de acesso"
+    ],
+    "images": [
+      "assets/projects/atlasmind/01-ask_atlas_knowledge_workspace.webp",
+      "assets/projects/atlasmind/02-enterprise_search.webp",
+      "assets/projects/atlasmind/03-document_reader_hr_policy_2024.webp",
+      "assets/projects/atlasmind/04-collections_pack.webp",
+      "assets/projects/atlasmind/05-ai_governance_dashboard.webp",
+      "assets/projects/atlasmind/06-upload_and_index_workspace.webp"
+    ],
+    "demos": [
+      "demos/atlasmind/ask_atlas_knowledge_workspace/index.html",
+      "demos/atlasmind/enterprise_search/index.html",
+      "demos/atlasmind/document_reader_hr_policy_2024/index.html",
+      "demos/atlasmind/collections_pack/index.html",
+      "demos/atlasmind/ai_governance_dashboard/index.html",
+      "demos/atlasmind/upload_and_index_workspace/index.html"
+    ]
+  },
+  {
+    "slug": "flowcircuit",
+    "source": "stitch_flowcircuit_visual_automation_platform",
+    "inner": "stitch_flowcircuit_visual_automation_platform",
+    "name": "FlowCircuit",
+    "category_en": "Visual Enterprise Automation",
+    "category_pt": "Automação Empresarial Visual",
+    "summary_en": "A visual workflow studio for connecting triggers, APIs, approvals, data operations, AI steps and execution monitoring.",
+    "summary_pt": "Um estúdio visual de workflows para conectar gatilhos, APIs, aprovações, operações de dados, etapas de IA e monitoramento.",
+    "problem_en": "Business automations become difficult to govern as integrations and execution paths grow. FlowCircuit brings design, testing, operations and governance together.",
+    "problem_pt": "Automações ficam difíceis de governar com o crescimento das integrações. O FlowCircuit reúne design, testes, operação e governança.",
+    "users_en": "Automation developers, integration engineers, platform owners and process analysts.",
+    "users_pt": "Desenvolvedores de automação, engenheiros de integração, donos de plataforma e analistas.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Workflow engine",
+      "REST APIs",
+      "Python workers (target)",
+      "AI actions"
+    ],
+    "accent": "#a7e245",
+    "audiences": [
+      "software",
+      "typescript",
+      "python",
+      "power",
+      "ai",
+      "systems"
+    ],
+    "screens": [
+      "workflow_designer",
+      "execution_monitor",
+      "workflow_templates",
+      "connection_management",
+      "governance_dashboard"
+    ],
+    "screen_labels": {
+      "workflow_designer": [
+        "Workflow Designer",
+        "Designer de Fluxos"
+      ],
+      "execution_monitor": [
+        "Execution Monitor",
+        "Monitor de Execuções"
+      ],
+      "workflow_templates": [
+        "Workflow Templates",
+        "Templates de Workflow"
+      ],
+      "connection_management": [
+        "Connections",
+        "Conexões"
+      ],
+      "governance_dashboard": [
+        "Governance Dashboard",
+        "Dashboard de Governança"
+      ]
+    },
+    "highlights_en": [
+      "Drag-and-drop workflow canvas",
+      "Input/output and payload inspection",
+      "Execution monitoring and retries",
+      "Connection and environment governance"
+    ],
+    "highlights_pt": [
+      "Canvas drag-and-drop",
+      "Inspeção de entradas, saídas e payloads",
+      "Monitoramento e retentativas",
+      "Governança de conexões e ambientes"
+    ],
+    "images": [
+      "assets/projects/flowcircuit/01-workflow_designer.webp",
+      "assets/projects/flowcircuit/02-execution_monitor.webp",
+      "assets/projects/flowcircuit/03-workflow_templates.webp",
+      "assets/projects/flowcircuit/04-connection_management.webp",
+      "assets/projects/flowcircuit/05-governance_dashboard.webp"
+    ],
+    "demos": [
+      "demos/flowcircuit/workflow_designer/index.html",
+      "demos/flowcircuit/execution_monitor/index.html",
+      "demos/flowcircuit/workflow_templates/index.html",
+      "demos/flowcircuit/connection_management/index.html",
+      "demos/flowcircuit/governance_dashboard/index.html"
+    ]
+  },
+  {
+    "slug": "orbitchain",
+    "source": "stitch_orbitchain_global_control_tower",
+    "inner": "stitch_orbitchain_global_control_tower",
+    "name": "OrbitChain",
+    "category_en": "Global Supply Chain Control Tower",
+    "category_pt": "Torre Global de Controle da Cadeia de Suprimentos",
+    "summary_en": "A geospatial operations product for shipments, inventory, purchase orders, suppliers and disruption intelligence.",
+    "summary_pt": "Um produto operacional geoespacial para embarques, estoque, pedidos, fornecedores e inteligência de disrupções.",
+    "problem_en": "Global supply networks need early visibility into delays, shortages and supplier risks. OrbitChain connects geography, operations and financial exposure.",
+    "problem_pt": "Cadeias globais precisam de visibilidade antecipada sobre atrasos, faltas e riscos. O OrbitChain conecta geografia, operações e exposição financeira.",
+    "users_en": "Supply planners, logistics teams, procurement managers and executives.",
+    "users_pt": "Planejadores, equipes de logística, gestores de compras e executivos.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Geospatial UI",
+      "REST APIs",
+      "SQL",
+      "Predictive analytics concepts"
+    ],
+    "accent": "#178a91",
+    "audiences": [
+      "software",
+      "typescript",
+      "python",
+      "systems"
+    ],
+    "screens": [
+      "global_overview",
+      "shipment_detail",
+      "inventory_network",
+      "supplier_risk",
+      "purchase_order_tracker",
+      "risk_intelligence"
+    ],
+    "screen_labels": {
+      "global_overview": [
+        "Global Overview",
+        "Visão Global"
+      ],
+      "shipment_detail": [
+        "Shipment Detail",
+        "Detalhe do Embarque"
+      ],
+      "inventory_network": [
+        "Inventory Network",
+        "Rede de Estoque"
+      ],
+      "supplier_risk": [
+        "Supplier Risk",
+        "Risco de Fornecedor"
+      ],
+      "purchase_order_tracker": [
+        "Purchase Orders",
+        "Pedidos de Compra"
+      ],
+      "risk_intelligence": [
+        "Risk Intelligence",
+        "Inteligência de Risco"
+      ]
+    },
+    "highlights_en": [
+      "Map-centered command view",
+      "Shipment timeline and exception handling",
+      "Inventory coverage and transfer suggestions",
+      "Supplier and disruption risk intelligence"
+    ],
+    "highlights_pt": [
+      "Comando centralizado em mapa",
+      "Timeline e exceções de embarque",
+      "Cobertura de estoque e transferências",
+      "Inteligência de risco de fornecedores e disrupções"
+    ],
+    "images": [
+      "assets/projects/orbitchain/01-global_overview.webp",
+      "assets/projects/orbitchain/02-shipment_detail.webp",
+      "assets/projects/orbitchain/03-inventory_network.webp",
+      "assets/projects/orbitchain/04-supplier_risk.webp",
+      "assets/projects/orbitchain/05-purchase_order_tracker.webp",
+      "assets/projects/orbitchain/06-risk_intelligence.webp"
+    ],
+    "demos": [
+      "demos/orbitchain/global_overview/index.html",
+      "demos/orbitchain/shipment_detail/index.html",
+      "demos/orbitchain/inventory_network/index.html",
+      "demos/orbitchain/supplier_risk/index.html",
+      "demos/orbitchain/purchase_order_tracker/index.html",
+      "demos/orbitchain/risk_intelligence/index.html"
+    ]
+  },
+  {
+    "slug": "prismhub",
+    "source": "stitch_prismhub_analytics_marketplace",
+    "inner": "stitch_prismhub_analytics_marketplace",
+    "name": "PrismHub",
+    "category_en": "Corporate Analytics Marketplace",
+    "category_pt": "Marketplace Corporativo de Analytics",
+    "summary_en": "A governed internal marketplace for discovering dashboards, requesting access, managing ownership and measuring analytics adoption.",
+    "summary_pt": "Um marketplace interno governado para descobrir dashboards, solicitar acesso, gerenciar ownership e medir adoção analítica.",
+    "problem_en": "Organizations create many dashboards but struggle with discovery, ownership and access. PrismHub adds a searchable catalog and governance layer.",
+    "problem_pt": "Organizações criam muitos dashboards, mas enfrentam problemas de descoberta, ownership e acesso. O PrismHub adiciona catálogo e governança.",
+    "users_en": "Business users, BI teams, data owners, delegated administrators and auditors.",
+    "users_pt": "Usuários de negócio, equipes de BI, donos de dados, administradores e auditores.",
+    "stack": [
+      "React",
+      "TypeScript",
+      ".NET (target)",
+      "SQL Server",
+      "Power BI Embedded",
+      "Microsoft Entra ID"
+    ],
+    "accent": "#c350c9",
+    "audiences": [
+      "software",
+      "typescript",
+      "dotnet",
+      "systems",
+      "power"
+    ],
+    "screens": [
+      "prismhub_home",
+      "prismhub_explore_catalog",
+      "dashboard_detail_q3_finance",
+      "prismhub_access_request",
+      "prismhub_collections",
+      "prismhub_administration",
+      "prismhub_usage_analytics"
+    ],
+    "screen_labels": {
+      "prismhub_home": [
+        "Personalized Home",
+        "Início Personalizado"
+      ],
+      "prismhub_explore_catalog": [
+        "Explore Catalog",
+        "Explorar Catálogo"
+      ],
+      "dashboard_detail_q3_finance": [
+        "Dashboard Detail",
+        "Detalhe do Dashboard"
+      ],
+      "prismhub_access_request": [
+        "Access Request",
+        "Solicitação de Acesso"
+      ],
+      "prismhub_collections": [
+        "Collections",
+        "Coleções"
+      ],
+      "prismhub_administration": [
+        "Administration",
+        "Administração"
+      ],
+      "prismhub_usage_analytics": [
+        "Usage Analytics",
+        "Analytics de Uso"
+      ]
+    },
+    "highlights_en": [
+      "Personalized dashboard discovery",
+      "Folder and permission governance",
+      "Access-request workflow",
+      "Adoption and search analytics"
+    ],
+    "highlights_pt": [
+      "Descoberta personalizada de dashboards",
+      "Governança de pastas e permissões",
+      "Fluxo de solicitação de acesso",
+      "Analytics de adoção e pesquisa"
+    ],
+    "images": [
+      "assets/projects/prismhub/01-prismhub_home.webp",
+      "assets/projects/prismhub/02-prismhub_explore_catalog.webp",
+      "assets/projects/prismhub/03-dashboard_detail_q3_finance.webp",
+      "assets/projects/prismhub/04-prismhub_access_request.webp",
+      "assets/projects/prismhub/05-prismhub_collections.webp",
+      "assets/projects/prismhub/06-prismhub_administration.webp",
+      "assets/projects/prismhub/07-prismhub_usage_analytics.webp"
+    ],
+    "demos": [
+      "demos/prismhub/prismhub_home/index.html",
+      "demos/prismhub/prismhub_explore_catalog/index.html",
+      "demos/prismhub/dashboard_detail_q3_finance/index.html",
+      "demos/prismhub/prismhub_access_request/index.html",
+      "demos/prismhub/prismhub_collections/index.html",
+      "demos/prismhub/prismhub_administration/index.html",
+      "demos/prismhub/prismhub_usage_analytics/index.html"
+    ]
+  }
+]

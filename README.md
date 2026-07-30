@@ -1,39 +1,33 @@
-# Pedro Alexandre — Professional Portfolio
+# Pedro Alexandre — Engineering Portfolio
 
-This repository contains a public professional portfolio page focused on enterprise projects, technical leadership, Power Platform, SAP, cloud solutions, automation, frontend/fullstack development and system integrations.
+Static portfolio ready for GitHub Pages, Netlify or Vercel.
 
-## Purpose
+## Run locally
 
-This portfolio is intended to complement my CV and LinkedIn profile by presenting selected professional projects in a structured, recruiter-friendly way.
+Open `index.html` directly, or run a local server:
 
-## Confidentiality
+```bash
+python -m http.server 8080
+```
 
-Due to confidentiality and data protection requirements, internal screenshots, source code, private URLs, business-sensitive data, system architecture details and production records are intentionally not displayed.
+Then open `http://localhost:8080`.
 
-Project descriptions are summarized to highlight professional experience, technologies and business impact.
+## GitHub Pages
 
-## Main areas
+1. Create a repository.
+2. Upload all files and folders from this package to the repository root.
+3. Open **Settings → Pages**.
+4. Select **Deploy from a branch**, branch `main`, folder `/ (root)`.
+5. Save and wait for the public URL.
 
-- Tech Lead / Senior Systems Analyst
-- Microsoft Power Platform
-- Power Apps / Power Automate / SharePoint / Dataverse
-- SAP Basis / SAP ECC to SAP HANA migrations
-- Azure / Azure DevOps / CI/CD
-- React / JavaScript / TypeScript
-- Python / .NET / SQL Server
-- RPA and process automation
-- Enterprise integrations and governance
+## Content notes
 
-## How to publish with GitHub Pages
+- The eight Product Lab applications are clearly labeled as portfolio concepts using simulated data.
+- Professional work is described without confidential company screenshots or data.
+- Resumes are stored under `assets/resumes/`.
+- Individual Stitch-generated screens are available under `demos/`.
+- The site supports English/Portuguese, light/dark mode and recruiter-focused filtering.
 
-1. Create a repository named `pedroalexandre.github.io` or any portfolio name.
-2. Upload `index.html` to the root of the repository.
-3. Go to **Settings > Pages**.
-4. Under **Build and deployment**, select:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/root`
-5. Save and wait a few minutes.
-6. Your page should be available at:
+## Updating links
 
-`https://YOUR-GITHUB-USERNAME.github.io/`
+Edit the contact links near the bottom of `index.html` when dedicated GitHub repositories or live demos become available.

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Risk Management - Northstar PPM</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f3ff",
+                        "primary-container": "#4467e8",
+                        "surface": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#f9f7ff",
+                        "surface-tint": "#2c52d3",
+                        "tertiary-container": "#007d93",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#0037b9",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dde1ff",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed-variant": "#30447d",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "on-surface-variant": "#444654",
+                        "tertiary": "#006274",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-background": "#0f1b35",
+                        "inverse-surface": "#25304b",
+                        "surface-container-high": "#e2e7ff",
+                        "inverse-primary": "#b8c4ff",
+                        "on-tertiary-container": "#eefaff",
+                        "surface-container": "#eaedff",
+                        "secondary-container": "#a9bcfe",
+                        "outline": "#747686",
+                        "secondary": "#495c97",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#001f26",
+                        "outline-variant": "#c4c5d7",
+                        "surface-variant": "#dae2ff",
+                        "on-primary-fixed": "#001453",
+                        "on-secondary-fixed": "#00174c",
+                        "on-surface": "#0f1b35",
+                        "primary": "#254cce",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#374a84",
+                        "surface-dim": "#ced9fd",
+                        "tertiary-fixed-dim": "#5bd6f3",
+                        "surface-container-highest": "#dae2ff",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "tertiary-fixed": "#adecff",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dbe1ff",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "72px",
+                        "context-bar-height": "56px",
+                        "unit": "4px",
+                        "container-padding": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "numeric-bold": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "numeric-bold": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for high-density tables */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c4c5d7; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #747686; }
+        
+        .heatmap-cell { display: flex; align-items: center; justify-content: center; position: relative; }
+        .risk-bubble { position: absolute; border-radius: 50%; background-color: rgba(15, 27, 53, 0.7); box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest fixed left-0 top-0 h-full w-sidebar-width border-r border-outline-variant flex flex-col items-center py-unit z-50">
+<!-- Brand/Logo Area -->
+<div class="h-context-bar-height flex items-center justify-center w-full mb-4">
+<div class="w-10 h-10 bg-primary rounded flex items-center justify-center text-on-primary font-headline-sm text-headline-sm font-bold" title="Northstar PPM">
+                N
+            </div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-2 w-full px-2">
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">dashboard</span>
+<span class="font-label-md text-label-md text-[10px]">Portfolio</span>
+</a>
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">folder</span>
+<span class="font-label-md text-label-md text-[10px]">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">timeline</span>
+<span class="font-label-md text-label-md text-[10px]">Roadmap</span>
+</a>
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">groups</span>
+<span class="font-label-md text-label-md text-[10px]">Resources</span>
+</a>
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">payments</span>
+<span class="font-label-md text-label-md text-[10px]">Financials</span>
+</a>
+<!-- Active Tab -->
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-primary border-l-4 border-primary bg-primary-container/10 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1 icon-fill">warning</span>
+<span class="font-label-md text-label-md text-[10px]">Risks</span>
+</a>
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">analytics</span>
+<span class="font-label-md text-label-md text-[10px]">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors duration-200 group mt-auto" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">settings</span>
+<span class="font-label-md text-label-md text-[10px]">Admin</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="bg-surface fixed top-0 right-0 w-[calc(100%-72px)] z-40 border-b border-outline-variant flex justify-between items-center h-context-bar-height px-container-padding">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Northstar PPM</h1>
+<!-- Search Bar -->
+<div class="relative hidden md:block w-64 ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full h-8 pl-10 pr-3 rounded border border-outline-variant bg-surface-container-lowest text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Search portfolio..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md h-8 px-4 rounded hover:bg-surface-tint transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                Quick Create
+            </button>
+<div class="flex items-center gap-3 text-on-surface-variant border-l border-outline-variant pl-4">
+<button class="hover:text-primary transition-colors hover:bg-surface-container-high p-1 rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-high p-1 rounded-full"><span class="material-symbols-outlined">search</span></button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center border border-outline-variant cursor-pointer overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate executive, clean bright lighting, facing forward, modern office background slightly blurred." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALkp9rjMAb2Z6H2Y1gscreKk3sF_YMeafe7bhea2V4Nqfza8P_oyUKt2-O1L5H1UpCqlF17J1E3rttXEPSHXt1xSZU0xadxj-Btm2NHSV5oObXFAhHVxx85Z47tjazbVK1nmQnRiSdqj_bfv7oxxa9XxSQHFvxDGYp1FY3HmR7aZBQiKZkflOKUk6nZbXIctIR1zqDE6xg7NuTtEduVrJth-j0E-APEEZcXl7cpmq8AbHAadUGRGTh9A"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-[calc(100%-72px)] ml-[72px] mt-[56px] h-[calc(100vh-56px)] overflow-y-auto bg-background p-container-padding flex flex-col gap-gutter">
+<!-- Header -->
+<header class="flex justify-between items-end mb-2">
+<div>
+<div class="flex items-center gap-2 text-outline font-label-md text-label-md mb-1 uppercase tracking-wider">
+<span>Portfolio</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Q3 Master Plan</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Portfolio Risk Management</h2>
+</div>
+<div class="flex gap-3">
+<button class="h-10 px-4 rounded border border-outline-variant bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                </button>
+<button class="h-10 px-4 rounded border border-outline-variant bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Export
+                </button>
+</div>
+</header>
+<!-- Top Section: Matrix & Chart -->
+<div class="grid grid-cols-12 gap-gutter h-auto min-h-[360px]">
+<!-- Risk Matrix -->
+<div class="col-span-12 lg:col-span-7 xl:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">grid_on</span> 
+                    Risk Matrix <span class="text-on-surface-variant font-body-md text-body-md font-normal ml-2">(Probability vs Impact)</span>
+</h3>
+<div class="flex-1 flex flex-col relative w-full h-[280px]">
+<!-- Y Axis Label -->
+<div class="absolute -left-6 top-1/2 -translate-y-1/2 -rotate-90 origin-center text-label-md font-label-md text-on-surface-variant w-32 text-center whitespace-nowrap">Probability (Likelihood)</div>
+<!-- X Axis Label -->
+<div class="absolute bottom-[-24px] left-1/2 -translate-x-1/2 text-label-md font-label-md text-on-surface-variant text-center">Impact (Severity)</div>
+<!-- 5x5 Grid Container -->
+<div class="grid grid-cols-5 grid-rows-5 flex-1 border-l border-b border-outline-variant relative ml-2">
+<!-- Background Heatmap styling using tailwind color primitives with opacity for tonal layering -->
+<!-- Row 5 (High Prob) -->
+<div class="heatmap-cell bg-error/10 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/40 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/60 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error border-r border-t border-outline-variant/30 text-on-error"><span class="absolute top-1 right-1 text-[10px] opacity-70">5,5</span></div>
+<!-- Row 4 -->
+<div class="heatmap-cell bg-secondary-container/30 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-tertiary-container/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/40 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/60 border-r border-t border-outline-variant/30 text-on-error"></div>
+<!-- Row 3 -->
+<div class="heatmap-cell bg-secondary-container/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-secondary-container/40 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-tertiary-container/30 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/40 border-r border-t border-outline-variant/30"></div>
+<!-- Row 2 -->
+<div class="heatmap-cell bg-surface-variant border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-secondary-container/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-secondary-container/40 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-tertiary-container/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/10 border-r border-t border-outline-variant/30"></div>
+<!-- Row 1 (Low Prob) -->
+<div class="heatmap-cell bg-surface-container-high border-r border-t border-outline-variant/30 text-on-surface-variant"><span class="absolute bottom-1 left-1 text-[10px] opacity-70">1,1</span></div>
+<div class="heatmap-cell bg-surface-variant border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-secondary-container/20 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-secondary-container/30 border-r border-t border-outline-variant/30"></div>
+<div class="heatmap-cell bg-error/10 border-r border-t border-outline-variant/30"></div>
+<!-- Data Points (Bubbles representing risks) -->
+<!-- High Impact, High Prob -->
+<div class="risk-bubble w-8 h-8 top-[10%] left-[85%]" title="R-104: Supply Chain Delay">R4</div>
+<div class="risk-bubble w-10 h-10 top-[25%] left-[90%]" title="R-092: Regulatory Block">R2</div>
+<!-- Med-High -->
+<div class="risk-bubble w-6 h-6 top-[40%] left-[70%] bg-on-background/80" title="R-118: Resource Attrition">R8</div>
+<div class="risk-bubble w-12 h-12 top-[15%] left-[50%] bg-on-background/90" title="R-088: Budget Overrun">R1</div>
+<!-- Low -->
+<div class="risk-bubble w-5 h-5 bottom-[15%] left-[30%] bg-secondary" title="R-201: Scope Creep">R5</div>
+<div class="risk-bubble w-7 h-7 bottom-[40%] left-[10%] bg-secondary" title="R-205: Minor Tech Debt">R9</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-8 flex items-center justify-center gap-6 text-label-md font-label-md text-on-surface-variant">
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-surface-container-high border border-outline-variant"></div> Low Risk</div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-tertiary-container/40 border border-outline-variant"></div> Medium Risk</div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded bg-error/60 border border-outline-variant"></div> High Risk</div>
+<div class="flex items-center gap-2 ml-4"><div class="w-4 h-4 rounded-full border border-outline bg-on-background"></div> Size = Exposure Value</div>
+</div>
+</div>
+<!-- Risk Trend Chart Placeholder -->
+<div class="col-span-12 lg:col-span-5 xl:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">trending_up</span> 
+                        Active Risks Trend
+                    </h3>
+<select class="text-label-md font-label-md border-none bg-surface-container-low text-on-surface rounded p-1">
+<option>Last 6 Months</option>
+</select>
+</div>
+<!-- Abstract visual representation of a chart to avoid external image deps -->
+<div class="flex-1 flex items-end justify-between gap-2 border-b border-outline-variant/50 pb-2 relative h-48">
+<!-- Grid lines -->
+<div class="absolute w-full top-0 border-t border-outline-variant/30 border-dashed"></div>
+<div class="absolute w-full top-1/4 border-t border-outline-variant/30 border-dashed"></div>
+<div class="absolute w-full top-1/2 border-t border-outline-variant/30 border-dashed"></div>
+<div class="absolute w-full top-3/4 border-t border-outline-variant/30 border-dashed"></div>
+<!-- Bars (Stacked) -->
+<div class="w-1/6 flex flex-col justify-end gap-0.5 group relative">
+<div class="w-full bg-error rounded-t-sm h-[20%] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-tertiary-container h-[30%] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-secondary-container h-[40%] opacity-60 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-1/6 flex flex-col justify-end gap-0.5 group relative">
+<div class="w-full bg-error rounded-t-sm h-[22%] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-tertiary-container h-[35%] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-secondary-container h-[30%] opacity-60 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-1/6 flex flex-col justify-end gap-0.5 group relative">
+<div class="w-full bg-error rounded-t-sm h-[18%] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-tertiary-container h-[20%] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-secondary-container h-[45%] opacity-60 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-1/6 flex flex-col justify-end gap-0.5 group relative">
+<div class="w-full bg-error rounded-t-sm h-[30%] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-tertiary-container h-[25%] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-secondary-container h-[25%] opacity-60 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-1/6 flex flex-col justify-end gap-0.5 group relative">
+<div class="w-full bg-error rounded-t-sm h-[25%] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-tertiary-container h-[40%] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-secondary-container h-[20%] opacity-60 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-1/6 flex flex-col justify-end gap-0.5 group relative">
+<div class="w-full bg-error rounded-t-sm h-[15%] opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-tertiary-container h-[20%] opacity-70 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full bg-secondary-container h-[30%] opacity-60 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="flex justify-between text-label-md font-label-md text-on-surface-variant mt-2 px-1">
+<span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+</div>
+<div class="mt-6 flex justify-between items-center bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<div>
+<div class="text-label-md font-label-md text-on-surface-variant">Net Exposure Change</div>
+<div class="font-numeric-bold text-numeric-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[20px] text-tertiary">arrow_downward</span>
+                            -12.4%
+                        </div>
+</div>
+<div class="text-right">
+<div class="text-label-md font-label-md text-on-surface-variant">Total Active Risks</div>
+<div class="font-numeric-bold text-headline-sm text-on-surface">42</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Risk Register Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden mb-6">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">view_list</span> 
+                    Risk Register
+                </h3>
+<div class="flex gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+<input class="h-8 pl-8 pr-3 rounded border border-outline-variant bg-surface-container-lowest text-body-md text-sm w-48 focus:border-primary outline-none" placeholder="Search ID or Title..." type="text"/>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Risk ID</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Title &amp; Project</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Owner</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant text-center">P / I</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant text-right">Exposure</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant text-center">Status</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant">Mitigation Plan</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant bg-surface-container-lowest text-body-md text-on-surface">
+<!-- Row 1 (Critical, Escalated) -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3 px-4 font-numeric-bold text-sm text-on-surface-variant whitespace-nowrap">R-092</td>
+<td class="py-3 px-4">
+<div class="font-bold text-on-surface">Regulatory Compliance Block</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Project: Alpha Migration</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[10px] font-bold">SJ</div>
+<span class="text-sm">Sarah Jenkins</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<span class="px-2 py-0.5 rounded bg-error/20 text-on-error-container text-xs font-bold font-numeric-bold">5 / 5</span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="font-numeric-bold">$2.4M</div>
+<div class="flex items-center justify-end gap-1 text-error text-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%
+                                </div>
+</td>
+<td class="py-3 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-error-container text-on-error-container border border-error/30 text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-[12px] icon-fill">warning</span> Active
+                                </div>
+<div class="text-[10px] text-error font-bold mt-1 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[12px]">eject</span> Escalated
+                                </div>
+</td>
+<td class="py-3 px-4 text-sm text-on-surface-variant max-w-[200px] truncate" title="Engaging external legal counsel. Parallel track established for fallback architecture.">
+                                Engaging external legal counsel. Parallel tr...
+                            </td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 (High, Needs Escalation) -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3 px-4 font-numeric-bold text-sm text-on-surface-variant whitespace-nowrap">R-104</td>
+<td class="py-3 px-4">
+<div class="font-bold text-on-surface">Key Vendor Supply Chain Delay</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Project: Hardware Refresh Q3</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center text-[10px] font-bold">MR</div>
+<span class="text-sm">Marcus Reed</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<span class="px-2 py-0.5 rounded bg-error/10 text-on-error-container text-xs font-bold font-numeric-bold border border-error/20">4 / 5</span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="font-numeric-bold">$1.1M</div>
+<div class="flex items-center justify-end gap-1 text-on-surface-variant text-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">horizontal_rule</span> Flat
+                                </div>
+</td>
+<td class="py-3 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-variant text-on-surface border border-outline-variant text-[10px] font-bold uppercase tracking-wide">
+                                    Active
+                                </div>
+</td>
+<td class="py-3 px-4 text-sm text-on-surface-variant max-w-[200px] truncate" title="Identifying secondary suppliers in alternate region. Stockpiling critical components.">
+                                Identifying secondary suppliers in alternat...
+                            </td>
+<td class="py-3 px-4 text-right">
+<button class="bg-surface border border-outline-variant text-on-surface hover:border-primary hover:text-primary text-[11px] font-bold py-1 px-2 rounded transition-colors whitespace-nowrap">
+                                    Escalate to Exec
+                                </button>
+</td>
+</tr>
+<!-- Row 3 (Medium, Mitigated) -->
+<tr class="hover:bg-surface-container-low transition-colors group bg-surface-container-lowest/50">
+<td class="py-3 px-4 font-numeric-bold text-sm text-on-surface-variant whitespace-nowrap">R-088</td>
+<td class="py-3 px-4">
+<div class="font-bold text-on-surface">Cloud Storage Budget Overrun</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Project: Data Lake Expansion</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">TC</div>
+<span class="text-sm">Tina Chen</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<span class="px-2 py-0.5 rounded bg-tertiary-container/20 text-on-tertiary-fixed-variant text-xs font-bold font-numeric-bold">3 / 3</span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="font-numeric-bold">$450K</div>
+<div class="flex items-center justify-end gap-1 text-tertiary text-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span> 5%
+                                </div>
+</td>
+<td class="py-3 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant border border-outline-variant border-dashed text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Mitigated
+                                </div>
+</td>
+<td class="py-3 px-4 text-sm text-on-surface-variant max-w-[200px] truncate" title="Implemented automated data lifecycle policies. Re-negotiated tier pricing with AWS.">
+                                Implemented automated data lifecycle po...
+                            </td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 4 (Low, Proposed) -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3 px-4 font-numeric-bold text-sm text-outline whitespace-nowrap">R-118</td>
+<td class="py-3 px-4">
+<div class="font-bold text-on-surface">Senior Developer Attrition</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Project: Mobile App V2</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant border border-outline-variant flex items-center justify-center text-[10px] font-bold">??</div>
+<span class="text-sm italic text-outline">Unassigned</span>
+</div>
+</td>
+<td class="py-3 px-4 text-center">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-xs font-bold font-numeric-bold">2 / 4</span>
+</td>
+<td class="py-3 px-4 text-right">
+<div class="font-numeric-bold">$120K</div>
+<div class="flex items-center justify-end gap-1 text-on-surface-variant text-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">horizontal_rule</span> New
+                                </div>
+</td>
+<td class="py-3 px-4 text-center">
+<div class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container lowest text-outline border border-outline border-dashed text-[10px] font-bold uppercase tracking-wide">
+                                    Proposed
+                                </div>
+</td>
+<td class="py-3 px-4 text-sm text-outline italic max-w-[200px] truncate">
+                                Pending review and assignment...
+                            </td>
+<td class="py-3 px-4 text-right">
+<button class="text-primary hover:text-primary-fixed-variant text-sm font-bold p-1 rounded hover:bg-surface-container-high transition-colors whitespace-nowrap">Review</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-outline-variant bg-surface flex justify-between items-center text-sm text-on-surface-variant">
+<div>Showing 1-4 of 42 active risks</div>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-surface-container-high disabled:opacity-50"><span class="material-symbols-outlined text-[20px]">chevron_left</span></button>
+<button class="w-6 h-6 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">1</button>
+<button class="w-6 h-6 rounded hover:bg-surface-container-high flex items-center justify-center font-bold text-xs">2</button>
+<button class="w-6 h-6 rounded hover:bg-surface-container-high flex items-center justify-center font-bold text-xs">3</button>
+<span class="px-1">...</span>
+<button class="p-1 rounded hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OrbitChain - Inventory Network</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fcfcff",
+                        "surface-container-high": "#d6ebff",
+                        "on-background": "#021e2f",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#ecf5ff",
+                        "surface-container-highest": "#cce6fd",
+                        "secondary-fixed": "#7ef5fa",
+                        "inverse-on-surface": "#e6f2ff",
+                        "primary-fixed": "#92f2f9",
+                        "surface-container": "#e1f0ff",
+                        "background": "#f6f9ff",
+                        "on-secondary-container": "#007073",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#cce6fd",
+                        "secondary-container": "#7ef5fa",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-tint": "#00696f",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#3e494a",
+                        "inverse-surface": "#1a3345",
+                        "on-primary-fixed": "#002022",
+                        "secondary-fixed-dim": "#5ed8dd",
+                        "primary-fixed-dim": "#75d5dd",
+                        "surface-bright": "#f6f9ff",
+                        "surface": "#f6f9ff",
+                        "secondary": "#00696d",
+                        "surface-dim": "#c4ddf5",
+                        "on-tertiary-fixed-variant": "#244b60",
+                        "tertiary": "#3b6076",
+                        "outline-variant": "#bdc9c9",
+                        "primary-container": "#008188",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#021e2f",
+                        "tertiary-fixed": "#c4e7ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#f4ffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#a5cce4",
+                        "tertiary-container": "#54798f",
+                        "primary": "#00666c",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004f52",
+                        "on-tertiary-fixed": "#001e2c",
+                        "inverse-primary": "#75d5dd",
+                        "outline": "#6e797a",
+                        "on-secondary-fixed": "#002021"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        sm: "8px",
+                        lg: "24px",
+                        xs: "4px",
+                        "container-max": "1440px",
+                        md: "16px",
+                        xl: "40px",
+                        gutter: "20px",
+                        unit: "4px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-data": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "mono-data": ["14px", { lineHeight: "20px", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px -2px rgba(2, 30, 47, 0.15); /* Soft Deep Ocean shadow */
+        }
+        
+        /* Map background simulation */
+        .map-bg {
+            background-color: #f0f4f8; /* Light gray-blue base */
+            background-image: radial-gradient(#d6e3e8 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Pulse animation for map markers */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        .pulse-marker::before {
+            content: '';
+            position: absolute;
+            left: -5px; top: -5px; right: -5px; bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid #00666c;
+            animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen w-screen overflow-hidden flex map-bg relative">
+<!-- TopNavBar (Mobile Only Context here as per 'responsive pivot', but layout says Desktop 12-col grid. We'll stick to SideNav for Desktop) -->
+<!-- For Desktop, we use SideNavBar as the primary shell component based on the provided JSON -->
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col gap-sm p-md fixed left-0 top-0 h-full w-[400px] z-50 bg-surface-container-lowest dark:bg-surface-container-low shadow-2xl">
+<div class="mb-lg px-sm">
+<h1 class="font-headline-lg text-headline-lg font-black text-primary">OrbitChain</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Control Tower - Global Visibility</p>
+</div>
+<div class="flex-1 overflow-y-auto space-y-unit pr-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+                Overview
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">conveyor_belt</span>
+                Shipments
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+                Orders
+            </a>
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">handshake</span>
+                Suppliers
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">factory</span>
+                Facilities
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">warning</span>
+                Risk
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors font-label-md text-label-md mt-auto" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-lg">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-md rounded-lg transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">add</span>
+                New Shipment
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas (Map Layer & Floating Panels) -->
+<main class="flex-1 md:ml-[400px] relative h-full w-full">
+<!-- Interactive Map Base (Level 0) - Simulated with div and markers -->
+<div class="absolute inset-0 w-full h-full" id="map-canvas">
+<img class="w-full h-full object-cover opacity-60" data-alt="A stylized, light-mode topographical world map interface. The map uses pale gray-blue tones with subtle grid lines. It looks like a high-tech supply chain tracking dashboard background. Clean, airy, precise corporate aesthetic. No text or labels." data-location="Europe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBezKyIE-8vcMGPrU8_1KUgp5vR0Cg_C2v_d5bHj5qnptlWIssh2JpQ756hRpDOQJEk7SA636r4ugEBmoVTfl0iOIHUsJcxw0BylfYY35WZMsPJ9ADEBHc7akfbig1bytvE2qEI2_-QIQqAl84onniOFHXfF2NkF3l6gzLJ24sMBwLiEvLYFMeNnpf4ZnOX_fQs8dmDSHHW1i24-xzAwhWxPsfdiwsUmgZe_CCprJ-P-6DPIp4YJSjrGA"/>
+<!-- Map Markers -->
+<!-- Paris -->
+<div class="absolute top-[45%] left-[35%] flex flex-col items-center">
+<div class="w-4 h-4 bg-primary rounded-full pulse-marker relative cursor-pointer group">
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-on-tertiary-container px-sm py-xs rounded text-xs whitespace-nowrap pointer-events-none z-10">Paris Facility<br/>Stock: High</div>
+</div>
+</div>
+<!-- Berlin (Critical Alert) -->
+<div class="absolute top-[40%] left-[45%] flex flex-col items-center">
+<div class="w-4 h-4 bg-[#ff897d] rounded-full relative cursor-pointer group shadow-[0_0_10px_rgba(255,137,125,0.8)]"> <!-- Coral -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-on-tertiary-container px-sm py-xs rounded text-xs whitespace-nowrap pointer-events-none z-10">Berlin Hub<br/>Stock: Low</div>
+</div>
+</div>
+<!-- Frankfurt -->
+<div class="absolute top-[42%] left-[40%] flex flex-col items-center">
+<div class="w-3 h-3 bg-[#e1f0ff] border border-primary rounded-full relative cursor-pointer group">
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-on-tertiary-container px-sm py-xs rounded text-xs whitespace-nowrap pointer-events-none z-10">Frankfurt WH<br/>Status: Warning</div>
+</div>
+</div>
+<!-- Transfer Arrow (Paris to Berlin) -->
+<svg class="absolute top-[40%] left-[35%] w-32 h-16 pointer-events-none opacity-50" viewbox="0 0 100 50">
+<path d="M 5,25 Q 50,0 95,20" fill="none" stroke="#00666c" stroke-dasharray="4 4" stroke-width="2"></path>
+<polygon fill="#00666c" points="95,20 85,15 88,25"></polygon>
+</svg>
+</div>
+<!-- Floating Dashboard Overlay (Level 2) -->
+<div class="absolute inset-0 p-lg pointer-events-none grid grid-cols-12 grid-rows-6 gap-lg">
+<!-- KPIs Header Banner -->
+<div class="col-span-12 row-span-1 flex gap-lg pointer-events-auto">
+<div class="glass-panel rounded-xl p-md flex-1 flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Days of Coverage</span>
+<div class="flex items-end gap-sm mt-xs">
+<span class="font-display-lg text-display-lg text-primary">42</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Days</span>
+<span class="ml-auto flex items-center text-[#2e7d32] bg-[#e8f5e9] px-2 py-1 rounded-full text-xs font-medium"> <!-- Light Green -->
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span> +3
+                        </span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex-1 flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Safety Stock</span>
+<div class="flex items-end gap-sm mt-xs">
+<span class="font-display-lg text-display-lg text-on-surface">1.2M</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Units</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex-1 flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Incoming Supply</span>
+<div class="flex items-end gap-sm mt-xs">
+<span class="font-display-lg text-display-lg text-tertiary">350K</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Units (7 Days)</span>
+</div>
+</div>
+</div>
+<!-- Left Column: Alerts & Recommendations -->
+<div class="col-span-4 row-span-5 flex flex-col gap-lg pointer-events-auto">
+<!-- Shortage Alerts -->
+<div class="glass-panel rounded-xl p-md flex-1 flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-[#ff897d]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                        Shortage Alerts
+                    </h3>
+<ul class="space-y-sm flex-1 overflow-y-auto pr-xs">
+<li class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-sm shadow-sm flex items-start gap-sm">
+<div class="w-2 h-2 rounded-full bg-[#ff897d] mt-2 shrink-0"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Item 45-X below safety stock</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-xs">Location: Frankfurt WH</p>
+</div>
+</li>
+<li class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-sm shadow-sm flex items-start gap-sm">
+<div class="w-2 h-2 rounded-full bg-[#f9a825] mt-2 shrink-0"></div> <!-- Orange -->
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Delayed inbound shipment #992</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-xs">Impacts Berlin Hub</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Transfer Recommendations -->
+<div class="glass-panel rounded-xl p-md flex-1 flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                        Recommendations
+                    </h3>
+<div class="bg-surface-container-lowest border border-primary/20 rounded-lg p-md shadow-sm relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<p class="font-body-sm text-body-sm text-on-surface mb-sm leading-relaxed">
+                            Move <strong>500 units</strong> of Item 45-X from <strong>Paris</strong> to <strong>Berlin</strong> to avoid projected stockout in 3 days.
+                        </p>
+<div class="flex gap-sm mt-md">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md px-md py-xs rounded transition-colors flex-1">Execute Transfer</button>
+<button class="bg-surface-variant hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-md py-xs rounded transition-colors">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Data Table & Inventory List -->
+<div class="col-span-8 row-span-5 flex flex-col gap-lg pointer-events-auto">
+<!-- Inventory by Location List -->
+<div class="glass-panel rounded-xl p-md shrink-0 flex gap-md overflow-x-auto">
+<div class="min-w-[200px] bg-surface-container-lowest p-md rounded-lg shadow-sm border border-outline-variant/30">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-xs">Warehouse A (Paris)</h4>
+<div class="flex justify-between items-baseline">
+<span class="font-mono-data text-mono-data text-on-surface-variant">Cap: 85%</span>
+<span class="bg-[#e8f5e9] text-[#2e7d32] px-2 py-1 rounded text-[10px] font-bold tracking-wider">HEALTHY</span>
+</div>
+</div>
+<div class="min-w-[200px] bg-surface-container-lowest p-md rounded-lg shadow-sm border border-[#ff897d]/50">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-xs">Warehouse B (Berlin)</h4>
+<div class="flex justify-between items-baseline">
+<span class="font-mono-data text-mono-data text-on-surface-variant">Cap: 25%</span>
+<span class="bg-[#ffebee] text-[#c62828] px-2 py-1 rounded text-[10px] font-bold tracking-wider">CRITICAL</span>
+</div>
+</div>
+<div class="min-w-[200px] bg-surface-container-lowest p-md rounded-lg shadow-sm border border-outline-variant/30">
+<h4 class="font-body-md text-body-md font-semibold text-on-surface mb-xs">Warehouse C (Frankfurt)</h4>
+<div class="flex justify-between items-baseline">
+<span class="font-mono-data text-mono-data text-on-surface-variant">Cap: 45%</span>
+<span class="bg-[#fff3e0] text-[#ef6c00] px-2 py-1 rounded text-[10px] font-bold tracking-wider">RISK</span>
+</div>
+</div>
+</div>
+<!-- SKU Data Table -->
+<div class="glass-panel rounded-xl p-0 flex-1 flex flex-col overflow-hidden">
+<div class="p-md border-b border-white/20 flex justify-between items-center bg-white/40">
+<h3 class="font-headline-md text-headline-md text-on-surface">SKU Visibility</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-xl pr-sm py-xs rounded bg-surface-container-lowest border border-outline-variant/50 text-body-sm focus:ring-1 focus:ring-primary focus:border-primary w-64" placeholder="Search SKU..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-lowest/90 backdrop-blur z-10 shadow-sm">
+<tr>
+<th class="font-label-md text-label-md text-on-surface-variant py-sm px-md font-semibold">SKU ID</th>
+<th class="font-label-md text-label-md text-on-surface-variant py-sm px-md font-semibold">Location</th>
+<th class="font-label-md text-label-md text-on-surface-variant py-sm px-md font-semibold text-right">Stock Level</th>
+<th class="font-label-md text-label-md text-on-surface-variant py-sm px-md font-semibold text-right">Demand Forecast</th>
+<th class="font-label-md text-label-md text-on-surface-variant py-sm px-md font-semibold text-right">Lead Time</th>
+<th class="font-label-md text-label-md text-on-surface-variant py-sm px-md font-semibold text-center">Status</th>
+</tr>
+</thead>
+<tbody class="font-mono-data text-mono-data">
+<tr class="border-b border-outline-variant/20 hover:bg-[#F0F9F9] transition-colors h-[32px] group">
+<td class="px-md text-on-surface font-medium">SKU-45-X</td>
+<td class="px-md text-on-surface-variant">Frankfurt WH</td>
+<td class="px-md text-right text-[#ef6c00]">450</td>
+<td class="px-md text-right text-on-surface-variant">800 /mo</td>
+<td class="px-md text-right text-on-surface-variant">14 days</td>
+<td class="px-md text-center"><span class="inline-block w-2 h-2 rounded-full bg-[#f9a825]"></span></td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-[#F0F9F9] transition-colors h-[32px] group">
+<td class="px-md text-on-surface font-medium">SKU-99-Y</td>
+<td class="px-md text-on-surface-variant">Paris Facility</td>
+<td class="px-md text-right text-[#2e7d32]">12,500</td>
+<td class="px-md text-right text-on-surface-variant">4,000 /mo</td>
+<td class="px-md text-right text-on-surface-variant">5 days</td>
+<td class="px-md text-center"><span class="inline-block w-2 h-2 rounded-full bg-[#2e7d32]"></span></td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-[#F0F9F9] transition-colors h-[32px] group bg-[#ffebee]/30">
+<td class="px-md text-on-surface font-medium">SKU-12-Z</td>
+<td class="px-md text-on-surface-variant">Berlin Hub</td>
+<td class="px-md text-right text-[#c62828] font-bold">12</td>
+<td class="px-md text-right text-on-surface-variant">500 /mo</td>
+<td class="px-md text-right text-on-surface-variant">21 days</td>
+<td class="px-md text-center"><span class="inline-block w-2 h-2 rounded-full bg-[#c62828] animate-pulse"></span></td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-[#F0F9F9] transition-colors h-[32px] group">
+<td class="px-md text-on-surface font-medium">SKU-77-A</td>
+<td class="px-md text-on-surface-variant">Paris Facility</td>
+<td class="px-md text-right text-on-surface">3,200</td>
+<td class="px-md text-right text-on-surface-variant">1,200 /mo</td>
+<td class="px-md text-right text-on-surface-variant">10 days</td>
+<td class="px-md text-center"><span class="inline-block w-2 h-2 rounded-full bg-[#2e7d32]"></span></td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-[#F0F9F9] transition-colors h-[32px] group">
+<td class="px-md text-on-surface font-medium">SKU-45-X</td>
+<td class="px-md text-on-surface-variant">Paris Facility</td>
+<td class="px-md text-right text-on-surface">4,500</td>
+<td class="px-md text-right text-on-surface-variant">2,000 /mo</td>
+<td class="px-md text-right text-on-surface-variant">7 days</td>
+<td class="px-md text-center"><span class="inline-block w-2 h-2 rounded-full bg-[#2e7d32]"></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

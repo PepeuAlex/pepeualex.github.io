@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrismHub - Dashboard Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#64636c",
+                      "on-primary-container": "#dcdfff",
+                      "inverse-on-surface": "#f1effd",
+                      "on-tertiary-fixed-variant": "#7e0089",
+                      "background": "#fbf8ff",
+                      "on-background": "#1a1b24",
+                      "primary": "#1e3cbd",
+                      "surface-tint": "#3751d0",
+                      "on-primary-fixed-variant": "#1536b8",
+                      "secondary-fixed": "#e4e1eb",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#a230aa",
+                      "tertiary-fixed": "#ffd6f9",
+                      "surface-variant": "#e2e1ef",
+                      "on-surface": "#1a1b24",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#fbf8ff",
+                      "inverse-surface": "#2f303a",
+                      "on-primary-fixed": "#00115a",
+                      "surface-dim": "#dad9e6",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#eeecfa",
+                      "inverse-primary": "#bac3ff",
+                      "secondary-fixed-dim": "#c7c5cf",
+                      "primary-container": "#3d57d6",
+                      "on-tertiary-fixed": "#37003c",
+                      "on-secondary-fixed-variant": "#46464e",
+                      "tertiary": "#850a8f",
+                      "on-secondary-fixed": "#1b1b22",
+                      "outline-variant": "#c5c5d6",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#ffa9fd",
+                      "on-surface-variant": "#444654",
+                      "surface": "#fbf8ff",
+                      "surface-container-high": "#e8e7f5",
+                      "outline": "#757685",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#ffd5f9",
+                      "secondary": "#5e5d66",
+                      "secondary-container": "#e4e1eb",
+                      "primary-fixed-dim": "#bac3ff",
+                      "surface-container-low": "#f4f2ff",
+                      "primary-fixed": "#dee0ff",
+                      "surface-container-highest": "#e2e1ef"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "xxl": "48px",
+                      "margin-desktop": "32px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "10px",
+                              {
+                                      "lineHeight": "12px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .material-symbols-outlined {
+              font-family: 'Material Symbols Outlined';
+              font-weight: normal;
+              font-style: normal;
+              font-size: 24px;
+              line-height: 1;
+              letter-spacing: normal;
+              text-transform: none;
+              display: inline-block;
+              white-space: nowrap;
+              word-wrap: normal;
+              direction: ltr;
+              font-feature-settings: 'liga';
+              -webkit-font-smoothing: antialiased;
+          }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-gutter w-1/3">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">PrismHub</span>
+</div>
+<div class="flex items-center justify-center w-1/3">
+<!-- Search Bar (on_left in JSON, but typical placement is center for global, adjusting to match layout intent if needed, keeping it as requested) -->
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-body-md transition-all shadow-sm" placeholder="Search datasets, dashboards..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-md hidden md:flex">
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
+<!-- Explore is active based on context (viewing a dashboard is part of exploring catalog) -->
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 duration-150" href="#">Explore</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Favorites</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Recent</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Collections</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Admin</a>
+</nav>
+<div class="flex items-center gap-md w-1/3 justify-end">
+<button class="text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden cursor-pointer">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate data scientist, well-lit, wearing a light blue dress shirt, smiling slightly, set against a bright, modern, minimalist white office background. The image should convey trust and expertise in a premium analytics marketplace context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4apbw4kCc26qzchkp-EhzJWiwu6NlL8rtxGx7nnAXzJnTetqiDe7rh5a3EDg09Tmaup0mcXQi2cLJk7iJhw9H4IpeJ0tQf2dwBTPs9Gtpljb9Sdoko-qfrp3GAbm6PM2zIj7LIInltrySMiH-75Aewupb_KubP5hnAGLJ6Gft2NFzbJ4HUOD7sgzjjGlwX43rIufsPmx8KKvvxIBb2eDwIMDqZTNl9FboN13c7f78XZHnC62waz1qxw"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-xxl px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<!-- Back Navigation & Breadcrumbs -->
+<div class="flex items-center gap-sm mb-lg text-secondary font-label-md text-label-md">
+<a class="hover:text-primary flex items-center gap-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+                Back to Catalog
+            </a>
+<span class="text-outline-variant">/</span>
+<span>Finance</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-medium">Q3 Global Revenue Operations</span>
+</div>
+<!-- Hero Section -->
+<section class="mb-xxl bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col md:flex-row shadow-sm">
+<!-- Dashboard Preview Image -->
+<div class="w-full md:w-2/3 h-64 md:h-96 relative bg-surface-variant border-b md:border-b-0 md:border-r border-outline-variant group">
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full" data-alt="A high-fidelity, highly detailed screenshot of a premium corporate data dashboard. The dashboard features clear, minimalist charts, sharp geometry, and a sophisticated color palette dominated by pristine whites, deep charcoal text, and royal blue data visualizations. It conveys authoritative, frictionless analytics." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBawESQpbkeAspkCiQRghY4fdpHwxrYYrFzn9qvhIcSIuM0-b7_2ym7k1so0UCnj3Den6qrTzT7E0qY4rymtSUiGbIPq26Bj9Uv-HAsslCTxp3sXG8M4bcQp8nyuxXmhwW_k-Wo7y5OW-4PJ0hzLcJNxGvooDKtUWd17-RYAVqDjE14vJb5SqduLmMHvce_IMH34seJT7Q-qiuUTRcNHuFW37ZbwX_X7GVAPgoyyLfZiOHBS_NyWd7SWQ')"></div>
+<!-- Overlay Action Bar on Hover (simulated slightly visible for demonstration) -->
+<div class="absolute inset-0 bg-on-background/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+<div class="flex gap-md">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded hover:bg-surface-tint transition-colors flex items-center gap-sm shadow-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="open_in_new">open_in_new</span>
+                            Open Dashboard
+                        </button>
+</div>
+</div>
+</div>
+<!-- Hero Meta & Actions (Side Panel) -->
+<div class="w-full md:w-1/3 p-lg flex flex-col justify-between bg-surface-container-lowest">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<div class="flex gap-2 mb-sm">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-primary text-primary font-label-sm text-label-sm bg-primary/5">
+<span class="material-symbols-outlined text-[12px] fill-current" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                                Certified Gold
+                            </span>
+<span class="inline-flex items-center px-2 py-1 rounded-full border border-outline-variant text-secondary font-label-sm text-label-sm">
+                                Finance
+                            </span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface mb-sm tracking-tight leading-tight">
+                        Q3 Global Revenue Operations
+                    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg line-clamp-3">
+                        Comprehensive view of global revenue streams, pipeline velocity, and regional performance metrics for the third quarter. Provides real-time tracking against annual recurring revenue (ARR) targets.
+                    </p>
+</div>
+<div>
+<div class="flex items-center gap-sm mb-lg bg-surface-container p-sm rounded border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Access Granted</span>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-md rounded hover:bg-surface-tint transition-colors text-center shadow-sm font-medium">
+                            Open Dashboard
+                        </button>
+<button class="w-full bg-surface-container-lowest text-primary border border-outline-variant font-label-md text-label-md py-md rounded hover:bg-surface-container-low transition-colors text-center font-medium">
+                            Request Elevated Access
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Information Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-xxl">
+<!-- Main Content Area -->
+<div class="lg:col-span-2 space-y-xl">
+<!-- Description -->
+<section>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface mb-md border-b border-outline-variant pb-sm">Overview</h2>
+<div class="font-body-lg text-body-lg text-on-surface-variant space-y-4">
+<p>
+                            The Q3 Global Revenue Operations dashboard is the definitive source of truth for tracking sales performance and revenue realization across all global regions. It synthesizes data from Salesforce, our internal billing systems, and regional financial reporting tools to provide a unified view of organizational health.
+                        </p>
+<p>
+                            Designed specifically for executive stakeholders and regional sales directors, this asset prioritizes clarity over complexity, highlighting critical variances from forecasted models and identifying at-risk pipeline segments.
+                        </p>
+</div>
+</section>
+<!-- Business Questions -->
+<section>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface mb-md border-b border-outline-variant pb-sm">Business Questions Answered</h2>
+<ul class="space-y-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1 text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md text-on-surface-variant">How is regional performance tracking against our Q3 adjusted forecasts?</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1 text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Which product lines are driving the most pipeline velocity in EMEA?</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1 text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md text-on-surface-variant">What is the current churn rate among top-tier enterprise accounts?</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1 text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Are there significant discrepancies between booked ACV and realized revenue?</span>
+</li>
+</ul>
+</section>
+</div>
+<!-- Metadata Sidebar -->
+<aside class="space-y-xl">
+<!-- Ownership & Support -->
+<section class="bg-surface-container-low border border-outline-variant rounded p-lg">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-md">Governance</h3>
+<div class="mb-lg">
+<span class="block font-label-sm text-label-sm text-secondary mb-xs">Business Owner</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="Owner Avatar" class="w-full h-full object-cover" data-alt="A small, professional headshot of a female financial director, wearing glasses and a dark blazer, looking confident against a clean, bright, white modern office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf248pEq6WQ9a31BlhLceF0Hr39QagB3SgPSZLh_ER5_FlHbZihYDm4zI8SCDsG3J_lDhgwSIDUIXGOXbYADIrJTOfIvESMdIJXuq9fexKBvZJUIVosqolH4ikyAZ05h0-6i0xgYsr2KAREhAGCAm-6GLiA_aAxmQtngQN2I-m40EscCvSs-Ileu8T5p4kE6A1tbPkzBp9miGfrGtjbYHE49lWlsRS7v8BshQB0F-08UOGiIsGwVo21w"/>
+</div>
+<div>
+<span class="block font-body-md text-body-md font-medium text-on-surface">Sarah Jenkins</span>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Contact Owner</a>
+</div>
+</div>
+</div>
+<div class="mb-lg">
+<span class="block font-label-sm text-label-sm text-secondary mb-xs">Technical Support</span>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline" data-icon="support_agent">support_agent</span>
+<a class="font-body-md text-body-md text-primary hover:underline" href="#">RevOps Engineering Team</a>
+</div>
+</div>
+</section>
+<!-- Technical Metadata -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded p-lg">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-md">Technical Details</h3>
+<dl class="space-y-md">
+<div>
+<dt class="font-label-sm text-label-sm text-secondary mb-xs flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="database">database</span> Data Sources
+                            </dt>
+<dd class="font-body-md text-body-md text-on-surface flex gap-sm flex-wrap">
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-variant border border-outline-variant text-xs">Salesforce</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-variant border border-outline-variant text-xs">Snowflake</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-surface-variant border border-outline-variant text-xs">NetSuite</span>
+</dd>
+</div>
+<div class="pt-sm border-t border-outline-variant/50">
+<dt class="font-label-sm text-label-sm text-secondary mb-xs flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="update">update</span> Refresh Schedule
+                            </dt>
+<dd class="font-body-md text-body-md text-on-surface font-medium">Daily at 02:00 UTC</dd>
+</div>
+<div class="pt-sm border-t border-outline-variant/50">
+<dt class="font-label-sm text-label-sm text-secondary mb-xs flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="policy">policy</span> Sensitivity
+                            </dt>
+<dd class="font-body-md text-body-md text-error flex items-center gap-xs font-medium">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span> Highly Confidential
+                            </dd>
+</div>
+</dl>
+</section>
+<!-- Usage Metrics -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded p-lg">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider mb-md flex justify-between items-center">
+                        Usage (30 Days)
+                        <span class="material-symbols-outlined text-[16px] text-outline" data-icon="trending_up">trending_up</span>
+</h3>
+<div class="flex justify-between items-end mb-md">
+<div>
+<span class="block font-display-lg text-display-lg text-on-surface">1,204</span>
+<span class="font-label-sm text-label-sm text-secondary">Total Views</span>
+</div>
+<div class="text-right">
+<span class="block font-headline-md text-headline-md text-on-surface">342</span>
+<span class="font-label-sm text-label-sm text-secondary">Unique Users</span>
+</div>
+</div>
+<!-- Sparkline Placeholder (CSS styling for visual effect) -->
+<div class="h-12 w-full bg-surface-variant rounded overflow-hidden relative border border-outline-variant/30 flex items-end">
+<div class="w-full h-full opacity-20" style="background: linear-gradient(0deg, var(--tw-colors-primary) 0%, transparent 100%);"></div>
+<!-- Decorative bars to simulate a chart -->
+<div class="absolute bottom-0 left-0 w-full flex justify-between items-end px-1 h-full pt-2 gap-[2px]">
+<div class="w-full bg-primary/40 rounded-t-sm h-[30%]"></div>
+<div class="w-full bg-primary/50 rounded-t-sm h-[45%]"></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-[40%]"></div>
+<div class="w-full bg-primary/60 rounded-t-sm h-[60%]"></div>
+<div class="w-full bg-primary/70 rounded-t-sm h-[55%]"></div>
+<div class="w-full bg-primary/50 rounded-t-sm h-[70%]"></div>
+<div class="w-full bg-primary/80 rounded-t-sm h-[85%]"></div>
+<div class="w-full bg-primary/60 rounded-t-sm h-[65%]"></div>
+<div class="w-full bg-primary rounded-t-sm h-[90%]"></div>
+<div class="w-full bg-primary rounded-t-sm h-[100%]"></div>
+</div>
+</div>
+</section>
+</aside>
+</div>
+<!-- Related Dashboards -->
+<section class="mt-xxl pt-xl border-t border-outline-variant">
+<div class="flex justify-between items-center mb-lg">
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">Related Dashboards</h2>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-xs" href="#">
+                    View all in Finance <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_8px_16px_rgba(26,27,36,0.08)] hover:border-outline transition-all duration-300" href="#">
+<div class="h-32 bg-surface-variant relative border-b border-outline-variant">
+<div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A stylized, abstract data visualization featuring crisp, geometric bar charts in shades of grey and royal blue on a pristine white background. Modern, corporate aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAs1a0BbiNnMEYFhhT_nItCV5betfH3Nb2GiYgPfR_ZRIXUpAzmBdmtIV1xnbz-BUd9Tz6-GodclB2bCo9ja6gHrGFgBqNqPJSjuZLO-ilrah0tBNFePy2OtFvDtTMNzyQDTW6exXs0jABAypr8_reFwJPeV_1tDBd9ZNsGy1qbvOYKiFNyLlr80T0GTy0KSkipeGErEvgynDd3Qxe9BODeur5TaFAcp_VtYSuVl2SDjCdFAyJECkWLhw')"></div>
+</div>
+<div class="p-md">
+<div class="flex gap-2 mb-xs">
+<span class="inline-flex px-1.5 py-0.5 rounded border border-outline-variant text-secondary font-label-sm text-label-sm uppercase tracking-wider text-[9px]">Sales</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-xs group-hover:text-primary transition-colors line-clamp-1">EMEA Pipeline Velocity</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-2">Detailed breakdown of stage-to-stage conversion rates for the EMEA region.</p>
+</div>
+</a>
+<!-- Card 2 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_8px_16px_rgba(26,27,36,0.08)] hover:border-outline transition-all duration-300" href="#">
+<div class="h-32 bg-surface-variant relative border-b border-outline-variant">
+<div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A sophisticated digital rendering of a line graph with a glowing blue line trending upwards, set against a highly structured, minimalist light-grey grid background. Precision and clarity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHVtAqqGBEiWt2WIABiDgMsgEPsrwXgK3lGjfrG3ViGstoQfnJ9xxu31M-DtIzLBZs7MfZnDRqYcYtOZbXY-Kl-22Bx2J8XCwMpu-bZ7VO4Dr9Dq_7PdYW8XTciKjvnwR9gHAnPy8wanoLWq8BjphTZvXMEXc0GL561pN_MkWK2Ia-xHYcoY21axw5uTQWTGQDG1U5ZuabD9vV8aINxtEcpNld9tuxzMQ1lToU5gELdLsV268ayRSFfw')"></div>
+<div class="absolute top-2 right-2 bg-surface-container-lowest rounded-full p-1 border border-outline-variant shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="p-md">
+<div class="flex gap-2 mb-xs">
+<span class="inline-flex px-1.5 py-0.5 rounded border border-outline-variant text-secondary font-label-sm text-label-sm uppercase tracking-wider text-[9px]">Finance</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-xs group-hover:text-primary transition-colors line-clamp-1">ARR Target Tracking</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-2">Executive summary of Annual Recurring Revenue progress against corporate goals.</p>
+</div>
+</a>
+<!-- Card 3 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden hover:shadow-[0_8px_16px_rgba(26,27,36,0.08)] hover:border-outline transition-all duration-300" href="#">
+<div class="h-32 bg-surface-variant relative border-b border-outline-variant">
+<div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A clean, modern data table interface visualization, slightly blurred for abstract effect, showing rows of financial data with subtle green and red status indicators on a white canvas." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCk0_e7P01MOqEjt7qbBOvPaPzbdflo3LADxvtgB6HPBpoKXXc26dgX6jlGH_woPKip9VkfEqa1VkBLSvrLDhUKRGtFkfFjNuTJnr4eEL67wFXVsoA3p24VYp33yGOPH2uK0de9BeUvgA00d3X7meFrJUENFks5VU8pUpusf3J0j4l3cY13LCoJgGsrxt753VU2QYN4vQNR_7EEKzLpSZtUpreeTQiJQ5iEgwHXvuyMd32fpEW84TetyA')"></div>
+</div>
+<div class="p-md">
+<div class="flex gap-2 mb-xs">
+<span class="inline-flex px-1.5 py-0.5 rounded border border-outline-variant text-secondary font-label-sm text-label-sm uppercase tracking-wider text-[9px]">Operations</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface mb-xs group-hover:text-primary transition-colors line-clamp-1">Enterprise Churn Analysis</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-2">Historical and predictive models for identifying at-risk top-tier accounts.</p>
+</div>
+</a>
+</div>
+</section>
+</main>
+</body></html>

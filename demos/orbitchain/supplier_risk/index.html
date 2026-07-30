@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OrbitChain - Supplier Risk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fcfcff",
+                        "surface-container-high": "#d6ebff",
+                        "on-background": "#021e2f",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#ecf5ff",
+                        "surface-container-highest": "#cce6fd",
+                        "secondary-fixed": "#7ef5fa",
+                        "inverse-on-surface": "#e6f2ff",
+                        "primary-fixed": "#92f2f9",
+                        "surface-container": "#e1f0ff",
+                        "background": "#f6f9ff",
+                        "on-secondary-container": "#007073",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#cce6fd",
+                        "secondary-container": "#7ef5fa",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-tint": "#00696f",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#3e494a",
+                        "inverse-surface": "#1a3345",
+                        "on-primary-fixed": "#002022",
+                        "secondary-fixed-dim": "#5ed8dd",
+                        "primary-fixed-dim": "#75d5dd",
+                        "surface-bright": "#f6f9ff",
+                        "surface": "#f6f9ff",
+                        "secondary": "#00696d",
+                        "surface-dim": "#c4ddf5",
+                        "on-tertiary-fixed-variant": "#244b60",
+                        "tertiary": "#3b6076",
+                        "outline-variant": "#bdc9c9",
+                        "primary-container": "#008188",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#021e2f",
+                        "tertiary-fixed": "#c4e7ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#f4ffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#a5cce4",
+                        "tertiary-container": "#54798f",
+                        "primary": "#00666c",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004f52",
+                        "on-tertiary-fixed": "#001e2c",
+                        "inverse-primary": "#75d5dd",
+                        "outline": "#6e797a",
+                        "on-secondary-fixed": "#002021"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "container-max": "1440px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "gutter": "20px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-data": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-data": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>body {
+    background-color: #f6f9ff;
+    background-image: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 0.02) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.02) 0, transparent 50%)
+    }
+.glass-panel {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 24px -8px rgba(0, 105, 109, 0.15)
+    }
+.map-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBzF6A2o4Jx_CFtIOPu8raVAiTDCXioZB53lDSLvYho0__-Mh0YhIq_yuRTrrrfyIKVKDRH0D7ZQuz71_PaB2uBhz0XhvDdYpSqXzBEiVUwctGNgguy81hVXrPn1Eh6gd5PFGMY6Ysy-kh4CCeGI8wtj45PRjlkDvauGA54xExx2IjvLr7LWNC403KgIEd4F4enD4RN98T-1cOE2JGmBU77FcG6y-tZykh_qyl4P8TlTeyvcRG0he0TGg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none
+    }
+/* Material Symbols Fill Configuration */
+.material-symbols-outlined[style*="font-variation-settings: 'FILL' 1"] {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24
+    }</style>
+</head>
+<body class="text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden">
+<!-- Background Map Underlay -->
+<div class="fixed inset-0 map-bg" data-alt="A highly detailed, stylized, aerial topological map of Southeast Asia rendered in a light, airy corporate aesthetic. The map uses subtle, muted blues, pale teals, and soft whites to indicate coastlines and borders. It has a modern, data-driven, 'flight control deck' visual style, devoid of clutter or traditional cartographic labels. The lighting is uniform and bright." data-location="Southeast Asia Map" style=""></div>
+<!-- TopNavBar (Web) -->
+<header class="hidden md:flex fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface/80 backdrop-blur-xl dark:bg-inverse-surface/80 border-b border-white/20 shadow-sm">
+<div class="flex items-center gap-xl">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight">OrbitChain</div>
+<nav class="flex items-center gap-lg">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md opacity-80 scale-95 transition-all" href="#">Overview</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md opacity-80 scale-95 transition-all" href="#">Shipments</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md opacity-80 scale-95 transition-all" href="#">Inventory</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-md text-label-md opacity-80 scale-95 transition-all" href="#">Risk</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar on Left of Actions -->
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline-variant text-[20px]">search</span>
+<input class="pl-[36px] pr-sm py-[6px] rounded-full bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary text-body-sm font-body-sm w-[240px] transition-all" placeholder="Search suppliers, items..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container px-md py-[6px] rounded-full font-label-md text-label-md transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                Planner
+            </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex items-center justify-center">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A clean, professional studio headshot of a supply chain manager in a brightly lit modern office setting. The lighting is soft and flattering, typical of high-end corporate photography. The background is a slightly blurred, light-colored modern office interior. The overall tone is confident and approachable, fitting a sleek software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdLMlf6H-CdEwBBAi0PXvUswjDHt35JtSc1qa89mgXUQuB2aeJrzFabaP-U_jdh6w4ajDpvLc0Q39fPgjpu77lHgsumkFatAgVbC70H9z6l6ZuzUjlFr6TtKKoprXs2H6cxOJtYMtOXVMtA0iDlUKwh1i6fyZ8A28dEzS66r7JdFGIBjV8EoUOS45DnFy36TiSATfwMqeDtsXyBf7o4lKxnuoMYyDYLMso1aftqOZEoiMWwqr6s6KyoA"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Mobile/Tablet Drawer Placeholder - hidden by default on desktop) -->
+<!-- Not rendering full side nav structure here as TopNav is used for desktop destination -->
+<!-- Main Content Layout -->
+<main class="pt-[88px] pb-xl px-lg md:px-xl container-max mx-auto relative z-10">
+<!-- Page Header -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">Supplier Risk Profile</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Global supplier health monitoring and disruption impact analysis.</p>
+</div>
+<div class="flex gap-sm">
+<button class="glass-panel px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant flex items-center gap-xs hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                    Filter
+                </button>
+<button class="glass-panel px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant flex items-center gap-xs hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                    Export Report
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg auto-rows-min">
+<!-- Main Supplier Scorecard (Spans 8 cols) -->
+<div class="glass-panel rounded-xl p-lg md:col-span-8 flex flex-col gap-md">
+<div class="flex justify-between items-start border-b border-surface-variant pb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-headline-md text-headline-md">
+                            PP
+                        </div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Precision Parts Ltd</h2>
+<div class="flex items-center gap-sm mt-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span> SE Asia
+                                </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tier 1 Supplier</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest px-sm py-xs rounded-full border border-outline-variant flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="font-label-md text-label-md text-on-surface">Active</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest/50 rounded-lg p-sm border border-white/20">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Financial Risk</p>
+<div class="flex items-end gap-xs">
+<span class="font-headline-md text-headline-md text-primary">Low</span>
+<span class="material-symbols-outlined text-[#10b981] text-[18px] mb-1">trending_down</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest/50 rounded-lg p-sm border border-white/20">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Performance Score</p>
+<div class="flex items-end gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">98%</span>
+<span class="font-body-sm text-body-sm text-[#10b981] mb-1">+2%</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest/50 rounded-lg p-sm border border-white/20">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Quality Yield</p>
+<div class="flex items-end gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">99%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Target: 98.5%</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest/50 rounded-lg p-sm border border-white/20">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Disruption Exposure</p>
+<div class="flex items-end gap-xs">
+<span class="font-headline-md text-headline-md text-[#f59e0b]">Med</span>
+<span class="material-symbols-outlined text-[#f59e0b] text-[18px] mb-1">warning</span>
+</div>
+</div>
+</div>
+<!-- Risk Trend Graph Placeholder Area -->
+<div class="mt-sm h-48 bg-surface-container-lowest/30 rounded-lg border border-outline-variant/30 flex flex-col justify-end relative overflow-hidden">
+<!-- Faux Graph UI -->
+<div class="absolute top-sm left-sm font-label-md text-label-md text-on-surface-variant">6-Month Performance Trend</div>
+<div class="flex items-end justify-between px-md h-32 w-full gap-2 z-10 pb-sm">
+<div class="w-full bg-primary/20 rounded-t-sm h-[60%] hover:bg-primary/40 transition-colors relative group"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-1 rounded opacity-0 group-hover:opacity-100">92%</div></div>
+<div class="w-full bg-primary/30 rounded-t-sm h-[75%] hover:bg-primary/50 transition-colors relative group"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-1 rounded opacity-0 group-hover:opacity-100">94%</div></div>
+<div class="w-full bg-[#f59e0b]/40 rounded-t-sm h-[40%] hover:bg-[#f59e0b]/60 transition-colors relative group"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-1 rounded opacity-0 group-hover:opacity-100">85%</div></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-[85%] hover:bg-primary/60 transition-colors relative group"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-1 rounded opacity-0 group-hover:opacity-100">96%</div></div>
+<div class="w-full bg-primary/60 rounded-t-sm h-[95%] hover:bg-primary/80 transition-colors relative group"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-1 rounded opacity-0 group-hover:opacity-100">98%</div></div>
+<div class="w-full bg-primary rounded-t-sm h-[90%] hover:bg-primary-container transition-colors relative group"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-1 rounded opacity-0 group-hover:opacity-100">98%</div></div>
+</div>
+<!-- Month Labels -->
+<div class="flex justify-between px-md pb-xs w-full font-label-md text-label-md text-on-surface-variant text-[10px]">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+</div>
+</div>
+</div>
+<!-- Geographic Exposure Map (Spans 4 cols) -->
+<div class="glass-panel rounded-xl p-lg md:col-span-4 flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[18px]">Geographic Exposure</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">public</span>
+</div>
+<div class="relative flex-grow rounded-lg overflow-hidden border border-surface-variant min-h-[200px] bg-surface-container">
+<!-- Faux Map Visualization -->
+<div class="absolute inset-0 opacity-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxwb2x5Z29uIHBvaW50cz0iMCwwIDEwMCwyMCA1MCwxMDAgMTAsNTAiIGZpbGw9IiNjY2U2ZmQiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg==')] bg-cover bg-center"></div>
+<!-- Concentration Heatmap Blobs -->
+<div class="absolute top-1/4 left-1/3 w-16 h-16 bg-[#ef4444] rounded-full blur-xl opacity-40 mix-blend-multiply"></div>
+<div class="absolute bottom-1/3 right-1/4 w-24 h-24 bg-[#f59e0b] rounded-full blur-2xl opacity-30 mix-blend-multiply"></div>
+<div class="absolute top-1/2 right-1/3 w-12 h-12 bg-primary rounded-full blur-lg opacity-50 mix-blend-multiply"></div>
+<!-- Map Markers -->
+<div class="absolute top-1/4 left-1/3 flex flex-col items-center translate-x-[-50%] translate-y-[-50%]">
+<span class="material-symbols-outlined text-[#ef4444] text-[24px]" style="font-variation-settings: 'FILL' 1">location_on</span>
+<div class="bg-surface-container-lowest/90 px-2 py-0.5 rounded shadow text-[10px] font-bold text-on-surface border border-[#ef4444]/30">High Risk Zone</div>
+</div>
+<div class="absolute top-1/2 right-1/3 flex flex-col items-center translate-x-[-50%] translate-y-[-50%]">
+<span class="material-symbols-outlined text-primary text-[24px]" style="font-variation-settings: 'FILL' 1">location_on</span>
+</div>
+<div class="absolute bottom-sm right-sm bg-surface-container-lowest/80 backdrop-blur px-sm py-xs rounded font-label-md text-label-md text-[10px] border border-outline-variant">
+                        Concentration: SE Asia
+                    </div>
+</div>
+</div>
+<!-- Suggested Alternates (Spans 6 cols) -->
+<div class="glass-panel rounded-xl p-lg md:col-span-6 flex flex-col">
+<div class="flex justify-between items-center mb-md border-b border-surface-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[18px]">Suggested Alternates</h3>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-1 rounded-full font-bold">PRE-APPROVED</span>
+</div>
+<div class="flex flex-col gap-sm overflow-y-auto max-h-[240px] pr-sm">
+<!-- Alternate 1 -->
+<div class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-lowest/50 transition-colors border border-transparent hover:border-surface-variant">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-tertiary-container flex items-center justify-center text-on-tertiary text-[12px] font-bold">
+                                AM
+                            </div>
+<div>
+<p class="font-mono-data text-mono-data text-on-surface">Apex Manufacturing</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Location: North America</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[#10b981] font-label-md text-label-md text-[10px] flex items-center"><span class="material-symbols-outlined text-[12px] mr-1">check_circle</span> Low Risk</span>
+<button class="text-primary hover:text-primary-container font-label-md text-[10px] mt-1 underline">View Profile</button>
+</div>
+</div>
+<!-- Alternate 2 -->
+<div class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-lowest/50 transition-colors border border-transparent hover:border-surface-variant">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface text-[12px] font-bold">
+                                GL
+                            </div>
+<div>
+<p class="font-mono-data text-mono-data text-on-surface">Global Logistics Co.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Location: Eastern Europe</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[#f59e0b] font-label-md text-label-md text-[10px] flex items-center"><span class="material-symbols-outlined text-[12px] mr-1">warning</span> Med Risk</span>
+<button class="text-primary hover:text-primary-container font-label-md text-[10px] mt-1 underline">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contract Status (Spans 6 cols) -->
+<div class="glass-panel rounded-xl p-lg md:col-span-6 flex flex-col">
+<div class="flex justify-between items-center mb-md border-b border-surface-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[18px]">Contract Status</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">assignment</span>
+</div>
+<div class="flex-grow flex flex-col justify-center items-center py-md bg-surface-container-lowest/30 rounded-lg border border-dashed border-outline-variant">
+<div class="w-16 h-16 rounded-full bg-[#fef2f2] border border-[#fca5a5] flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[#ef4444] text-[32px]">error</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface text-[16px]">Expiring Soon</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-xs px-lg">Master Service Agreement with Precision Parts Ltd expires in <strong>45 days</strong>.</p>
+<button class="mt-md bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container px-md py-sm rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+                        Initiate Renewal
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

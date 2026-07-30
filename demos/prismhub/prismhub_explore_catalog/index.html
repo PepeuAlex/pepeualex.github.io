@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrismHub - Explore Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#64636c",
+                    "on-primary-container": "#dcdfff",
+                    "inverse-on-surface": "#f1effd",
+                    "on-tertiary-fixed-variant": "#7e0089",
+                    "background": "#fbf8ff",
+                    "on-background": "#1a1b24",
+                    "primary": "#1e3cbd",
+                    "surface-tint": "#3751d0",
+                    "on-primary-fixed-variant": "#1536b8",
+                    "secondary-fixed": "#e4e1eb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#a230aa",
+                    "tertiary-fixed": "#ffd6f9",
+                    "surface-variant": "#e2e1ef",
+                    "on-surface": "#1a1b24",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "inverse-surface": "#2f303a",
+                    "on-primary-fixed": "#00115a",
+                    "surface-dim": "#dad9e6",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eeecfa",
+                    "inverse-primary": "#bac3ff",
+                    "secondary-fixed-dim": "#c7c5cf",
+                    "primary-container": "#3d57d6",
+                    "on-tertiary-fixed": "#37003c",
+                    "on-secondary-fixed-variant": "#46464e",
+                    "tertiary": "#850a8f",
+                    "on-secondary-fixed": "#1b1b22",
+                    "outline-variant": "#c5c5d6",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffa9fd",
+                    "on-surface-variant": "#444654",
+                    "surface": "#fbf8ff",
+                    "surface-container-high": "#e8e7f5",
+                    "outline": "#757685",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#ffd5f9",
+                    "secondary": "#5e5d66",
+                    "secondary-container": "#e4e1eb",
+                    "primary-fixed-dim": "#bac3ff",
+                    "surface-container-low": "#f4f2ff",
+                    "primary-fixed": "#dee0ff",
+                    "surface-container-highest": "#e2e1ef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "xxl": "48px",
+                    "margin-desktop": "32px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Geist"
+                    ],
+                    "headline-lg": [
+                            "Geist"
+                    ],
+                    "body-md": [
+                            "Geist"
+                    ],
+                    "label-md": [
+                            "JetBrains Mono"
+                    ],
+                    "label-sm": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-lg-mobile": [
+                            "Geist"
+                    ],
+                    "display-lg": [
+                            "Geist"
+                    ],
+                    "headline-md": [
+                            "Geist"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-sm": [
+                            "10px",
+                            {
+                                    "lineHeight": "12px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen overflow-hidden flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">PrismHub</span>
+<div class="relative hidden md:block w-64 ml-md">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-xl pr-sm py-sm text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Search catalog..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex gap-md h-full items-center">
+<a class="h-full flex items-center text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md px-sm" href="#">Home</a>
+<a class="h-full flex items-center text-primary dark:text-inverse-primary font-bold border-b-2 border-primary hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md px-sm" href="#">Explore</a>
+<a class="h-full flex items-center text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md px-sm" href="#">Favorites</a>
+<a class="h-full flex items-center text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md px-sm" href="#">Recent</a>
+<a class="h-full flex items-center text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md px-sm" href="#">Collections</a>
+<a class="h-full flex items-center text-secondary dark:text-secondary-fixed-dim font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md px-sm" href="#">Admin</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<img alt="User profile photo" class="w-8 h-8 rounded-full ml-sm border border-outline-variant object-cover" data-alt="A professional headshot of a business executive in a modern office setting. Crisp focus on the face, soft blurred background with cool blue office lighting. High resolution, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJYs0Am80XRJXEUDZGjyhab8rWJiuADmBPTTfX_oEtZPOC42syeP94hMA59uqgPG_LBmZbBVTX2h3GqnPlia0n3iRX0RUoJbNg19FPnHxkQwC-V5Q7-aW8cqhkbCZJGO7j6eyi8y2_oRsiMMs5OUJ57tPLqoDR9Xco6L4E0clTqHsRaw2QpTxFTlYEbVz-ZyjYpIKyQGIQWU7pgPt32CYkLwsoXfxAPcpAohKoxSTxckOMRhySf6Jidw"/>
+</div>
+</header>
+<div class="flex flex-1 pt-16 h-full">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-60 flex flex-col py-md bg-surface-container-low dark:bg-surface-container border-r border-outline-variant dark:border-outline z-40 hidden md:flex">
+<div class="px-md pb-md border-b border-outline-variant mb-md">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-primary">filter_alt</span>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Filters</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Refine Catalog</p>
+</div>
+<nav class="flex-1 overflow-y-auto px-sm flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-secondary-fixed-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="domain">domain</span>
+                    Department
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-secondary-fixed-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_search">person_search</span>
+                    Owner
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-secondary-fixed-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="database">database</span>
+                    Data Source
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-primary dark:text-inverse-primary border-l-4 border-primary bg-primary-container/10 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-body-md text-body-md translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+                    Certification
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-secondary-fixed-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="policy">policy</span>
+                    Sensitivity
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-secondary-fixed-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="update">update</span>
+                    Frequency
+                </a>
+</nav>
+<div class="px-md mt-auto pt-md border-t border-outline-variant">
+<button class="w-full py-sm px-md bg-primary text-on-primary rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm">
+                    Apply Filters
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-60 h-full overflow-y-auto bg-background">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background mb-sm">Explore Catalog</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Discover, analyze, and leverage high-value data assets across the organization.</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<select class="appearance-none bg-surface border border-outline-variant rounded py-sm pl-md pr-xl font-label-md text-label-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none cursor-pointer hover:bg-surface-container-low transition-colors shadow-sm">
+<option>Sort: Relevance</option>
+<option>Sort: Popularity</option>
+<option>Sort: Recency</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="flex bg-surface border border-outline-variant rounded p-xs shadow-sm">
+<button class="p-xs bg-primary-container/10 text-primary rounded hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-low rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Active Filters -->
+<div class="flex flex-wrap items-center gap-sm mb-lg">
+<span class="font-label-md text-label-md text-on-surface-variant mr-xs">Active Filters:</span>
+<div class="flex items-center gap-xs bg-primary-container/10 border border-primary text-primary px-sm py-xs rounded-full font-label-sm text-label-sm">
+                        Finance
+                        <button class="hover:bg-primary/20 rounded-full p-xs -mr-xs transition-colors"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<div class="flex items-center gap-xs bg-primary-container/10 border border-primary text-primary px-sm py-xs rounded-full font-label-sm text-label-sm">
+                        Power BI
+                        <button class="hover:bg-primary/20 rounded-full p-xs -mr-xs transition-colors"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<button class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors ml-sm underline decoration-outline-variant underline-offset-4">Clear All</button>
+</div>
+<!-- Catalog Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg mb-xxl">
+<!-- Card 1 -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden hover:shadow-[0_8px_16px_rgba(26,27,36,0.08)] hover:border-outline transition-all duration-300 group flex flex-col h-full cursor-pointer relative">
+<div class="absolute top-sm right-sm z-10 bg-surface/90 backdrop-blur-sm border border-outline-variant rounded-full px-sm py-xs flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Gold Certified</span>
+</div>
+<div class="h-40 w-full overflow-hidden bg-surface-container-low border-b border-outline-variant">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A highly detailed abstract data visualization showing glowing interconnected nodes and financial trend lines in a sleek, modern corporate aesthetic. The color palette is predominantly cool blues with subtle purple accents, representing precise analytics and high-end enterprise software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwB2K1_6ty8e6hvwSxvWyy1qWyFFH1i1WJVQCcbqvQdwTRZMgzkdC1c-q_YlPIY3d5Aay5UwLF11_7RSXD9Htoxb9LcL5yie798bvNfjec2Y3rctEmRzTo2Emp4fhDdcavwVi_TDbWTBJtpiRkVQw1uv0p2iy5XKVxe_1xKth0yj9gjoKnx-VccxdRdQ5qdtxnQQdlhxrHAPUqZzWD2rP60GpZRKWLu92ChdSc5LH4m2fYm3LnR-PpGA"/>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex items-start justify-between gap-sm mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold line-clamp-2">Q3 Financial Performance Dashboard</h3>
+<button class="text-outline hover:text-primary transition-colors flex-shrink-0 mt-xs">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-md">Comprehensive overview of revenue streams, operating expenses, and regional margin analysis for the current fiscal quarter.</p>
+<div class="mt-auto flex items-center justify-between pt-md border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-sm">
+<img class="w-6 h-6 rounded-full object-cover border border-outline-variant" data-alt="A small circular avatar showing a professional portrait of a financial analyst, female, smiling, well-lit modern office background, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4yCY6AGTWEhiq_Wtm5bqgoFA3nFxgw8WYdjogzoSObU9Pc19W_TJbqs8ajRuTqrzZ635qUnCEzRflDac8ageSxxUZtT6THhSjIK6tZnNw9bpxT-VbPW1YZPt4p4dorxStvz0ULraC-a_nE6F6UrlTPiKYw9FJI_zmqqMJZGCO5C4ThKCy8iqramHEKNHBWx2wfE9jjRGWUzUEXZOaY8iVacTUAMSVI31F2HjccBDX2sSAq1OoVStyeQ"/>
+<span class="font-label-md text-label-md text-on-surface">Elena R.</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Updated 2h ago</span>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden hover:shadow-[0_8px_16px_rgba(26,27,36,0.08)] hover:border-outline transition-all duration-300 group flex flex-col h-full cursor-pointer relative">
+<div class="absolute top-sm right-sm z-10 bg-surface/90 backdrop-blur-sm border border-outline-variant rounded-full px-sm py-xs flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Gold Certified</span>
+</div>
+<div class="h-40 w-full overflow-hidden bg-surface-container-low border-b border-outline-variant">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated supply chain network map visualization, showing glowing delivery routes globally over a dark schematic map. Bright, crisp lines, modern logistics dashboard style, premium authoritative feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnhVnu0yTkqibJK7hX44LEnNV-r9Zp0QYYADpdZ8vjnPv4RvmYRX9F-L3WJ3LF7sf9_HhZ5jiJUv7MYwWuw2BS7lglemgbFUBTPfbW6nFVLAhoLz9omKlac1xVh4aV9jmteSwRFaNluaJWjFogsJvjo1_amPv7HdmuGb0uwYOm1OFNrg4nGNhZAkprF8qyMenMP9cPIfe7g13FH_-KzYdmIgbTEylfoVdQm1r3L5b5IC4IVJHYtcJaYw"/>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex items-start justify-between gap-sm mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold line-clamp-2">Global Supply Chain Latency Model</h3>
+<button class="text-outline hover:text-primary transition-colors flex-shrink-0 mt-xs">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-md">Real-time tracking of logistics bottlenecks, port congestion metrics, and predictive delivery delays across major shipping routes.</p>
+<div class="mt-auto flex items-center justify-between pt-md border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center font-label-sm text-on-secondary-container border border-outline-variant">MR</div>
+<span class="font-label-md text-label-md text-on-surface">Operations Team</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Updated 1d ago</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden hover:shadow-[0_8px_16px_rgba(26,27,36,0.08)] hover:border-outline transition-all duration-300 group flex flex-col h-full cursor-pointer relative">
+<div class="h-40 w-full overflow-hidden bg-surface-container-low border-b border-outline-variant flex items-center justify-center bg-gradient-to-br from-surface-container to-surface-variant">
+<span class="material-symbols-outlined text-[48px] text-outline opacity-50">bar_chart</span>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex items-start justify-between gap-sm mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold line-clamp-2">Customer Churn Prediction (Alpha)</h3>
+<button class="text-outline hover:text-primary transition-colors flex-shrink-0 mt-xs">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-md">Machine learning model outputs predicting at-risk accounts for Q4 based on usage telemetry and support ticket volume.</p>
+<div class="mt-auto flex items-center justify-between pt-md border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-sm">
+<img class="w-6 h-6 rounded-full object-cover border border-outline-variant" data-alt="Small circular avatar, professional headshot of a data scientist, male, wearing glasses, thoughtful expression, clean modern white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4eI-MgRO9BXjopTki0jACKJ1_r7sOlzrIu6nVCWyLONhJ96feJWUlr6BDhHe6XIWRr8Wc0EpvjJEEtFmlZIdBo0EQ0b2uhakVkp4hgaoE4Mj98YwQeWKdbDz_FmPFWXQL1Sq7wSvEEPgX4rjXgbflOsvrtK7NEStsMdYTmUVAIav-BOg1Xs-d5NAWEPJpUqjKLeyLC1VbxhHmtCfrVhYmxr6unrH8cw2w9e2PBrSfihEFko4iNGI_Nw"/>
+<span class="font-label-md text-label-md text-on-surface">Data Science Group</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Updated 3d ago</span>
+</div>
+</div>
+</article>
+<!-- Skeleton Cards for Loading State -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col h-full animate-pulse">
+<div class="h-40 w-full bg-surface-container-high border-b border-outline-variant"></div>
+<div class="p-md flex flex-col flex-1 gap-sm">
+<div class="h-6 bg-surface-container-high rounded w-3/4 mb-xs"></div>
+<div class="h-4 bg-surface-container-high rounded w-full"></div>
+<div class="h-4 bg-surface-container-high rounded w-5/6 mb-md"></div>
+<div class="mt-auto flex items-center justify-between pt-md border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container-high"></div>
+<div class="h-4 bg-surface-container-high rounded w-20"></div>
+</div>
+<div class="h-3 bg-surface-container-high rounded w-16"></div>
+</div>
+</div>
+</article>
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col h-full animate-pulse">
+<div class="h-40 w-full bg-surface-container-high border-b border-outline-variant"></div>
+<div class="p-md flex flex-col flex-1 gap-sm">
+<div class="h-6 bg-surface-container-high rounded w-2/3 mb-xs"></div>
+<div class="h-4 bg-surface-container-high rounded w-full"></div>
+<div class="h-4 bg-surface-container-high rounded w-4/5 mb-md"></div>
+<div class="mt-auto flex items-center justify-between pt-md border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container-high"></div>
+<div class="h-4 bg-surface-container-high rounded w-24"></div>
+</div>
+<div class="h-3 bg-surface-container-high rounded w-16"></div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+</div>
+</body></html>

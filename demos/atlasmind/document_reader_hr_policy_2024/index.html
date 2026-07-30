@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AtlasMind - Document Reader</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#5b4ab9",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#275f92",
+                      "on-secondary-fixed": "#291800",
+                      "outline": "#787584",
+                      "surface-container-highest": "#e5e1e8",
+                      "surface-container-high": "#ebe7ee",
+                      "on-secondary-container": "#724a00",
+                      "on-surface-variant": "#484552",
+                      "primary-fixed-dim": "#c8bfff",
+                      "surface": "#fcf8ff",
+                      "on-primary-fixed": "#190064",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#ffba4e",
+                      "tertiary-fixed": "#d1e4ff",
+                      "on-tertiary-fixed": "#001d35",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c9c4d5",
+                      "primary-container": "#7464d4",
+                      "on-surface": "#1c1b20",
+                      "tertiary-fixed-dim": "#9dcaff",
+                      "secondary-fixed": "#ffddb2",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#c8bfff",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fcf8ff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#fffbff",
+                      "inverse-surface": "#313035",
+                      "surface-dim": "#ddd8df",
+                      "secondary-fixed-dim": "#ffba4e",
+                      "on-tertiary-container": "#fdfcff",
+                      "surface-container-low": "#f6f2f9",
+                      "on-background": "#1c1b20",
+                      "surface-tint": "#5e4dbc",
+                      "on-error-container": "#93000a",
+                      "background": "#fcf8ff",
+                      "tertiary-container": "#4478ac",
+                      "surface-variant": "#e5e1e8",
+                      "inverse-on-surface": "#f4eff6",
+                      "secondary": "#815500",
+                      "on-secondary-fixed-variant": "#624000",
+                      "primary-fixed": "#e5deff",
+                      "surface-container": "#f1ecf3",
+                      "on-primary-fixed-variant": "#4533a2",
+                      "on-tertiary-fixed-variant": "#02497b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-lg": "32px",
+                      "pane-sidebar-width": "320px",
+                      "edge-margin": "24px",
+                      "stack-sm": "8px",
+                      "pane-nav-width": "64px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-sm": [
+                              "Public Sans"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Public Sans"
+                      ],
+                      "body-lg": [
+                              "Public Sans"
+                      ],
+                      "body-md": [
+                              "Public Sans"
+                      ],
+                      "label-sm": [
+                              "Public Sans"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .citation-highlight {
+            background-color: #e5deff; /* primary-fixed */
+            border-bottom: 2px solid #5b4ab9; /* primary */
+            padding: 0 4px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .citation-highlight:hover {
+            background-color: #c8bfff; /* primary-fixed-dim */
+        }
+        .editorial-body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.8;
+            color: #1c1b20; /* on-surface */
+            font-size: 1.125rem;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen overflow-hidden flex flex-col md:flex-row">
+<!-- Desktop Global Nav (SideNavBar) -->
+<nav class="hidden md:flex flex-col z-50 bg-surface dark:bg-surface-dim docked h-screen w-pane-nav-width left-0 border-r border-outline-variant dark:border-outline flat no shadows transition-all duration-200 ease-in-out">
+<div class="h-16 flex items-center justify-center border-b border-outline-variant">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed-dim text-2xl truncate">A</span>
+</div>
+<div class="flex flex-col gap-2 p-2 mt-4">
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Ask Atlas">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Enterprise Search">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT border-l-4 border-primary text-primary font-bold dark:text-primary-fixed-dim bg-primary-container/10" href="#" title="Documents">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Collections">
+<span class="material-symbols-outlined" data-icon="folder_special">folder_special</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Saved Answers">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Team Spaces">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Evaluations">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+</a>
+<a class="flex items-center justify-center p-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/10 dark:hover:bg-primary-container/20 group relative" href="#" title="Administration">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</a>
+</div>
+<div class="mt-auto p-2 border-t border-outline-variant">
+<img alt="User Avatar" class="w-8 h-8 rounded-full object-cover mx-auto" data-alt="A small, professional avatar headshot of a corporate user, subtle lighting, clean background, minimal distraction. Suitable for a premium knowledge worker UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHk5JFYiWOQIbxU8oPrh4VuBjHiVy72zBqI6brCqOG1AZnn5Wgtjsj8PDGFHCYW0nEX19KuC7WnAdZymHdVHCduzixDU7FglHUquMkvEbHZ9prUQTohtsE5CiFm5_tskVYVuTiipYAUNEej6g78kVV6KQafcLIVKE2DaYMOrg-zkB9Tz056C97FmVm7KlDWwcuGMj1Xe9jLYWdJ6HSELiLuDL3QU_RyTGk6b5qa6BBcSkP1qPBeJMc"/>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface relative">
+<!-- Top App Bar for Document Header -->
+<header class="h-16 flex items-center justify-between px-edge-margin bg-surface border-b border-outline-variant flex-shrink-0 z-10 relative">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant p-2 -ml-2 rounded-DEFAULT hover:bg-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Q3 Earnings Call Transcript Analysis</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Last edited by Sarah Chen · Just now</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-DEFAULT text-on-surface-variant border border-outline-variant hover:bg-surface-variant transition-colors text-label-md font-label-md">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                    Share
+                </button>
+<button class="w-10 h-10 flex items-center justify-center rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Document Reading Area -->
+<div class="flex-1 overflow-y-auto relative bg-[#FAF9F6] p-edge-margin">
+<!-- Center container mimicking physical paper -->
+<div class="max-w-[800px] mx-auto bg-surface-container-lowest border border-outline-variant p-12 shadow-sm rounded-DEFAULT mb-32 relative z-0">
+<h2 class="font-display-lg text-display-lg mb-8 text-on-surface">Executive Summary: Q3 Performance &amp; Forward Outlook</h2>
+<div class="editorial-body space-y-6">
+<p>The third quarter demonstrated resilience across our core infrastructure divisions, despite macroeconomic headwinds in the broader European market. Revenue reached $1.42B, representing a <span class="citation-highlight" title="Source: Financial Tables Q3">7% year-over-year growth</span>, driven primarily by unexpected acceleration in enterprise cloud deployments.</p>
+<p>However, operating margins contracted slightly to 22.4%, down 110 basis points from Q2. This was largely anticipated due to the <span class="citation-highlight" title="Source: CFO Commentary">front-loaded capital expenditures associated with the Project Helios data center expansion</span> in Frankfurt.</p>
+<h3 class="font-headline-md text-headline-md mt-10 mb-4">Key Growth Vectors</h3>
+<p>Our strategic shift towards AI-native tooling is yielding early dividends. The newly launched 'Atlas Core' product line saw 45 net-new enterprise adoptions in September alone. As noted by CEO David Miller during the analyst Q&amp;A:</p>
+<blockquote class="pl-6 border-l-4 border-outline-variant italic text-on-surface-variant my-6">
+                        "We are not merely observing the shift toward autonomous knowledge synthesis; we are provisioning the foundational architecture for it. The demand signal from financial services clients in particular is stronger than we forecasted."
+                    </blockquote>
+<p>Looking ahead to Q4, guidance remains cautiously optimistic. We are projecting revenue between $1.45B and $1.50B. The primary risk factors involve supply chain delays for high-performance computing hardware, which <span class="citation-highlight" title="Source: Supply Chain Risk Report">could defer approximately $40M in recognized revenue into Q1 of the following fiscal year</span>.</p>
+<p>Customer retention remains our strongest metric, holding steady at 98.2% gross revenue retention. The expansion motion (Net Retention at 114%) suggests that once integrated, our platform stickiness is exceptional, particularly when clients utilize the advanced analytics modules.</p>
+</div>
+</div>
+</div>
+<!-- Floating Ask Bar -->
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl px-4 z-20">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-full shadow-lg p-2 flex items-center gap-3 transition-shadow focus-within:ring-2 focus-within:ring-primary-fixed">
+<span class="material-symbols-outlined text-primary ml-3">arrow_back_ios_new</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant/50 h-10" placeholder="Ask the workspace about this document..." type="text"/>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_upward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Right Sidebar (Contextual Explorer) -->
+<aside class="hidden xl:flex flex-col w-pane-sidebar-width bg-surface border-l border-outline-variant flex-shrink-0 z-10 h-screen overflow-y-auto">
+<div class="p-edge-margin space-y-8">
+<!-- AI Summary -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">auto_awesome</span>
+                    Document Insights
+                </h3>
+<ul class="space-y-3 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<span>Revenue grew 7% YoY to $1.42B, beating expectations.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<span>Margins compressed due to Project Helios CapEx.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check_circle</span>
+<span>Strong AI product adoption; Q4 guidance $1.45B-$1.50B.</span>
+</li>
+</ul>
+</section>
+<hr class="border-outline-variant"/>
+<!-- Key Entities -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4">Key Entities</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface">David Miller (CEO)</span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface">Project Helios</span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface">Frankfurt</span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface">Atlas Core</span>
+</div>
+</section>
+<hr class="border-outline-variant"/>
+<!-- Related Documents -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4">Related Material</h3>
+<div class="space-y-3">
+<a class="block p-3 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest hover:border-primary transition-colors" href="#">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Q2 Financial Statements</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Spreadsheet · 3 weeks ago</p>
+</a>
+<a class="block p-3 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest hover:border-primary transition-colors" href="#">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Project Helios CapEx Plan</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Document · 2 months ago</p>
+</a>
+</div>
+</section>
+<hr class="border-outline-variant"/>
+<!-- Version History -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4">History</h3>
+<div class="relative pl-4 border-l border-outline-variant space-y-6 mt-4">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface"></div>
+<p class="font-label-md text-label-md text-on-surface">Sarah Chen</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Added Q4 Guidance</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">Just now</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-outline ring-4 ring-surface"></div>
+<p class="font-label-md text-label-md text-on-surface">Auto-Transcript</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Initial Generation</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">2 hours ago</p>
+</div>
+</div>
+</section>
+</div>
+</aside>
+</body></html>

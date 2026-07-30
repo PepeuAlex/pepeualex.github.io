@@ -1,0 +1,67 @@
+[
+  {
+    "slug": "typescript-react",
+    "name_en": "TypeScript / React",
+    "name_pt": "TypeScript / React",
+    "audiences": [
+      "typescript",
+      "software"
+    ],
+    "full": "assets/resumes/Pedro_Alexandre_typescript-react_Full.docx",
+    "one": "assets/resumes/Pedro_Alexandre_typescript-react_One_Page.docx"
+  },
+  {
+    "slug": "python-ai",
+    "name_en": "Python / AI",
+    "name_pt": "Python / IA",
+    "audiences": [
+      "python",
+      "ai",
+      "software"
+    ],
+    "full": "assets/resumes/Pedro_Alexandre_python-ai_Full.docx",
+    "one": "assets/resumes/Pedro_Alexandre_python-ai_One_Page.docx"
+  },
+  {
+    "slug": "dotnet",
+    "name_en": "C# / .NET",
+    "name_pt": "C# / .NET",
+    "audiences": [
+      "dotnet",
+      "software"
+    ],
+    "full": "assets/resumes/Pedro_Alexandre_dotnet_Full.docx",
+    "one": "assets/resumes/Pedro_Alexandre_dotnet_One_Page.docx"
+  },
+  {
+    "slug": "systems",
+    "name_en": "Systems Engineer",
+    "name_pt": "Engenharia de Sistemas",
+    "audiences": [
+      "systems",
+      "software"
+    ],
+    "full": "assets/resumes/Pedro_Alexandre_systems_Full.docx",
+    "one": "assets/resumes/Pedro_Alexandre_systems_One_Page.docx"
+  },
+  {
+    "slug": "power-platform",
+    "name_en": "Power Platform",
+    "name_pt": "Power Platform",
+    "audiences": [
+      "power"
+    ],
+    "full": "assets/resumes/Pedro_Alexandre_power-platform_Full.docx"
+  },
+  {
+    "slug": "mobile",
+    "name_en": "Mobile Applications",
+    "name_pt": "Aplicações Mobile",
+    "audiences": [
+      "mobile",
+      "software"
+    ],
+    "full": "assets/resumes/Pedro_Alexandre_mobile_Full.docx",
+    "one": "assets/resumes/Pedro_Alexandre_mobile_One_Page.docx"
+  }
+]
