@@ -34,9 +34,12 @@ Edit the contact links near the bottom of `index.html` when dedicated GitHub rep
 
 ## October 2026 content refresh
 
-- The selected professional project cards cover multiple engagements and independent engineering initiatives, without client attribution. Do not imply all were produced for Primetals.
+- The 11 selected professional project cards cover multiple engagements and independent engineering initiatives, without client attribution. Do not imply all were produced for Primetals.
 - Primetals is the only employer listed in the public work history.
 - The separate eight-project Product Lab consists of frontend concepts with simulated data, not enterprise deployments.
 - Existing DOCX downloads are older role-specific examples; ask for an updated CV before replacing them.
 - Screenshots are intentionally omitted from professional work. Add only approved, sanitized screenshots, with any user/client data, IDs, business documents, URLs and credentials removed.
 - Recommended approved images: PrimeAI quotations (testing), PACE project/document workspace, Sentinel Prime incidents/assets, Project Center WBS/Gantt and BI Hub (access control). Check employer/client confidentiality before publication.
+
+- **PACE** is the current unified project/document platform and supersedes **Project Center**; it must appear only once.
+- **Sentinel Prime** is the real IT incident/asset application. The independent SentinelOps and Nexus Service Cloud entries under Product Lab are UI concepts, not duplicates of Sentinel Prime.
