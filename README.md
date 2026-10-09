@@ -43,3 +43,15 @@ Edit the contact links near the bottom of `index.html` when dedicated GitHub rep
 
 - **PACE** is the current unified project/document platform and supersedes **Project Center**; it must appear only once.
 - **Sentinel Prime** is the real IT incident/asset application. The independent SentinelOps and Nexus Service Cloud entries under Product Lab are UI concepts, not duplicates of Sentinel Prime.
+
+## Pending private asset review (professional screenshots)
+
+The PR now includes a responsive, bilingual gallery feature for PACE, PrimeAI, BI Hub and TrainingHUB.
+For privacy, actual screenshots are NOT committed to this public repository yet.
+Missing assets cause the gallery buttons to hide, so the site stays functional prior to upload.
+
+The user must review/anonymize the exported screenshots, then upload the approved WebP files
+from the separate gallery package to `assets/projects/professional/{pace,primeai,bihub,traininghub}/`.
+The matching client-side manifest lives in `professional-gallery.js`.
+
+Sentinel Prime intentionally remains a text-only case until its app is ready.
